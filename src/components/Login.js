@@ -40,7 +40,7 @@ const Login = () => {
         required
         minLength={6}
       />
-      <button type="submit" disabled={isValid} onClick={() => enter(email)}>
+      <button type="submit" disabled={!isValid} onClick={() => enter(email)}>
         Entrar
         {/*         <Link to="" /> */}
       </button>
