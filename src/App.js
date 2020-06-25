@@ -8,7 +8,7 @@ function App() {
     <div id="meals">
       <Router>
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <Login />
           </Route>
           <Route path="/comidas">{}</Route>
