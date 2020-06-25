@@ -1,30 +1,32 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
-import Login from './components/Login';
+import Login from './components/Login/Login';
 
 function App() {
   return (
     <div id="meals">
       <Router>
         <Switch>
-          <Route exact path="/" component={Login} />
-          <Route to="/comidas">{}</Route>
-          <Route to="/bebidas">{}</Route>
-          <Route to="/comidas/:id">{}</Route>
-          <Route to="/bebidas/:id">{}</Route>
-          <Route to="/comidas/:id/in-progress">{}</Route>
-          <Route to="/bebidas/:id/in-progress">{}</Route>
-          <Route to="/explorar">{}</Route>
-          <Route to="/explorar/comidas">{}</Route>
-          <Route to="/explorar/bebidas">{}</Route>
-          <Route to="/explorar/comidas/ingredientes">{}</Route>
-          <Route to="/explorar/bebidas/ingredientes">{}</Route>
-          <Route to="/explorar/comidas/area">{}</Route>
-          <Route to="/perfil">{}</Route>
-          <Route to="/receitas-feitas">{}</Route>
-          <Route to="/receitas-favoritas">{}</Route>
-          <Route to="*">{}</Route>
+          <Route exact path="/">
+            <Login />
+          </Route>
+          <Route path="/comidas">{}</Route>
+          <Route path="/bebidas">{}</Route>
+          <Route path="/comidas/:id">{}</Route>
+          <Route path="/bebidas/:id">{}</Route>
+          <Route path="/comidas/:id/in-progress">{}</Route>
+          <Route path="/bebidas/:id/in-progress">{}</Route>
+          <Route path="/explorar">{}</Route>
+          <Route path="/explorar/comidas">{}</Route>
+          <Route path="/explorar/bebidas">{}</Route>
+          <Route path="/explorar/comidas/ingredientes">{}</Route>
+          <Route path="/explorar/bebidas/ingredientes">{}</Route>
+          <Route path="/explorar/comidas/area">{}</Route>
+          <Route path="/perfil">{}</Route>
+          <Route path="/receitas-feitas">{}</Route>
+          <Route path="/receitas-favoritas">{}</Route>
+          <Route path="*">{}</Route>
         </Switch>
       </Router>
     </div>

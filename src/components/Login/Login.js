@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Footer from './Footer';
-/* import { Link } from 'react-router-dom';
- */
+import { Link } from 'react-router-dom';
+
 const setLocalStorage = (email) => {
   localStorage.setItem('mealsToken', 1);
   localStorage.setItem('cocktailsToken', 1);
@@ -9,7 +8,6 @@ const setLocalStorage = (email) => {
 };
 
 const isEmailValid = (email) => {
-  console.log(email);
   const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   return !!email && typeof email === 'string' && !!email.match(emailRegex);
 };
@@ -24,8 +22,6 @@ const Login = () => {
   const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
-    console.log('using effect');
-    console.log('email:', isEmailValid(email));
     if (isEmailValid(email) && isPasswordValid(password)) setIsValid(true);
     if (!isEmailValid(email) || !isPasswordValid(password)) setIsValid(false);
   }, [email, password]);
@@ -33,12 +29,14 @@ const Login = () => {
   return (
     <form>
       <input
+        data-testid="email-input"
         placeholder="Email"
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
+        data-testid="password-input"
         placeholder="password"
         type="password"
         value={password}
@@ -46,11 +44,16 @@ const Login = () => {
         required
         minLength={6}
       />
-      <button type="submit" disabled={!isValid} onClick={() => enter(email)}>
-        Entrar
-        {/*         <Link to="" /> */}
-      </button>
-      <Footer />
+      <Link to="/comidas">
+        <button
+          type="button"
+          data-testid="login-submit-btn"
+          disabled={!isValid}
+          onClick={() => enter(email)}
+        >
+          Entrar
+        </button>
+      </Link>
     </form>
   );
 };
