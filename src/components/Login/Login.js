@@ -32,12 +32,14 @@ const Login = () => {
   return (
     <form>
       <input
+        data-testid="login-input-email"
         placeholder="Email"
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
+        data-testid="login-input-password"
         placeholder="password"
         type="password"
         value={password}
@@ -45,7 +47,7 @@ const Login = () => {
         required
         minLength={6}
       />
-      <button type="submit" disabled={!isValid} onClick={() => enter(email)}>
+      <button type="submit" data-testid="login-button" disabled={!isValid} onClick={() => enter(email)}>
         Entrar
         {/*         <Link to="" /> */}
       </button>
