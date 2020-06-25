@@ -45,7 +45,12 @@ const Login = () => {
         required
         minLength={6}
       />
-      <button type="submit" data-testid="login-button" disabled={!isValid} onClick={() => enter(email)}>
+      <button
+        type="button"
+        data-testid="login-button"
+        disabled={!isValid}
+        onClick={() => enter(email)}
+      >
         Entrar
         <Link to="/comidas" />
       </button>
