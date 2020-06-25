@@ -8,9 +8,7 @@ function App() {
     <div id="meals">
       <Router>
         <Switch>
-          <Route to="/">
-            <Login />
-          </Route>
+          <Route exact path="/" component={Login} />
           <Route to="/comidas">{}</Route>
           <Route to="/bebidas">{}</Route>
           <Route to="/comidas/:id">{}</Route>

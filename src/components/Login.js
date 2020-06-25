@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Footer from './Footer';
 /* import { Link } from 'react-router-dom';
  */
 const setLocalStorage = (email) => {
@@ -49,6 +50,7 @@ const Login = () => {
         Entrar
         {/*         <Link to="" /> */}
       </button>
+      <Footer />
     </form>
   );
 };
