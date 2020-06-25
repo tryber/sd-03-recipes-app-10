@@ -6,7 +6,7 @@ import App from '../../App';
 const VALID_EMAIL = 'addd@hotmi.com';
 const VALID_PASSWORD = 'naoeumasenhaconfiavel';
 
-const INVALID_EMAIL = '@hotmi';
+const INVALID_EMAIL = 'ssd@hotmi.om';
 const INVALID_PASSWORD = 'trust';
 
 describe('Testing login inputs and button', () => {
@@ -17,7 +17,6 @@ describe('Testing login inputs and button', () => {
     expect(loginInput).toBeInTheDocument();
 
     fireEvent.change(loginInput, { target: { value: VALID_EMAIL } });
-    console.log(loginInput);
     expect(loginInput.value).toBe(VALID_EMAIL);
 
     const passwordInput = getByTestId('login-input-password');
@@ -37,7 +36,7 @@ describe('Testing login inputs and button', () => {
     expect(loginInput).toBeInTheDocument();
 
     fireEvent.change(loginInput, { target: { value: INVALID_EMAIL } });
-    console.log(loginInput);
+
     expect(loginInput.value).toBe(INVALID_EMAIL);
 
     const passwordInput = getByTestId('login-input-password');
