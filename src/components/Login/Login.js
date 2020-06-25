@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-/* import { Link } from 'react-router-dom';
- */
+import { Link } from 'react-router-dom';
+
 const setLocalStorage = (email) => {
   localStorage.setItem('mealsToken', 1);
   localStorage.setItem('cocktailsToken', 1);
@@ -47,7 +47,7 @@ const Login = () => {
       />
       <button type="submit" data-testid="login-button" disabled={!isValid} onClick={() => enter(email)}>
         Entrar
-        {/*         <Link to="" /> */}
+        <Link to="/comidas" />
       </button>
     </form>
   );
