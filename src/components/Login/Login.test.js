@@ -27,6 +27,11 @@ describe('Testing login inputs and button', () => {
     expect(passwordInput.value).toBe(VALID_PASSWORD);
     const loginButton = getByTestId('login-submit-btn');
     expect(loginButton.disabled).toBe(false);
+    fireEvent.click(loginButton);
+    expect(localStorage.getItem('mealsToken')).toBe('1');
+    expect(localStorage.getItem('cocktailsToken')).toBe('1');
+    expect(JSON.parse(localStorage.getItem('user'))).toEqual({ email: VALID_EMAIL });
+    expect(window.location.pathname).toMatch('/comidas');
   });
 
   test('email, password: INvalidInput - button should be DISabled', () => {

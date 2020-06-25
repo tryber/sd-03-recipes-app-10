@@ -8,7 +8,6 @@ const setLocalStorage = (email) => {
 };
 
 const isEmailValid = (email) => {
-  console.log(email);
   const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   return !!email && typeof email === 'string' && !!email.match(emailRegex);
 };
@@ -53,7 +52,6 @@ const Login = () => {
           onClick={() => enter(email)}
         >
           Entrar
-
         </button>
       </Link>
     </form>
