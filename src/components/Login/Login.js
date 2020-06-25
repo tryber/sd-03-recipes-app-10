@@ -30,14 +30,14 @@ const Login = () => {
   return (
     <form>
       <input
-        data-testid="login-input-email"
+        data-testid="email-input"
         placeholder="Email"
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
-        data-testid="login-input-password"
+        data-testid="password-input"
         placeholder="password"
         type="password"
         value={password}
@@ -45,15 +45,17 @@ const Login = () => {
         required
         minLength={6}
       />
-      <button
-        type="button"
-        data-testid="login-button"
-        disabled={!isValid}
-        onClick={() => enter(email)}
-      >
-        Entrar
-        <Link to="/comidas" />
-      </button>
+      <Link to="/comidas">
+        <button
+          type="button"
+          data-testid="login-submit-btn"
+          disabled={!isValid}
+          onClick={() => enter(email)}
+        >
+          Entrar
+
+        </button>
+      </Link>
     </form>
   );
 };
