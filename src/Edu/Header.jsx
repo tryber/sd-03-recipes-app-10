@@ -16,14 +16,19 @@ export default function Header() {
   return (
     <div>
       <header className='header'>
-        {/* <Link to="/perfil"> */}
-        <button data-testid="profile-top-btn" type='button' className='profile-icon' />
-        {/* </Link> */}
+        <Link to='/perfil'>
+          <button
+            data-testid='profile-top-btn'
+            type='button'
+            className='profile-icon'
+          />
+        </Link>
         <div className='title'>
-          <p data-testid="page-title">{title}</p>
+          <p data-testid='page-title'>{title}</p>
         </div>
         {isSearchable ? (
-          <button data-testid="search-top-btn"
+          <button
+            data-testid='search-top-btn'
             onClick={renderSearchBar}
             type='button'
             className='search-icon'
@@ -31,10 +36,14 @@ export default function Header() {
         ) : null}
       </header>
       {toggleSearchBar ? (
-        <div>
-          <input className='search-bar' placeholder='Buscar Receitas' />
-        </div>
-      ) : null}      
+
+          <input
+            className='search-bar'
+            data-testid='search-input'
+            placeholder='Buscar Receitas'
+          />
+
+      ) : null}
       {/* {toggleSearchBar ? (
         <SearchBar />
       ) : null} */}
