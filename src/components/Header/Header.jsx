@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.style.css';
-import Footer from '../Footer/Footer'
+import Footer from '../Footer/Footer';
 
 export default function Header() {
   const [title, setTitle] = useState('');
@@ -49,9 +49,6 @@ export default function Header() {
           placeholder="Buscar Receitas"
         />
       ) : null}
-      {/* {toggleSearchBar ? (
-        <SearchBar />
-      ) : null} */}
     </div>
   );
 }
