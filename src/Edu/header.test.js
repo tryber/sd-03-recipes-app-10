@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import Header from './Header';
-import { toPath } from 'lodash';
+import renderWithRouter from '../helpers/renderWithRouter';
 
 describe('Test to check if all elements are being rendered correctly on screen.', () => {
   test('should all elements have their correct data-testids', () => {
@@ -16,9 +16,12 @@ describe('Test to check if all elements are being rendered correctly on screen.'
 
 describe('Test to see if the correct routes are being used', () => {
   test('should Profile Icon, when clicked, got to "./perfil"', () => {
-    const { getByTestId } = render(<Header />);
+    const { getByTestId } = renderWithRouter(<Header />);
     const profileBtnIcon = getByTestId('profile-top-btn');
 
     expect(profileBtnIcon).toBeInTheDocument();
+    fireEvent.click(profileBtnIcon);
+
+    expect(window.location.pathname).tobe('/perfil');
   });
 });

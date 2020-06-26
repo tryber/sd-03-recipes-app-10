@@ -8,7 +8,11 @@ function App() {
     <div id="meals">
       <Router>
         <Switch>
+<<<<<<< HEAD
           <Route path="/">
+=======
+          <Route strict path="/">
+>>>>>>> 7968609270fd388413ef72c5540a0277e67a1651
             <Login />
           </Route>
           <Route path="/comidas">{}</Route>
