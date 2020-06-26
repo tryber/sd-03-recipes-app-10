@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login/Login';
-import Header from './Edu/Header';
+import Header from './components/Header/Header';
 
 function App() {
   return (
-    <div id="meals">
+    <div id="app-receitas">
       <Router>
         <Switch>
           <Route exact path="/">
@@ -29,6 +29,9 @@ function App() {
           <Route path="/perfil">{}</Route>
           <Route path="/receitas-feitas">{}</Route>
           <Route path="/receitas-favoritas">{}</Route>
+          <Route exact path="/">
+            <Login />
+          </Route>
           <Route path="*">{}</Route>
         </Switch>
       </Router>
