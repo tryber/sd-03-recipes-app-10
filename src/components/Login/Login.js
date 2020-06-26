@@ -53,7 +53,6 @@ const Login = () => {
           onClick={() => enter(email)}
         >
           Entrar
-
         </button>
       </Link>
     </form>

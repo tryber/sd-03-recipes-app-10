@@ -1,0 +1,63 @@
+.header {
+  position: absolute;
+  width: 360px;
+  height: 58px;
+  left: 0px;
+  top: 0px;
+
+  background: #c4c4c4;
+}
+
+.title {
+  position: absolute;
+  width: 119px;
+  height: 35px;
+  left: 123px;
+  top: 12px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 35px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
+.profile-icon {
+  border: none;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  left: 15px;
+  top: 12px;
+  background: url(../images/profileIcon.svg);
+  align-self: center;
+}
+
+.search-icon {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  left: 317px;
+  top: 12px;
+  
+  border: none;
+  background: url(../images/searchIcon.svg);
+  align-self: center;
+}
+
+.search-bar {
+  position: absolute;
+  left: 1.50%;
+  right: 1.50%;
+  top: 9.50%;
+  bottom: 85%;
+  width: 350px;
+
+  background: #ffffff;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
