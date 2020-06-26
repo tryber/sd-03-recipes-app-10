@@ -18,7 +18,6 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValid, setIsValid] = useState(false);
-  console.log('teeerreee')
   useEffect(() => {
     if (isEmailValid(email) && isPasswordValid(password)) setIsValid(true);
     if (!isEmailValid(email) || !isPasswordValid(password)) setIsValid(false);

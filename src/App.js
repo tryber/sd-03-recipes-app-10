@@ -8,10 +8,7 @@ function App() {
     <div id="meals">
       <Router>
         <Switch>
-          <Route strict path="/">
-            <Login />
-          </Route>
-          <Route path="/comidas">{}</Route>
+          <Route path="/comidas">Placeholder</Route>
           <Route path="/bebidas">{}</Route>
           <Route path="/comidas/:id">{}</Route>
           <Route path="/bebidas/:id">{}</Route>
@@ -26,6 +23,9 @@ function App() {
           <Route path="/perfil">{}</Route>
           <Route path="/receitas-feitas">{}</Route>
           <Route path="/receitas-favoritas">{}</Route>
+          <Route exact path="/">
+            <Login />
+          </Route>
           <Route path="*">{}</Route>
         </Switch>
       </Router>

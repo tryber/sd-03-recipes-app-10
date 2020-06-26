@@ -1,6 +1,7 @@
 import React from 'react';
 import { fireEvent, cleanup } from '@testing-library/react';
 import renderWithRouter from '../helpers/renderWithRouter';
+import Login from './Login';
 import App from '../../App';
 
 const VALID_EMAIL = 'addd@hotmi.com';
@@ -13,7 +14,7 @@ afterEach(cleanup);
 
 describe('Testing login inputs and button', () => {
   it('email, password: validInput - button should be able', () => {
-    const { getByTestId } = renderWithRouter(<App />);
+    const { getByTestId, history } = renderWithRouter(<Login />);
     const loginInput = getByTestId('email-input');
 
     expect(loginInput).toBeInTheDocument();
@@ -35,11 +36,13 @@ describe('Testing login inputs and button', () => {
     expect(JSON.parse(localStorage.getItem('user'))).toEqual({
       email: VALID_EMAIL,
     });
-    expect(window.location.pathname).toBe('/comidas');
+    expect(history.location.pathname).toBe('/comidas');
   });
   it('email, password: INvalidInput - button should be DISabled', () => {
-    const { getByTestId, history } = renderWithRouter(<App />);
+    const { getByTestId, history } = renderWithRouter(<Login />);
+    console.log(history.location);
     history.push('/');
+    console.log('history:', history.location);
     const loginInput = getByTestId('email-input');
 
     expect(loginInput).toBeInTheDocument();
