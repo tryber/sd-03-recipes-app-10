@@ -1,0 +1,20 @@
+.drink-icon {
+  background: url('../../images/drinkIcon.svg');
+  border: none;
+  height: 40px;
+  width: 40px;
+}
+
+.explore-icon {
+  background: url('../../images/exploreIcon.svg');
+  border: none;
+  height: 40px;
+  width: 40px;
+}
+
+.meal-icon {
+  background: url('../../images/mealIcon.svg');
+  border: none;
+  height: 40px;
+  width: 40px;
+}
