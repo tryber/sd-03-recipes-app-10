@@ -1,21 +1,19 @@
 import React from 'react';
-import drinkIcon from "../images/drinkIcon.svg";
-import exploreIcon from "../images/exploreIcon.svg";
-import mealIcon from "../images/mealIcon.svg";
 import { Link } from 'react-router-dom';
+import './Footer.style.css';
 
 export default function Footer() {
   return (
     <div>
       <p>
-        <Link to='explorar/bebidas'>
-          <img data-testid="drinks-bottom-btn" src={drinkIcon} alt="React Logo" />
-        </Link>
         <Link to='/explorar/comidas'>
-          <img data-testid="explore-bottom-btn" src={exploreIcon} alt="React Logo" />
+          <button data-testid="food-bottom-btn" type="button" className="explore-icon" />
+        </Link>
+        <Link to='/explorar/bebidas'>
+          <button data-testid="drinks-bottom-btn" type="button" className="drink-icon" />
         </Link>
         <Link to='/explorar'>
-          <img data-testid="food-bottom-btn" src={mealIcon} alt="React Logo" />
+          <button data-testid="explore-bottom-btn" type="button" className="meal-icon" />
         </Link>
       </p>
     </div>
