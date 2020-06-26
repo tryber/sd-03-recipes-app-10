@@ -1,14 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
-import Login from './components/Login/Login';
+import Login from './components/Login/Login'; import Header from './Edu/Header';
+import Header from './Edu/Header';
 
 function App() {
   return (
     <div id="meals">
       <Router>
         <Switch>
-          <Route path="/comidas">Placeholder</Route>
+          <Route exact path="/">
+            <Login />
+          </Route>
+          <Route path="/comidas">{Header}</Route>
           <Route path="/bebidas">{}</Route>
           <Route path="/comidas/:id">{}</Route>
           <Route path="/bebidas/:id">{}</Route>
@@ -23,9 +27,6 @@ function App() {
           <Route path="/perfil">{}</Route>
           <Route path="/receitas-feitas">{}</Route>
           <Route path="/receitas-favoritas">{}</Route>
-          <Route exact path="/">
-            <Login />
-          </Route>
           <Route path="*">{}</Route>
         </Switch>
       </Router>
