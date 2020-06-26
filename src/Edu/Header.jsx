@@ -16,7 +16,7 @@ export default function Header() {
     return toggleSearchBar === true
       ? setToggleSearchBar(false)
       : setToggleSearchBar(true);
-  }
+  };
 
   return (
     <div>
