@@ -6,30 +6,30 @@ import Header from './Edu/Header';
 
 function App() {
   return (
-    <div id='meals'>
+    <div id="meals">
       <Router>
         <Switch>
-          <Route exact path='/'>
+          <Route exact path="/">
             <Login />
           </Route>
           {/* Abaixo, irá o componente que terá o Header como children.
           Ele está sendo renderizado aqui apenas para fins de teste */}
-          <Route path='/comidas' component={Header} />
-          <Route path='/bebidas'>{}</Route>
-          <Route path='/comidas/:id'>{}</Route>
-          <Route path='/bebidas/:id'>{}</Route>
-          <Route path='/comidas/:id/in-progress'>{}</Route>
-          <Route path='/bebidas/:id/in-progress'>{}</Route>
-          <Route path='/explorar'>{}</Route>
-          <Route path='/explorar/comidas'>{}</Route>
-          <Route path='/explorar/bebidas'>{}</Route>
-          <Route path='/explorar/comidas/ingredientes'>{}</Route>
-          <Route path='/explorar/bebidas/ingredientes'>{}</Route>
-          <Route path='/explorar/comidas/area'>{}</Route>
-          <Route path='/perfil'>{}</Route>
-          <Route path='/receitas-feitas'>{}</Route>
-          <Route path='/receitas-favoritas'>{}</Route>
-          <Route path='*'>{}</Route>
+          <Route path="/comidas" component={Header} />
+          <Route path="/bebidas">{}</Route>
+          <Route path="/comidas/:id">{}</Route>
+          <Route path="/bebidas/:id">{}</Route>
+          <Route path="/comidas/:id/in-progress">{}</Route>
+          <Route path="/bebidas/:id/in-progress">{}</Route>
+          <Route path="/explorar">{}</Route>
+          <Route path="/explorar/comidas">{}</Route>
+          <Route path="/explorar/bebidas">{}</Route>
+          <Route path="/explorar/comidas/ingredientes">{}</Route>
+          <Route path="/explorar/bebidas/ingredientes">{}</Route>
+          <Route path="/explorar/comidas/area">{}</Route>
+          <Route path="/perfil">{}</Route>
+          <Route path="/receitas-feitas">{}</Route>
+          <Route path="/receitas-favoritas">{}</Route>
+          <Route path="*">{}</Route>
         </Switch>
       </Router>
     </div>

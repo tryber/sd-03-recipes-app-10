@@ -1,63 +1,58 @@
 .header {
-  position: absolute;
-  width: 360px;
-  height: 58px;
-  left: 0px;
-  top: 0px;
-
   background: #c4c4c4;
+  height: 58px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 360px;
 }
 
 .title {
-  position: absolute;
-  width: 119px;
+  align-items: center;
+  display: flex;
+  color: #000;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: 100;
+  font-size: 30px;
   height: 35px;
   left: 123px;
-  top: 12px;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 30px;
   line-height: 35px;
-  display: flex;
-  align-items: center;
-
-  color: #000000;
+  position: absolute;
+  top: 12px;
+  width: 119px;
 }
 
 .profile-icon {
+  align-self: center;
+  background: url("../images/profileIcon.svg");
   border: none;
-  position: absolute;
-  width: 30px;
   height: 30px;
   left: 15px;
+  position: absolute;
   top: 12px;
-  background: url(../images/profileIcon.svg);
-  align-self: center;
+  width: 30px;
 }
 
 .search-icon {
-  position: absolute;
-  width: 30px;
+  align-self: center;
+  background: url("../images/searchIcon.svg");
+  border: none;
   height: 30px;
   left: 317px;
+  position: absolute;
   top: 12px;
-  
-  border: none;
-  background: url(../images/searchIcon.svg);
-  align-self: center;
+  width: 30px;
 }
 
 .search-bar {
-  position: absolute;
-  left: 1.50%;
-  right: 1.50%;
-  top: 9.50%;
+  background: #fff;
+  border: 1px solid #000;
   bottom: 85%;
-  width: 350px;
-
-  background: #ffffff;
-  border: 1px solid #000000;
   box-sizing: border-box;
+  left: 1.5%;
+  position: absolute;
+  right: 1.5%;
+  top: 9.5%;
+  width: 350px;
 }

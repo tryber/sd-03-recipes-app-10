@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.style.css';
 
 export default function Header() {
-  const [title, setTitle] = useState('Comidas');
-  const [isSearchable, setIsSearchable] = useState(true);
+  const [title, setTitle] = useState('');
+  const [isSearchable, setIsSearchable] = useState();
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
+
+  useEffect(() => {
+    setTitle("Comidas");
+    setIsSearchable(true);
+  },[])
 
   const renderSearchBar = () => {
     toggleSearchBar === true
