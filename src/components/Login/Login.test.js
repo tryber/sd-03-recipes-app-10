@@ -1,7 +1,7 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, cleanup } from '@testing-library/react';
+import renderWithRouter from '../helpers/renderWithRouter';
 import App from '../../App';
-
 
 const VALID_EMAIL = 'addd@hotmi.com';
 const VALID_PASSWORD = 'naoeumasenhaconfiavel';
@@ -9,9 +9,11 @@ const VALID_PASSWORD = 'naoeumasenhaconfiavel';
 const INVALID_EMAIL = 'ssd@hotmi.om';
 const INVALID_PASSWORD = 'trust';
 
+afterEach(cleanup);
+
 describe('Testing login inputs and button', () => {
-  test('emaill, password: validInput - button should be able', () => {
-    const { getByTestId } = render(<App />);
+  it('email, password: validInput - button should be able', () => {
+    const { getByTestId } = renderWithRouter(<App />);
     const loginInput = getByTestId('email-input');
 
     expect(loginInput).toBeInTheDocument();
@@ -30,12 +32,14 @@ describe('Testing login inputs and button', () => {
     fireEvent.click(loginButton);
     expect(localStorage.getItem('mealsToken')).toBe('1');
     expect(localStorage.getItem('cocktailsToken')).toBe('1');
-    expect(JSON.parse(localStorage.getItem('user'))).toEqual({ email: VALID_EMAIL });
-    expect(window.location.pathname).toMatch('/comidas');
+    expect(JSON.parse(localStorage.getItem('user'))).toEqual({
+      email: VALID_EMAIL,
+    });
+    expect(window.location.pathname).toBe('/comidas');
   });
-
-  test('email, password: INvalidInput - button should be DISabled', () => {
-    const { getByTestId } = render(<App />);
+  it('email, password: INvalidInput - button should be DISabled', () => {
+    const { getByTestId, history } = renderWithRouter(<App />);
+    history.push('/');
     const loginInput = getByTestId('email-input');
 
     expect(loginInput).toBeInTheDocument();
