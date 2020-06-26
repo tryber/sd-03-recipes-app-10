@@ -9,8 +9,8 @@
 
 .title {
   align-items: center;
+  color: black;
   display: flex;
-  color: #000;
   font-family: Roboto, sans-serif;
   font-style: normal;
   font-weight: 100;
@@ -25,7 +25,7 @@
 
 .profile-icon {
   align-self: center;
-  background: url("../images/profileIcon.svg");
+  background: url('../images/profileIcon.svg');
   border: none;
   height: 30px;
   left: 15px;
@@ -36,7 +36,7 @@
 
 .search-icon {
   align-self: center;
-  background: url("../images/searchIcon.svg");
+  background: url('../images/searchIcon.svg');
   border: none;
   height: 30px;
   left: 317px;
@@ -46,8 +46,8 @@
 }
 
 .search-bar {
-  background: #fff;
-  border: 1px solid #000;
+  background: white;
+  border: 1px solid black;
   bottom: 85%;
   box-sizing: border-box;
   left: 1.5%;
