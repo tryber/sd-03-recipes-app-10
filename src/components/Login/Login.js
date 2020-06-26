@@ -13,14 +13,11 @@ const isEmailValid = (email) => {
 };
 
 const isPasswordValid = (password) => password.length > 6;
-const enter = (email) => setLocalStorage(email);
-
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValid, setIsValid] = useState(false);
-
   useEffect(() => {
     if (isEmailValid(email) && isPasswordValid(password)) setIsValid(true);
     if (!isEmailValid(email) || !isPasswordValid(password)) setIsValid(false);
@@ -49,7 +46,7 @@ const Login = () => {
           type="button"
           data-testid="login-submit-btn"
           disabled={!isValid}
-          onClick={() => enter(email)}
+          onClick={() => setLocalStorage(email)}
         >
           Entrar
         </button>
