@@ -2,17 +2,19 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login/Login';
-import Header from './Edu/Header';
+import Header from './components/Header/Header';
 
 function App() {
   return (
-    <div id="meals">
+    <div id="app-receitas">
       <Router>
         <Switch>
           <Route exact path="/">
             <Login />
           </Route>
-          <Route path="/comidas">{Header}</Route>
+          {/* Abaixo, irá o componente que terá o Header como children.
+          Ele está sendo renderizado aqui apenas para fins de teste */}
+          <Route path="/comidas" component={Header} />
           <Route path="/bebidas">{}</Route>
           <Route path="/comidas/:id">{}</Route>
           <Route path="/bebidas/:id">{}</Route>

@@ -39,9 +39,7 @@ describe('Testing login inputs and button', () => {
   });
   it('email, password: INvalidInput - button should be DISabled', () => {
     const { getByTestId, history } = renderWithRouter(<Login />);
-    console.log(history.location);
     history.push('/');
-    console.log('history:', history.location);
     const loginInput = getByTestId('email-input');
 
     expect(loginInput).toBeInTheDocument();
