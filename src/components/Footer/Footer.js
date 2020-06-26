@@ -4,8 +4,7 @@ import './Footer.style.css';
 
 export default function Footer() {
   return (
-    <div>
-      <p>
+    <div className="footer-container">
         <Link to="/explorar/comidas">
           <button data-testid="food-bottom-btn" type="button" className="explore-icon" />
         </Link>
@@ -15,7 +14,6 @@ export default function Footer() {
         <Link to="/explorar">
           <button data-testid="explore-bottom-btn" type="button" className="meal-icon" />
         </Link>
-      </p>
     </div>
   );
 }
