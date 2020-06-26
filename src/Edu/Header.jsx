@@ -12,7 +12,7 @@ export default function Header() {
     setIsSearchable(true);
   }, []);
 
-  const renderSearchBar = () => {
+  function renderSearchBar() {
     return toggleSearchBar === true
       ? setToggleSearchBar(false)
       : setToggleSearchBar(true);
