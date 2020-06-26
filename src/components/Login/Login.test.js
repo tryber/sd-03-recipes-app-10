@@ -2,7 +2,6 @@ import React from 'react';
 import { fireEvent, cleanup } from '@testing-library/react';
 import renderWithRouter from '../helpers/renderWithRouter';
 import Login from './Login';
-import App from '../../App';
 
 const VALID_EMAIL = 'addd@hotmi.com';
 const VALID_PASSWORD = 'naoeumasenhaconfiavel';
