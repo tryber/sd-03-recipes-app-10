@@ -6,16 +6,16 @@ export default function Footer() {
   return (
     <div>
       <p>
-        <Link to='/explorar/comidas'>
+        <Link to="/explorar/comidas">
           <button data-testid="food-bottom-btn" type="button" className="explore-icon" />
         </Link>
-        <Link to='/explorar/bebidas'>
+        <Link to="/explorar/bebidas">
           <button data-testid="drinks-bottom-btn" type="button" className="drink-icon" />
         </Link>
-        <Link to='/explorar'>
+        <Link to="/explorar">
           <button data-testid="explore-bottom-btn" type="button" className="meal-icon" />
         </Link>
       </p>
     </div>
   );
-};
+}
