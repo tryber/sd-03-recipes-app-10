@@ -39,7 +39,7 @@ describe('Testing login inputs and button', () => {
   });
   it('email, password: INvalidInput - button should be DISabled', () => {
     const { getByTestId, history } = renderWithRouter(<App />);
-    history.push('/');
+    // history.push('/');
     const loginInput = getByTestId('email-input');
 
     expect(loginInput).toBeInTheDocument();
