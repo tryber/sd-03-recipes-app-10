@@ -50,6 +50,6 @@ const Header = (pageTitle, stateOfTheBar) => {
       ) : null} */}
     </div>
   );
-}
+};
 
 export default Header;
