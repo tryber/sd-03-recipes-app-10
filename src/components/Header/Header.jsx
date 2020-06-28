@@ -5,7 +5,7 @@ import './Header.style.css';
 const Header = (pageTitle, stateOfTheBar) => {
   const [isSearchable, setIsSearchable] = useState();
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
-  
+
   useEffect(() => {
     setIsSearchable(stateOfTheBar);
   }, []);
