@@ -5,7 +5,7 @@ import './Header.style.css';
 const Header = (pageTitle, stateOfTheBar) => {
   const [isSearchable, setIsSearchable] = useState();
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
-
+  
   useEffect(() => {
     setIsSearchable(stateOfTheBar);
   }, []);
@@ -27,7 +27,7 @@ const Header = (pageTitle, stateOfTheBar) => {
           />
         </Link>
         <div className="title">
-          <p data-testid="page-title">{pageTitle}</p>
+          <p data-testid="page-title">{`${pageTitle}`}</p>
         </div>
         {isSearchable ? (
           <button

@@ -5,14 +5,14 @@ import './Footer.style.css';
 export default function Footer() {
   return (
     <div className="footer-container" data-testid="footer">
-      <Link to="/explorar/comidas">
-        <button data-testid="food-bottom-btn" type="button" className="explore-icon" />
-      </Link>
-      <Link to="/explorar/bebidas">
+      <Link to="/bebidas">
         <button data-testid="drinks-bottom-btn" type="button" className="drink-icon" />
       </Link>
       <Link to="/explorar">
-        <button data-testid="explore-bottom-btn" type="button" className="meal-icon" />
+        <button data-testid="explore-bottom-btn" type="button" className="explore-icon" />
+      </Link>
+      <Link to="/comidas">
+        <button data-testid="food-bottom-btn" type="button" className="meal-icon" />
       </Link>
     </div>
   );
