@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getDrinkList } from '../../services/api';
-import './DrinksDisplay.style.css';
+import '../FoodsDisplay/FoodDisplay.style.css';
 
 export default function DrinksDisplay() {
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
