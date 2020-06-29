@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.style.css';
+<<<<<<< HEAD
+=======
+import Footer from '../Footer/Footer';
+>>>>>>> 0b2f0bbd709d86c183b38baf69b0f37ceee224ff
 
 const Header = (pageTitle, stateOfTheBar) => {
   const [isSearchable, setIsSearchable] = useState();
@@ -45,9 +49,6 @@ const Header = (pageTitle, stateOfTheBar) => {
           placeholder="Buscar Receitas"
         />
       ) : null}
-      {/* {toggleSearchBar ? (
-        <SearchBar />
-      ) : null} */}
     </div>
   );
 };
