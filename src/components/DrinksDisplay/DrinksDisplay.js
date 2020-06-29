@@ -18,7 +18,7 @@ export default function DrinksDisplay() {
   if (objectReturnedAfterReq !== null) {
     return (
       <div className="item-overflow">
-        {objectReturnedAfterReq.drinks.map((el, index) => index <= 12 &&
+        {objectReturnedAfterReq.drinks.map((el, index) => index <= 11 &&
         <div className="container-display" data-testid={`${index}-recipe-card`}>
           <img className="img-display" data-testid={`${index}-card-img`} src={el.strDrinkThumb} alt={`${el.strMeal}`} />
           <h3 data-testid={`${index}-card-name`}>{el.strDrink}</h3>
