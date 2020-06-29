@@ -3,14 +3,14 @@ import { getFoodList } from '../../services/api';
 
 export default function FoodDisplay() {
   const [state, setstate] = useState(null);
-  
+
   const superTest = async () => {
     setstate(await getFoodList());
-  }
+  };
 
   useEffect(() => {
     superTest();
-  }, [])
+  }, []);
 
   if (state === null) return (<h1>Carregando...</h1>);
 
