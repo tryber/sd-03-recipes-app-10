@@ -6,11 +6,11 @@ import drinkIcon from '../../images/drinkIcon.svg';
 import mealIcon from '../../images/mealIcon.svg';
 
 const imageDisplay = (dataTestid, imageClassNameAndAlt, imageSrc) => <img
-    data-testid={dataTestid}
-    alt={imageClassNameAndAlt}
-    className={imageClassNameAndAlt}
-    src={imageSrc}
-  />
+  data-testid={dataTestid}
+  alt={imageClassNameAndAlt}
+  className={imageClassNameAndAlt}
+  src={imageSrc}
+/>;
 
 export default function Footer() {
   return (
