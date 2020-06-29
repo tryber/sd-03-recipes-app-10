@@ -8,7 +8,6 @@
 }
 
 .drink-icon {
-  background: url('../../images/drinkIcon.svg');
   border: none;
   height: 40px;
   left: 16px;
@@ -18,7 +17,6 @@
 }
 
 .explore-icon {
-  background: url('../../images/exploreIcon.svg');
   border: none;
   height: 40px;
   left: 160px;
@@ -28,7 +26,6 @@
 }
 
 .meal-icon {
-  background: url('../../images/mealIcon.svg');
   border: none;
   height: 40px;
   left: 302px;
