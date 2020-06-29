@@ -1,20 +1,28 @@
-import getData from './getData';
-import fetch, {Response} from 'node-fetch';
-const {Response} = jest.requireActual('node-fetch');
+import getData from "./getData";
+jest.mock("node-fetch");
+import fetch from "node-fetch";
+const { Response } = jest.requireActual("node-fetch");
 
-jest.mock('node-fetch');
+/* beforeEach(() => {
+  fetch.mockClear();
+}); */
 
-// const mockFetchReject = (error) => jest.fn().mockImplementation(() => Promise.reject(() => { () => Promise.reject(error); }));
+/* test("Api up", async () => {
+  fetch.mockReturnValue(Promise.resolve(new Response("aceitou top")));
 
-
-const mockFetchReject = function () {
-  return new Promise((resolve, reject) => {
-    reject('error');
-  });
-};
-test('asdasdasd', async () => {
-  fetch.mockRejectedValue(new Error('Async error'));
-  const response = await getData('url.test');
+  const response = await getData("url.test");
   console.log(response);
-  expect(response).toBe('error');
+  expect(fetch).toHaveBeenCalledWith("url.test");
+  expect(response).toBe("aceitou top");
+}); */
+test("APi down", async () => {
+  fetch.mockReturnValue(Promise.reject(new Response("API is down")));
+  const response = await getData("url.test");
+  console.log(response);
+  response.then(
+    () => console.log("deubom"),
+    () => console.log("deuruim")
+  ).catch(e => console.log(e))
+  expect(response).toBe("API is down");
+  expect(fetch).toHaveBeenCalledWith("url.test");
 });
