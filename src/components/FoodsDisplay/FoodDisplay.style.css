@@ -10,7 +10,7 @@
 
 .item-overflow {
   display: grid;
-  grid-template-columns: 170px 1fr;
+  grid: 170px / 170px 1fr;
   height: 400px;
   margin-left: 12px;
   margin-top: 161px;
