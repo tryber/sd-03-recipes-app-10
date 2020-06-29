@@ -15,7 +15,7 @@ describe('Test to check if all elements are being rendered correctly on screen.'
     expect(pageTitle).toBeInTheDocument();
   });
 
-  test('should only have two buttons on screen inside Header Component', () => {
+  test('should only have two images on screen inside Header Component', () => {
     renderWithRouter(<Header />);
     const allButtons = document.querySelectorAll('button');
     expect(allButtons.length).toBe(2);

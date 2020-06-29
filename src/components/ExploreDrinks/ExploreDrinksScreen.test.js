@@ -18,7 +18,10 @@ describe('Test to check if all elements are being rendered correctly on screen.'
   test('should only have two buttons on screen inside ExploreDrinksScreen Component', () => {
     renderWithRouter(<ExploreDrinksScreen />);
     const allButtons = document.querySelectorAll('button');
-    expect(allButtons.length).toBe(4);
+    expect(allButtons.length).toBe(1);
+  
+    const allImages = document.querySelectorAll('img');
+    expect(allImages.length).toBe(3);
   });
 });
 

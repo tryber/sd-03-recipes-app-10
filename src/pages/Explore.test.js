@@ -13,10 +13,14 @@ describe('Test to check if all elements are being rendered correctly on screen.'
     expect(thisPageTitle).toBeInTheDocument();
   });
 
-  test('should only have two buttons on screen inside Explore Component', () => {
+  test('should only have tree buttons and tree images on screen inside Explore Component', () => {
     renderWithRouter(<Explore />);
+
     const allButtons = document.querySelectorAll('button');
-    expect(allButtons.length).toBe(6);
+    expect(allButtons.length).toBe(3);
+    
+    const allImages = document.querySelectorAll('img');
+    expect(allImages.length).toBe(3);
   });
 });
 
