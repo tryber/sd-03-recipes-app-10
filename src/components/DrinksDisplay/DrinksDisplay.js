@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { getFoodList } from '../../services/api';
-import './FoodDisplay.style.css';
+import { getDrinkList } from '../../services/api';
+import './DrinksDisplay.style.css';
 
-export default function FoodDisplay() {
+export default function DrinksDisplay() {
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
 
   const functionToMakeRequisition = async () => {
-    setObjectReturnedAfterReq(await getFoodList());
+    setObjectReturnedAfterReq(await getDrinkList());
   };
 
   useEffect(() => {
@@ -18,10 +18,10 @@ export default function FoodDisplay() {
   if (objectReturnedAfterReq !== null) {
     return (
       <div className="item-overflow">
-        {objectReturnedAfterReq.meals.map((el, index) => index <= 12 &&
+        {objectReturnedAfterReq.drinks.map((el, index) => index <= 12 &&
         <div className="container-display" data-testid={`${index}-recipe-card`}>
-          <img className="img-display" data-testid={`${index}-card-img`} src={el.strMealThumb} alt={`${el.strMeal}`} />
-          <h3 data-testid={`${index}-card-name`}>{el.strMeal}</h3>
+          <img className="img-display" data-testid={`${index}-card-img`} src={el.strDrinkThumb} alt={`${el.strMeal}`} />
+          <h3 data-testid={`${index}-card-name`}>{el.strDrink}</h3>
         </div>)}
       </div>
     );

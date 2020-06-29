@@ -1,0 +1,19 @@
+.container-display{
+  height: 172px;
+  width: 161px;
+}
+
+.img-display{
+  height: 109px;
+  width: 161px;
+}
+
+.item-overflow{
+  display: grid;
+  height: 524px;
+  grid-template-columns: 170px 1fr;
+  grid-gap: 7.5px;
+  margin-left: 12px;
+  margin-top: 161px;
+  overflow-y: scroll;
+}
