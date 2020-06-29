@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer';
 export default function ExploreFoodsScreen() {
   return (
     <div>
-      {Header('Explorar Bebidas', false)}
+      {Header('Explorar Comidas', false)}
       <Footer />
     </div>
   );
