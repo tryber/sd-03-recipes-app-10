@@ -18,6 +18,6 @@ export default function FoodDisplay() {
           <img data-testid={`${index}-card-img`} src={el.strMealThumb} alt={`${el.strMeal}`} />
         </div>)}
       </div>
-    )
-  };
+    );
+  }
 }
