@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.style.css';
 
-export default function Header() {
-  const [title, setTitle] = useState('');
+const Header = (pageTitle, stateOfTheBar) => {
   const [isSearchable, setIsSearchable] = useState();
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
 
   useEffect(() => {
-    setTitle('Comidas');
-    setIsSearchable(true);
+    setIsSearchable(stateOfTheBar);
   }, []);
 
   function renderSearchBar() {
@@ -29,7 +27,7 @@ export default function Header() {
           />
         </Link>
         <div className="title">
-          <p data-testid="page-title">{title}</p>
+          <p data-testid="page-title">{`${pageTitle}`}</p>
         </div>
         {isSearchable ? (
           <button
@@ -52,4 +50,6 @@ export default function Header() {
       ) : null} */}
     </div>
   );
-}
+};
+
+export default Header;
