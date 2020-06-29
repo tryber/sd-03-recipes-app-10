@@ -9,13 +9,15 @@ export default function FoodDisplay() {
 
   if (state === null) return (<h1>Carregando...</h1>);
 
-  if (state !== null) return (
-    <div>
-      {state.meals.map((el, index) => index <= 12 &&
-      <div data-testid={`${index}-recipe-card`}>
-        <h3 data-testid={`${index}-card-name`}>{el.strMeal}</h3>
-        <img data-testid={`${index}-card-img`} src={el.strMealThumb} alt={`${el.strMeal}-image`} />
-      </div>)}
-    </div>
-  );
+  if (state !== null) {
+    return (
+      <div>
+        {state.meals.map((el, index) => index <= 12 &&
+        <div data-testid={`${index}-recipe-card`}>
+          <h3 data-testid={`${index}-card-name`}>{el.strMeal}</h3>
+          <img data-testid={`${index}-card-img`} src={el.strMealThumb} alt={`${el.strMeal}`} />
+        </div>)}
+      </div>
+    )
+  };
 }
