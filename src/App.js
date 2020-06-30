@@ -20,16 +20,16 @@ function App() {
           <Route exact path="/" component={Login} />
           <Route exact path="/comidas" component={MainFoodsScreen} />
           <Route exact path="/bebidas" component={MainDrinksScreen} />
-          <Route exact path="/comidas/:id" component />
-          <Route exact path="/bebidas/:id" component />
-          <Route exact path="/comidas/:id/in-progress" component />
-          <Route exact path="/bebidas/:id/in-progress" component />
+          <Route exact path="/comidas/:id" component={null} />
+          <Route exact path="/bebidas/:id" component={null} />
+          <Route exact path="/comidas/:id/in-progress" component={null} />
+          <Route exact path="/bebidas/:id/in-progress" component={null} />
           <Route exact path="/explorar" component={Explore} />
           <Route exact path="/explorar/comidas" component={ExploreDrinksScreen} />
           <Route exact path="/explorar/bebidas" component={ExploreFoodsScreen} />
-          <Route exact path="/explorar/comidas/ingredientes" component />
-          <Route exact path="/explorar/bebidas/ingredientes" component />
-          <Route exact path="/explorar/comidas/area" component />
+          <Route exact path="/explorar/comidas/ingredientes" component={null} />
+          <Route exact path="/explorar/bebidas/ingredientes" component={null} />
+          <Route exact path="/explorar/comidas/area" component={null} />
           <Route exact path="/perfil" component={Profile} />
           <Route exact path="/receitas-feitas" component={RecipesMade} />
           <Route exact path="/receitas-favoritas" component={FavoriteRecipes} />

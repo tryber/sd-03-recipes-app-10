@@ -4,7 +4,7 @@ import './SearchBar.style.css';
 export default function SearchBar() {
   // const [text, setText] = useState('');
   // const [category, setCategory] = useState(null);
-
+  console.log(window.location.pathname)
   const radioBtnDisplay = (className, type, name, id, value, testid, func) => (
     <div>
       <input
