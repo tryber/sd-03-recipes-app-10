@@ -44,11 +44,11 @@ export default function SearchBar() {
       </div>
       <form className="radio-btn-container">
         {radioBtnDisplay('radio-btn', 'radio', 'select', 'Ingrediente', 'Ingrediente'
-        , 'ingredient-search-radio', saveValues,)}
+        , 'ingredient-search-radio', saveValues)}
         {radioBtnDisplay('radio-btn', 'radio', 'select', 'Nome', 'Nome'
-        , 'name-search-radio', saveValues,)}
+        , 'name-search-radio', saveValues)}
         {radioBtnDisplay('radio-btn', 'radio', 'select', 'Primeira letra', 'Primeira letra'
-        , 'first-letter-search-radio', saveValues,)}
+        , 'first-letter-search-radio', saveValues)}
       </form>
     </div>
   );
