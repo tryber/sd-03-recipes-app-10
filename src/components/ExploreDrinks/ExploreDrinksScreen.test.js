@@ -1,43 +1,33 @@
 import React from 'react';
+import ExploreDrinksScreen from './ExploreDrinksScreen';
+import renderWithRouter from '../helpers/renderWithRouter';
 import { fireEvent } from '@testing-library/react';
-import Explore from './Explore';
-import renderWithRouter from '../../src/components/helpers/renderWithRouter';
 
 describe('Test to check if all elements are being rendered correctly on screen.', () => {
   test('should all elements have their correct data-testids', () => {
-    const { getByTestId, getByText } = renderWithRouter(<Explore />);
-    const thisPageTitle = getByText('Explorar');
+    const { getByTestId, getByText } = renderWithRouter(<ExploreDrinksScreen />);
+    const thisPageTitle = getByText('Explorar Bebidas');
+    const profileBtnIcon = getByTestId('profile-top-btn');
     const pageTitle = getByTestId('page-title');
 
-    expect(pageTitle).toBeInTheDocument();
     expect(thisPageTitle).toBeInTheDocument();
+    expect(profileBtnIcon).toBeInTheDocument();
+    expect(pageTitle).toBeInTheDocument();
   });
 
-  test('should only have tree buttons and tree images on screen inside Explore Component', () => {
-    renderWithRouter(<Explore />);
-
+  test('should only have two buttons on screen inside ExploreDrinksScreen Component', () => {
+    renderWithRouter(<ExploreDrinksScreen />);
     const allButtons = document.querySelectorAll('button');
-    expect(allButtons.length).toBe(3);
-    
+    expect(allButtons.length).toBe(1);
+  
     const allImages = document.querySelectorAll('img');
     expect(allImages.length).toBe(3);
   });
 });
 
-describe('Test to see if the correct routes are being used', () => {
-  test('should Profile Icon, when clicked, got to "/perfil"', () => {
-    const { getByTestId, history } = renderWithRouter(<Explore />);
-    const profileBtnIcon = getByTestId('profile-top-btn');
-
-    expect(profileBtnIcon).toBeInTheDocument();
-    fireEvent.click(profileBtnIcon);
-    expect(history.location.pathname).toBe('/perfil');
-  });
-});
-
 describe('Test to check if all elements are being rendered correctly on screen.', () => {
   test('should all elements have their correct data-testids', () => {
-    const { getByTestId } = renderWithRouter(<Explore />);
+    const { getByTestId } = renderWithRouter(<ExploreDrinksScreen />);
     const drinksBottomBtnIcon = getByTestId('drinks-bottom-btn');
     const exploreBottomBtnIcon = getByTestId('explore-bottom-btn');
     const foodBottomBtnIcon = getByTestId('food-bottom-btn');
@@ -48,7 +38,7 @@ describe('Test to check if all elements are being rendered correctly on screen.'
   });
 
   test('should click the button and redirect to "/bebidas"', () => {
-    const { getByTestId, history } = renderWithRouter(<Explore />);
+    const { getByTestId, history } = renderWithRouter(<ExploreDrinksScreen />);
     const foodBottomBtnIcon = getByTestId('drinks-bottom-btn');
 
     fireEvent.click(foodBottomBtnIcon)
@@ -56,7 +46,7 @@ describe('Test to check if all elements are being rendered correctly on screen.'
   });
 
   test('should click the button and redirect to "/explorar"', () => {
-    const { getByTestId, history } = renderWithRouter(<Explore />);
+    const { getByTestId, history } = renderWithRouter(<ExploreDrinksScreen />);
     const exploreBottomBtnIcon = getByTestId('explore-bottom-btn');
 
     fireEvent.click(exploreBottomBtnIcon)
@@ -64,7 +54,7 @@ describe('Test to check if all elements are being rendered correctly on screen.'
   });
 
   test('should click the button and redirect to "/comidas"', () => {
-    const { getByTestId, history } = renderWithRouter(<Explore />);
+    const { getByTestId, history } = renderWithRouter(<ExploreDrinksScreen />);
     const drinksBottomBtnIcon = getByTestId('food-bottom-btn');
 
     fireEvent.click(drinksBottomBtnIcon)

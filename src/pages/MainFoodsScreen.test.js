@@ -17,10 +17,13 @@ describe('Test to check if all elements are being rendered correctly on screen.'
     expect(pageTitle).toBeInTheDocument();
   });
 
-  test('should only have two buttons on screen inside MainFoodsScreen Component', () => {
+  test('should only have one buttons and tree images on screen inside  MainFoodsScreen Component', () => {
     renderWithRouter(<MainFoodsScreen />);
     const allButtons = document.querySelectorAll('button');
-    expect(allButtons.length).toBe(5);
+    expect(allButtons.length).toBe(2);
+
+    const allImages = document.querySelectorAll('img');
+    expect(allImages.length).toBe(3);
   });
 });
 
