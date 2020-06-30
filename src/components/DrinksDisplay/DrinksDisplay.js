@@ -16,7 +16,7 @@ export default function DrinksDisplay() {
 
   useEffect(() => {
     requestDrinkList();
-    return setValueToFilter('All')
+    return setValueToFilter('All');
   }, []);
 
   return objectReturnedAfterReq === null ? (

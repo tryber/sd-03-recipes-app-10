@@ -17,7 +17,7 @@ export default function FoodDisplay() {
 
   useEffect(() => {
     functionToMakeRequisition();
-    return setValueToFilter('All')
+    return setValueToFilter('All');
   }, []);
 
   return objectReturnedAfterReq === null ? (
