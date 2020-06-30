@@ -30,6 +30,7 @@ export default function DrinksDisplay() {
               className="container-display"
               key={el.strDrink}
               data-testid={`${index}-recipe-card`}
+              type="button"onClick={() => redirectToDetails(el)}
             >
               <h3 data-testid={`${index}-card-name`}>{el.strDrink}</h3>
               <img
@@ -38,7 +39,6 @@ export default function DrinksDisplay() {
                 src={el.strDrinkThumb}
                 alt={`${el.strDrink}`}
               />
-              <button type="button" onClick={() => redirectToDetails(el)}>Details</button>
             </div>
           ),
       )}
