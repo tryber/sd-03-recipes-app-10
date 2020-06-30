@@ -12,10 +12,10 @@ export default function Profile() {
       <h1>ProfilePage</h1>
       <h2>{user}</h2>
       <Link to="/receitas-favoritas">
-        <button data-testid="profile-done-btn">Receitas Favoritas</button>
+        <button data-testid="profile-favorite-btn">Receitas Favoritas</button>
       </Link>
       <Link to="/receitas-feitas">
-        <button data-testid="profile-favorite-btn">Receitas Feitas</button>
+        <button data-testid="profile-done-btn">Receitas Feitas</button>
       </Link>
       <Link to="/">
         <button onClick={() => localStorage.clear()} data-testid="profile-logout-btn">
