@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import RecipeProvider from './Context/RecipeProvider'
 import './App.css';
 import Login from './components/Login/Login';
 import MainFoodsScreen from './pages/MainFoodsScreen';
@@ -15,27 +16,29 @@ import ExploreDrinksScreen from './components/ExploreDrinks/ExploreDrinksScreen'
 function App() {
   return (
     <div id="app-receitas">
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/comidas" component={MainFoodsScreen} />
-          <Route exact path="/bebidas" component={MainDrinksScreen} />
-          <Route exact path="/comidas/:id" component={null} />
-          <Route exact path="/bebidas/:id" component={null} />
-          <Route exact path="/comidas/:id/in-progress" component={null} />
-          <Route exact path="/bebidas/:id/in-progress" component={null} />
-          <Route exact path="/explorar" component={Explore} />
-          <Route exact path="/explorar/comidas" component={ExploreDrinksScreen} />
-          <Route exact path="/explorar/bebidas" component={ExploreFoodsScreen} />
-          <Route exact path="/explorar/comidas/ingredientes" component={null} />
-          <Route exact path="/explorar/bebidas/ingredientes" component={null} />
-          <Route exact path="/explorar/comidas/area" component={null} />
-          <Route exact path="/perfil" component={Profile} />
-          <Route exact path="/receitas-feitas" component={RecipesMade} />
-          <Route exact path="/receitas-favoritas" component={FavoriteRecipes} />
-          <Route path="*" component={NotFoundPage} />
-        </Switch>
-      </Router>
+      <RecipeProvider>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/comidas" component={MainFoodsScreen} />
+            <Route exact path="/bebidas" component={MainDrinksScreen} />
+            <Route exact path="/comidas/:id" component={null} />
+            <Route exact path="/bebidas/:id" component={null} />
+            <Route exact path="/comidas/:id/in-progress" component={null} />
+            <Route exact path="/bebidas/:id/in-progress" component={null} />
+            <Route exact path="/explorar" component={Explore} />
+            <Route exact path="/explorar/comidas" component={ExploreDrinksScreen} />
+            <Route exact path="/explorar/bebidas" component={ExploreFoodsScreen} />
+            <Route exact path="/explorar/comidas/ingredientes" component={null} />
+            <Route exact path="/explorar/bebidas/ingredientes" component={null} />
+            <Route exact path="/explorar/comidas/area" component={null} />
+            <Route exact path="/perfil" component={Profile} />
+            <Route exact path="/receitas-feitas" component={RecipesMade} />
+            <Route exact path="/receitas-favoritas" component={FavoriteRecipes} />
+            <Route path="*" component={NotFoundPage} />
+          </Switch>
+        </Router>
+      </RecipeProvider>
     </div>
   );
 }
