@@ -8,7 +8,7 @@ const RecipeProvider = ({ children }) => {
   const [valueToFilter, setValueToFilter] = useState('All');
 
   const filterRecipes = (objectToFilter) => {
-    if(valueToFilter === 'All') return objectToFilter;
+    if (valueToFilter === 'All') return objectToFilter;
     return objectToFilter.strCategory === valueToFilter;
   };
 
