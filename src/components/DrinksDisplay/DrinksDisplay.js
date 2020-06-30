@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import {useHistory} from 'react-router-dom';
 import { getDrinkList } from '../../services/api';
 import '../FoodsDisplay/FoodDisplay.style.css';
 import RecipeContext from '../../Context/RecipeContext';
@@ -9,7 +10,8 @@ export default function DrinksDisplay() {
   const requestDrinkList = async () => {
     setDataValues(await getDrinkList());
   };
-
+  let history = useHistory();
+  const redirectToDetails = (el) => history.push({pathname:`/bebidas/${el.idDrink}`, state: el})
   useEffect(() => {
     requestDrinkList();
   }, []);
@@ -35,6 +37,7 @@ export default function DrinksDisplay() {
                 src={el.strDrinkThumb}
                 alt={`${el.strDrink}`}
               />
+              <button type='button' onClick={() => redirectToDetails(el)}>Details</button>
             </div>
           ),
       )}
