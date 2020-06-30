@@ -9,7 +9,7 @@ export default function MainDrinksScreen() {
   return (
     <div>
       {Header('Bebidas', true)}
-      {CategoryFilter(getDrinksCategoriesList, "drinks")}
+      {CategoryFilter(getDrinksCategoriesList, 'drinks')}
       <DrinksDisplay />
       <Footer />
     </div>

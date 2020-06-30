@@ -9,7 +9,7 @@ export default function MainFoodsScreen() {
   return (
     <div>
       {Header('Comidas', true)}
-      {CategoryFilter(getFoodsCategoriesList, "categories")}
+      {CategoryFilter(getFoodsCategoriesList, 'categories')}
       <FoodDisplay />
       <Footer />
     </div>
