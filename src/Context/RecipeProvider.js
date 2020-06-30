@@ -7,7 +7,7 @@ const RecipeProvider = ({ children }) => {
   const [recipeData, setRecipeData] = useState(null);
 
   const setDataValues = (params) => setRecipeData(params);
-
+  console.log(recipeData);
   const context = {
     recipeData,
     setDataValues,

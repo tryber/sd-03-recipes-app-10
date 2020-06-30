@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { getFoodList } from '../../services/api';
 import './FoodDisplay.style.css';
 
@@ -8,6 +9,9 @@ export default function FoodDisplay() {
   const functionToMakeRequisition = async () => {
     setObjectReturnedAfterReq(await getFoodList());
   };
+
+  const history = useHistory();
+  const redirectToDetails = (el) => history.push({ pathname: `/comidas/${el.idMeal}`, state: el });
 
   useEffect(() => {
     functionToMakeRequisition();
@@ -32,6 +36,7 @@ export default function FoodDisplay() {
                 src={el.strMealThumb}
                 alt={`${el.strMeal}`}
               />
+              <button type="button" onClick={() => redirectToDetails(el)}>Details</button>
             </div>
           ),
       )}
