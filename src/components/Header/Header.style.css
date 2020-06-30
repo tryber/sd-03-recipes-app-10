@@ -2,7 +2,7 @@
   background: #c4c4c4;
   height: 58px;
   left: 0;
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 360px;
 }
@@ -25,7 +25,7 @@
 
 .profile-icon {
   align-self: center;
-  background: url('../../images/profileIcon.svg');
+  /* background: url('../../images/profileIcon.svg'); */
   border: none;
   height: 30px;
   left: 15px;
@@ -36,7 +36,7 @@
 
 .search-icon {
   align-self: center;
-  background: url('../../images/searchIcon.svg');
+  /* background: url('../../images/searchIcon.svg'); */
   border: none;
   height: 30px;
   left: 317px;
