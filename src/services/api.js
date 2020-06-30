@@ -1,6 +1,8 @@
 const initialFoodsURL = 'https://www.themealdb.com/api/json/v1/1/search.php?';
+const initialFoodsByIngURL = 'https://www.themealdb.com/api/json/v1/1/filter.php?';
 
 const initialDrinksURL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?';
+const initialDrinksByIngURL = 'https://www.cocktail.com/api/json/v1/1/filter.php?';
 
 export const getFoodList = async () => {
   const initialPageFoods = `${initialFoodsURL}s=`;
@@ -51,7 +53,7 @@ export const getDrinkByCategorie = async (categorie) => {
 };
 
 export const getFoodByIngredient = async (ingredient) => {
-  const foodsByIngredient = `${initialFoodsURL}i=${ingredient}`;
+  const foodsByIngredient = `${initialFoodsByIngURL}i=${ingredient}`;
   const response = await fetch(foodsByIngredient);
   const json = await response.json();
   const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
@@ -59,7 +61,7 @@ export const getFoodByIngredient = async (ingredient) => {
 };
 
 export const getDrinkByIngredient = async (ingredient) => {
-  const drinksByIngredient = `${initialDrinksURL}i=${ingredient}`;
+  const drinksByIngredient = `${initialDrinksByIngURL}i=${ingredient}`;
   const response = await fetch(drinksByIngredient);
   const json = await response.json();
   const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
