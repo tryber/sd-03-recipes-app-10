@@ -3,15 +3,14 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 
-// const { email } = JSON.parse(localStorage.getItem('user'));
-// console.log(email)
+// const user = JSON.parse(localStorage.getItem('user'));
 
 export default function Profile() {
   return (
     <div>
       {Header('Perfil', false)}
       <div className="holder">
-        {/* <h2>{email}</h2> */}
+        {/* <h2 data-testid="profile-email">{user.email}</h2> */}
         <Link to="/receitas-favoritas">
           <button data-testid="profile-favorite-btn">Receitas Favoritas</button>
         </Link>
@@ -22,7 +21,6 @@ export default function Profile() {
           <button onClick={() => localStorage.clear()} data-testid="profile-logout-btn">
             Sair
           </button>
-          {/* {console.log(email)} */}
         </Link>
       </div>
       <Footer />
