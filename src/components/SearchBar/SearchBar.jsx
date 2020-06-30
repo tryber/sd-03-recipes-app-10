@@ -52,7 +52,6 @@ export default function SearchBar() {
           />
           <label htmlFor="primeira-letra">Primeira letra</label>
         </div>
-
       </form>
     </div>
   );

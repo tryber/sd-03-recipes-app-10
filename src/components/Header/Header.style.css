@@ -25,7 +25,6 @@
 
 .profile-icon {
   align-self: center;
-  /* background: url('../../images/profileIcon.svg'); */
   border: none;
   height: 30px;
   left: 15px;
@@ -36,7 +35,6 @@
 
 .search-icon {
   align-self: center;
-  /* background: url('../../images/searchIcon.svg'); */
   border: none;
   height: 30px;
   left: 317px;
