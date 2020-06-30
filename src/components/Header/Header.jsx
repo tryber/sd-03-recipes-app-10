@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.style.css';
+import SearchBar from '../SearchBar/SearchBar';
+import profileIcon from '../../images/profileIcon.svg';
+import searchIcon from '../../images/searchIcon.svg';
+
 
 const Header = (pageTitle, stateOfTheBar) => {
   const [isSearchable, setIsSearchable] = useState();
@@ -11,43 +15,32 @@ const Header = (pageTitle, stateOfTheBar) => {
   }, []);
 
   function renderSearchBar() {
-    return toggleSearchBar === true
-      ? setToggleSearchBar(false)
-      : setToggleSearchBar(true);
+    return toggleSearchBar === true ? setToggleSearchBar(false) : setToggleSearchBar(true);
   }
+
+  const imageDisplay = (dataTestid, imageClassNameAndAlt, imageSrc, func) => (
+    <input
+      data-testid={dataTestid}
+      alt={imageClassNameAndAlt}
+      className={imageClassNameAndAlt}
+      src={imageSrc}
+      type="image"
+      onClick={func}
+    />
+  );
 
   return (
     <div>
       <header className="header">
-        <Link to="/perfil">
-          <button
-            data-testid="profile-top-btn"
-            type="button"
-            className="profile-icon"
-          />
-        </Link>
+        <Link to="/perfil">{imageDisplay('profile-top-btn', 'profile-icon', profileIcon)}</Link>
         <div className="title">
           <p data-testid="page-title">{`${pageTitle}`}</p>
         </div>
-        {isSearchable ? (
-          <button
-            data-testid="search-top-btn"
-            onClick={renderSearchBar}
-            type="button"
-            className="search-icon"
-          />
-        ) : null}
+        {isSearchable
+          ? imageDisplay('search-top-btn', 'search-icon', searchIcon, renderSearchBar)
+          : null}
       </header>
-      {toggleSearchBar ? (
-        <input
-          className="search-bar"
-          data-testid="search-input"
-          placeholder="Buscar Receitas"
-        />
-      ) : null}
-      {/* {toggleSearchBar ? (
-        <SearchBar />
-      ) : null} */}
+      {toggleSearchBar ? <SearchBar /> : null}
     </div>
   );
 };
