@@ -14,12 +14,10 @@ export default function DrinksDisplay() {
     requestDrinkList();
   }, []);
 
-  console.log(recipeData);
-
   return recipeData === null ? (
     <h1>Carregando...</h1>
   ) : (
-    <div className="item-overflow">
+    <div className="item-overflow">{console.log(recipeData)}
       {recipeData.drinks.filter(filterRecipes).map(
         (el, index) =>
           index < 12 && (
