@@ -5,6 +5,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import profileIcon from '../../images/profileIcon.svg';
 import searchIcon from '../../images/searchIcon.svg';
 
+
 const Header = (pageTitle, stateOfTheBar) => {
   const [isSearchable, setIsSearchable] = useState();
   const [toggleSearchBar, setToggleSearchBar] = useState(false);

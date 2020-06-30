@@ -1,117 +1,75 @@
-const initialFoodsURL = 'https://www.themealdb.com/api/json/v1/1/search.php?';
-const initialFoodsByIngURL = 'https://www.themealdb.com/api/json/v1/1/filter.php?';
+import getData from "./getData";
 
-const initialDrinksURL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?';
-const initialDrinksByIngURL = 'https://www.cocktail.com/api/json/v1/1/filter.php?';
-
-export const getFoodList = async () => {
-  const initialPageFoods = `${initialFoodsURL}s=`;
-  const response = await fetch(initialPageFoods);
-  const json = await response.json();
-  const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
-  return data;
-};
+const initialDrinksURL = "https://www.thecocktaildb.com/api/json/v1/1/";
 
 export const getDrinkList = async () => {
-  const initialPageDrinks = `${initialDrinksURL}s=`;
-  const response = await fetch(initialPageDrinks);
-  const json = await response.json();
-  const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
-  return data;
-};
-
-export const getFoodsCategoriesList = async () => {
-  const foodsCategories = `${initialFoodsURL}c=list`;
-  const response = await fetch(foodsCategories);
-  const json = await response.json();
-  const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
-  return data;
+  const initialPageDrinks = `${initialDrinksURL}search.php?s=`;
+  return getData(initialPageDrinks);
 };
 
 export const getDrinksCategoriesList = async () => {
-  const drinksCategories = `${initialDrinksURL}c=list`;
-  const response = await fetch(drinksCategories);
-  const json = await response.json();
-  const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
-  return data;
-};
-
-export const getFoodByCategorie = async (categorie) => {
-  const foodsByCategorie = `${initialFoodsURL}c=${categorie}`;
-  const response = await fetch(foodsByCategorie);
-  const json = await response.json();
-  const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
-  return data;
+  const drinksCategories = `${initialDrinksURL}list.php?c=list`;
+  return getData(drinksCategories);
 };
 
 export const getDrinkByCategorie = async (categorie) => {
-  const drinksByCategorie = `${initialDrinksURL}c=${categorie}`;
-  const response = await fetch(drinksByCategorie);
-  const json = await response.json();
-  const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
-  return data;
-};
-
-export const getFoodByIngredient = async (ingredient) => {
-  const foodsByIngredient = `${initialFoodsByIngURL}i=${ingredient}`;
-  const response = await fetch(foodsByIngredient);
-  const json = await response.json();
-  const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
-  return data;
+  const drinksByCategorie = `${initialDrinksURL}filter.php?c=${categorie}`;
+  return getData(drinksByCategorie);
 };
 
 export const getDrinkByIngredient = async (ingredient) => {
-  const drinksByIngredient = `${initialDrinksByIngURL}i=${ingredient}`;
-  const response = await fetch(drinksByIngredient);
-  const json = await response.json();
-  const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
-  return data;
-};
-
-export const getFoodByName = async (name) => {
-  const foodsByName = `${initialFoodsURL}i=${name}`;
-  const response = await fetch(foodsByName);
-  const json = await response.json();
-  const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
-  return data;
+  const drinksByIngredient = `${initialDrinksURL}filter.php?i=${ingredient}`;
+  return getData(drinksByIngredient);
 };
 
 export const getDrinkByName = async (name) => {
-  const drinksByName = `${initialDrinksURL}i=${name}`;
-  const response = await fetch(drinksByName);
-  const json = await response.json();
-  const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
-  return data;
-};
-
-export const getFoodByFirstLetter = async (letter) => {
-  const foodsByFirstLetter = `${initialFoodsURL}f=${letter}`;
-  const response = await fetch(foodsByFirstLetter);
-  const json = await response.json();
-  const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
-  return data;
+  const drinksByName = `${initialDrinksURL}search.php?s=${name}`;
+  return getData(drinksByName);
 };
 
 export const getDrinkByFirstLetter = async (letter) => {
-  const drinksByFirstLetter = `${initialDrinksURL}f=${letter}`;
-  const response = await fetch(drinksByFirstLetter);
-  const json = await response.json();
-  const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
-  return data;
-};
-
-export const getFoodByID = async (id) => {
-  const foodsByID = `${initialFoodsURL}i=${id}`;
-  const response = await fetch(foodsByID);
-  const json = await response.json();
-  const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
-  return data;
+  const drinksByFirstLetter = `${initialDrinksURL}search.php?f=${letter}`;
+  return getData(drinksByFirstLetter);
 };
 
 export const getDrinkByID = async (id) => {
-  const drinksByID = `${initialDrinksURL}i=${id}`;
-  const response = await fetch(drinksByID);
-  const json = await response.json();
-  const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
-  return data;
+  const drinksByID = `${initialDrinksURL}lookup.php?i=${id}`;
+  return getData(drinksByID);
+};
+
+const initialFoodsURL = "https://www.themealdb.com/api/json/v1/1/";
+
+export const getFoodList = async () => {
+  const initialPageFoods = `${initialFoodsURL}search.php?s=`;
+  return getData(initialPageFoods);
+};
+
+export const getFoodsCategoriesList = async () => {
+  const foodsCategories = `${initialFoodsURL}categories.php`;
+  return getData(foodsCategories);
+};
+
+export const getFoodByCategorie = async (categorie) => {
+  const foodsByCategorie = `${initialFoodsURL}filter.php?c=${categorie}`;
+  return getData(foodsByCategorie);
+};
+
+export const getFoodByIngredient = async (ingredient) => {
+  const foodsByIngredient = `${initialFoodsURL}filter.php?i=${ingredient}`;
+  return getData(foodsByIngredient);
+};
+
+export const getFoodByName = async (name) => {
+  const foodsByName = `${initialFoodsURL}search.php?s=${name}`;
+  return getData(foodsByName);
+};
+
+export const getFoodByFirstLetter = async (letter) => {
+  const foodsByFirstLetter = `${initialFoodsURL}search.php?f=${letter}`;
+  return getData(foodsByFirstLetter);
+};
+
+export const getFoodByID = async (id) => {
+  const foodsByID = `${initialFoodsURL}lookup.php?i=${id}`;
+  return getData(foodsByID);
 };
