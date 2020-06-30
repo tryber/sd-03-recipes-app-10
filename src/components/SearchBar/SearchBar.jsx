@@ -3,9 +3,10 @@ import './SearchBar.style.css';
 // import RecipeContext from '../../Context/RecipeContext';
 
 export default function SearchBar() {
-  // const {recipeData, setDataValues} = useContext(RecipeContext)
+  // const {recipeData, setDataValues} = useContext(RecipeContext)[1,2]
   // const [text, setText] = useState('');
   // const [category, setCategory] = useState(null)
+  console.log(window.location.pathname)
   const radioBtnDisplay = (className, type, name, id, value, testid, func) => (
     <div>
       <input
