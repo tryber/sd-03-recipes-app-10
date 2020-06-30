@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, cleanup } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import Header from './Header';
 import renderWithRouter from '../helpers/renderWithRouter';
 
@@ -13,12 +13,6 @@ describe('Test to check if all elements are being rendered correctly on screen.'
     expect(profileBtnIcon).toBeInTheDocument();
     expect(searchBtnIcon).toBeInTheDocument();
     expect(pageTitle).toBeInTheDocument();
-  });
-
-  test('should only have two buttons on screen inside Header Component', () => {
-    renderWithRouter(<Header />);
-    const allButtons = document.querySelectorAll('button');
-    expect(allButtons.length).toBe(2);
   });
 });
 
