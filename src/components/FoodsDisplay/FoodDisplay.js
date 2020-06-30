@@ -33,8 +33,8 @@ export default function FoodDisplay() {
                 alt={`${el.strMeal}`}
               />
             </div>
-          )
-      )};
+          ),
+      )}
     </div>
   );
 }
