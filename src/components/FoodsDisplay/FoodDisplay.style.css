@@ -1,0 +1,25 @@
+.container-display {
+  /* border: 1px solid black; */
+}
+
+.img-display {
+  height: 120px;
+  width: 160px;
+  border-radius: 10px;
+  box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.562);
+}
+
+.item-overflow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 12px;
+  flex-wrap: wrap;
+  height: 420px;
+  margin-top: 140px;
+  overflow-y: scroll;
+}
+
+h3 {
+  margin: 0;
+  padding: 0;
+}

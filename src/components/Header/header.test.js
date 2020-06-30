@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, cleanup } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import Header from './Header';
 import renderWithRouter from '../helpers/renderWithRouter';
 

@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.style.css';
-import Footer from '../Footer/Footer';
+import SearchBar from '../SearchBar/SearchBar';
 
-export default function Header() {
-  const [title, setTitle] = useState('');
+const Header = (pageTitle, stateOfTheBar) => {
   const [isSearchable, setIsSearchable] = useState();
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
 
   useEffect(() => {
-    setTitle('Comidas');
-    setIsSearchable(true);
+    setIsSearchable(stateOfTheBar);
   }, []);
 
   function renderSearchBar() {
@@ -30,7 +28,7 @@ export default function Header() {
           />
         </Link>
         <div className="title">
-          <p data-testid="page-title">{title}</p>
+          <p data-testid="page-title">{`${pageTitle}`}</p>
         </div>
         {isSearchable ? (
           <button
@@ -41,14 +39,11 @@ export default function Header() {
           />
         ) : null}
       </header>
-      <Footer />
       {toggleSearchBar ? (
-        <input
-          className="search-bar"
-          data-testid="search-input"
-          placeholder="Buscar Receitas"
-        />
+        <SearchBar />
       ) : null}
     </div>
   );
-}
+};
+
+export default Header;

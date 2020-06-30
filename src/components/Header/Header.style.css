@@ -44,15 +44,3 @@
   top: 12px;
   width: 30px;
 }
-
-.search-bar {
-  background: white;
-  border: 1px solid black;
-  bottom: 85%;
-  box-sizing: border-box;
-  left: 1.5%;
-  position: absolute;
-  right: 1.5%;
-  top: 9.5%;
-  width: 350px;
-}
