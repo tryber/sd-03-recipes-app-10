@@ -18,20 +18,21 @@ const Header = (pageTitle, stateOfTheBar) => {
   }
 
   const imageDisplay = (dataTestid, imageClassNameAndAlt, imageSrc, func) => (
-    <img
-      data-testid={dataTestid}
-      alt={imageClassNameAndAlt}
-      className={imageClassNameAndAlt}
-      src={imageSrc}
-      onClick={func}
-    />
+    <div onClick={func}>
+      <img
+        data-testid={dataTestid}
+        alt={imageClassNameAndAlt}
+        className={imageClassNameAndAlt}
+        src={imageSrc}
+      />
+    </div>
   );
 
   return (
     <div>
       <header className="header">
         <Link to="/perfil">
-          {imageDisplay('profile-top-btn', 'profile-icon', profileIcon, null)}
+          {imageDisplay('profile-top-btn', 'profile-icon', profileIcon)}
         </Link>
         <div className="title">
           <p data-testid="page-title">{`${pageTitle}`}</p>

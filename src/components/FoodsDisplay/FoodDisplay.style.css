@@ -1,22 +1,22 @@
-.container-display {
-  /* border: 1px solid black; */
-}
+/* .container-display {
+  border: 1px solid black;
+} */
 
 .img-display {
-  height: 120px;
-  width: 160px;
   border-radius: 10px;
   box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.562);
+  height: 120px;
+  width: 160px;
 }
 
 .item-overflow {
   display: flex;
-  justify-content: space-between;
-  padding: 0 12px;
   flex-wrap: wrap;
   height: 420px;
+  justify-content: space-between;
   margin-top: 140px;
   overflow-y: scroll;
+  padding: 0 12px;
 }
 
 h3 {
