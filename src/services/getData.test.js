@@ -1,30 +1,34 @@
 import getData from './getData';
-jest.mock('node-fetch');
-import fetch from 'node-fetch';
-const { Response } = jest.requireActual('node-fetch');
 
-/* beforeEach(() => {
-  fetch.mockClear();
-}); */
-
-/* test("Api up", async () => {
-  fetch.mockReturnValue(Promise.resolve(new Response("aceitou top")));
-
+test("Api up", async () => {
+  jest.spyOn(global, 'fetch')
+    .mockImplementation(() => Promise.resolve({
+      status: 200,
+      json: () => Promise.resolve({
+        value: 'aceitou top'
+      })
+    }));
   const response = await getData("url.test");
-  console.log(response);
+  console.log(response.value);
   expect(fetch).toHaveBeenCalledWith("url.test");
-  expect(response).toBe("aceitou top");
-}); */
+  expect(response.value).toBe("aceitou top");
+  global.fetch.mockClear();
+});
+
+
 test('APi down', async () => {
-  fetch.mockReturnValue(Promise.reject(new Response('API is down')));
+  jest.spyOn(global, 'fetch')
+  .mockImplementation(() => Promise.resolve({
+    status: 200,
+    json: () => Promise.reject({
+      value: 'API is down'
+    })
+  }));
+
   const response = await getData('url.test');
-  console.log(response);
-  response
-    .then(
-      () => console.log('deubom'),
-      () => console.log('deuruim')
-    )
-    .catch((e) => console.log(e));
-  expect(response).toBe('API is down');
+  console.log(response.value);
+
+  expect(response.value).toBe('API is down');
   expect(fetch).toHaveBeenCalledWith('url.test');
+  global.fetch.mockClear();
 });
