@@ -1,6 +1,6 @@
-import getData from "./getData";
+import getData from './getData';
 
-const initialDrinksURL = "https://www.thecocktaildb.com/api/json/v1/1/";
+const initialDrinksURL = 'https://www.thecocktaildb.com/api/json/v1/1/';
 
 export const getDrinkList = async () => {
   const initialPageDrinks = `${initialDrinksURL}search.php?s=`;
@@ -37,7 +37,7 @@ export const getDrinkByID = async (id) => {
   return getData(drinksByID);
 };
 
-const initialFoodsURL = "https://www.themealdb.com/api/json/v1/1/";
+const initialFoodsURL = 'https://www.themealdb.com/api/json/v1/1/';
 
 export const getFoodList = async () => {
   const initialPageFoods = `${initialFoodsURL}search.php?s=`;
