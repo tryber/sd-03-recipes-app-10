@@ -4,23 +4,23 @@ import '../FoodsDisplay/FoodDisplay.style.css';
 import RecipeContext from '../../Context/RecipeContext';
 
 export default function DrinksDisplay() {
-  const { recipeData, setDataValues } = useContext(RecipeContext);
+  const { drinkRecipeData, setDrinkValues } = useContext(RecipeContext);
 
   const requestDrinkList = async () => {
-    setDataValues(await getDrinkList());
+    setDrinkValues(await getDrinkList());
   };
 
   useEffect(() => {
     requestDrinkList();
   }, []);
 
-  console.log(recipeData);
+  console.log(drinkRecipeData);
 
-  return recipeData === null ? (
-    <h1>Carregando...</h1>
+  return drinkRecipeData === null ? (
+    <h2 style={{ position: 'absolute', top: '30px' }}>Carregando...</h2>
   ) : (
     <div className="item-overflow">
-      {recipeData.drinks.map(
+      {drinkRecipeData.drinks.map(
         (el, index) =>
           index < 12 && (
             <div

@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { getFoodList } from '../../services/api';
+import RecipeContext from '../../Context/RecipeContext';
 import './FoodDisplay.style.css';
 
 export default function FoodDisplay() {
-  const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
+  const { foodRecipeData, setFoodValues } = useContext(RecipeContext);
 
-  const functionToMakeRequisition = async () => {
-    setObjectReturnedAfterReq(await getFoodList());
+  const requestFoodList = async () => {
+    setFoodValues(await getFoodList());
   };
 
   useEffect(() => {
-    functionToMakeRequisition();
+    requestFoodList();
   }, []);
 
-  return objectReturnedAfterReq === null ? (
+  return foodRecipeData === null ? (
     <h2 style={{ position: 'absolute', top: '30px' }}>Carregando Lista...</h2>
   ) : (
     <div className="item-overflow">
-      {objectReturnedAfterReq.meals.map(
+      {foodRecipeData.meals.map(
         (el, index) =>
           index < 12 && (
             <div

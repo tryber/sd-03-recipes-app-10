@@ -1,12 +1,16 @@
-import React/* , {useContext} */ /* { useState } */ from 'react';
+import React, { useState, useContext } from 'react';
 import './SearchBar.style.css';
-// import RecipeContext from '../../Context/RecipeContext';
+import * as Api from '../../services/api';
+import RecipeContext from '../../Context/RecipeContext';
 
 export default function SearchBar() {
-  // const {recipeData, setDataValues} = useContext(RecipeContext)
-  // const [text, setText] = useState('');
-  // const [category, setCategory] = useState(null)
-  // console.log(window.location.pathname)
+  const { setFoodValues, setDrinkValues } = useContext(
+    RecipeContext
+  );
+
+  const [text, setText] = useState('');
+  const [category, setCategory] = useState(null);
+  const currentPath = window.location.pathname;
   const radioBtnDisplay = (className, type, name, id, value, testid, func) => (
     <div>
       <input
@@ -24,31 +28,77 @@ export default function SearchBar() {
 
   const saveValues = (e) => {
     console.log(e.target.value);
-    // return setCategory(e.target.value);
+    return setCategory(e.target.value);
+  };
+
+  const filteredSearch = async (e) => {
+    e.preventDefault();
+    console.log(text, category, currentPath);
+    if (currentPath === '/comidas') {
+      if (category === 'Ingrediente' && text !== undefined) {
+        return setFoodValues(await Api.getFoodByIngredient(text));
+      } else if (category === 'Nome' && text !== undefined) {
+        return setFoodValues(await Api.getFoodByName(text));
+      } else if (category === 'Primeira letra' && text.length === 1)
+        return setFoodValues(await Api.getFoodByFirstLetter(text));
+    } else if (currentPath === '/bebidas') {
+      if (category === 'Ingrediente' && text !== undefined) {
+        return setDrinkValues(await Api.getDrinkByIngredient(text));
+      } else if (category === 'Nome' && text !== undefined) {
+        return setDrinkValues(await Api.getDrinkByName(text));
+      } else if (category === 'Primeira letra' && text.length === 1)
+        return setDrinkValues(await Api.getDrinkByFirstLetter(text));
+    }
   };
 
   return (
     <div>
       <div>
         <input
-          // onChange={(e) => setText(e.target.value)}
+          onChange={(e) => setText(e.target.value)}
           className="search-bar"
           data-testid="search-input"
           placeholder="Buscar Receitas"
         />
       </div>
       <div className="search-btn-container">
-        <button data-testid="exec-search-btn" className="search-btn-display" type="submit">
+        <button
+          onClick={filteredSearch}
+          data-testid="exec-search-btn"
+          className="search-btn-display"
+          type="submit"
+        >
           Buscar
         </button>
       </div>
       <form className="radio-btn-container">
-        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Ingrediente', 'Ingrediente'
-        , 'ingredient-search-radio', saveValues)}
-        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Nome', 'Nome'
-        , 'name-search-radio', saveValues)}
-        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Primeira letra', 'Primeira letra'
-        , 'first-letter-search-radio', saveValues)}
+        {radioBtnDisplay(
+          'radio-btn',
+          'radio',
+          'select',
+          'Ingrediente',
+          'Ingrediente',
+          'ingredient-search-radio',
+          saveValues
+        )}
+        {radioBtnDisplay(
+          'radio-btn',
+          'radio',
+          'select',
+          'Nome',
+          'Nome',
+          'name-search-radio',
+          saveValues
+        )}
+        {radioBtnDisplay(
+          'radio-btn',
+          'radio',
+          'select',
+          'Primeira letra',
+          'Primeira letra',
+          'first-letter-search-radio',
+          saveValues
+        )}
       </form>
     </div>
   );

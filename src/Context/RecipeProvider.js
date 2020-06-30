@@ -4,13 +4,17 @@ import RecipeContext from './RecipeContext';
 // import * as Api from '../services/api'
 
 const RecipeProvider = ({ children }) => {
-  const [recipeData, setRecipeData] = useState(null);
+  const [foodRecipeData, setFoodRecipeData] = useState(null);
+  const [drinkRecipeData, setDrinkRecipeData] = useState(null);
 
-  const setDataValues = (params) => setRecipeData(params);
+  const setFoodValues = (params) => setFoodRecipeData(params);
+  const setDrinkValues = (params) => setDrinkRecipeData(params);
 
   const context = {
-    recipeData,
-    setDataValues,
+    foodRecipeData,
+    drinkRecipeData,
+    setFoodValues,
+    setDrinkValues,
   };
 
   return <RecipeContext.Provider value={context}>{children}</RecipeContext.Provider>;
