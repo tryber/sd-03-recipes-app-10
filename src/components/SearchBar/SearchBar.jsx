@@ -1,12 +1,12 @@
-import React /* , {useContext} */ /* { useState } */ from 'react';
+import React/* , {useContext} */ /* { useState } */ from 'react';
 import './SearchBar.style.css';
 // import RecipeContext from '../../Context/RecipeContext';
 
 export default function SearchBar() {
-  // const {recipeData, setDataValues} = useContext(RecipeContext)[1,2]
+  // const {recipeData, setDataValues} = useContext(RecipeContext)
   // const [text, setText] = useState('');
   // const [category, setCategory] = useState(null)
-  // console.log(window.location.pathname);
+  // console.log(window.location.pathname)
   const radioBtnDisplay = (className, type, name, id, value, testid, func) => (
     <div>
       <input
@@ -43,33 +43,12 @@ export default function SearchBar() {
         </button>
       </div>
       <form className="radio-btn-container">
-        {radioBtnDisplay(
-          'radio-btn',
-          'radio',
-          'select',
-          'Ingrediente',
-          'Ingrediente',
-          'ingredient-search-radio',
-          saveValues
-        )}
-        {radioBtnDisplay(
-          'radio-btn',
-          'radio',
-          'select',
-          'Nome',
-          'Nome',
-          'name-search-radio',
-          saveValues
-        )}
-        {radioBtnDisplay(
-          'radio-btn',
-          'radio',
-          'select',
-          'Primeira letra',
-          'Primeira letra',
-          'first-letter-search-radio',
-          saveValues
-        )}
+        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Ingrediente', 'Ingrediente'
+        , 'ingredient-search-radio', saveValues,)}
+        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Nome', 'Nome'
+        , 'name-search-radio', saveValues,)}
+        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Primeira letra', 'Primeira letra'
+        , 'first-letter-search-radio', saveValues,)}
       </form>
     </div>
   );
