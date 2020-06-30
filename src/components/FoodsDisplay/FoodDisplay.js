@@ -1,22 +1,27 @@
 import React, { useEffect, useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { getFoodList } from '../../services/api';
 import './FoodDisplay.style.css';
 import RecipeContext from '../../Context/RecipeContext';
 
 export default function FoodDisplay() {
-  const { filterRecipes } = useContext(RecipeContext);
+  const { filterRecipes, setValueToFilter } = useContext(RecipeContext);
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
 
   const functionToMakeRequisition = async () => {
     setObjectReturnedAfterReq(await getFoodList());
   };
 
+  const history = useHistory();
+  const redirectToDetails = (el) => history.push({ pathname: `/comidas/${el.idMeal}`, state: el });
+
   useEffect(() => {
     functionToMakeRequisition();
+    return setValueToFilter('All')
   }, []);
 
   return objectReturnedAfterReq === null ? (
-    <h2 style={{ position: 'absolute', top: '30px' }}>Carregando Lista...</h2>
+    <h1>Carregando...</h1>
   ) : (
     <div className="item-overflow">
       {objectReturnedAfterReq.meals.filter(filterRecipes).map(
@@ -34,6 +39,7 @@ export default function FoodDisplay() {
                 src={el.strMealThumb}
                 alt={`${el.strMeal}`}
               />
+              <button type="button" onClick={() => redirectToDetails(el)}>Details</button>
             </div>
           ),
       )}

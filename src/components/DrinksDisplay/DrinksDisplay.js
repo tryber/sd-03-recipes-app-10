@@ -1,24 +1,29 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { getDrinkList } from '../../services/api';
 import '../FoodsDisplay/FoodDisplay.style.css';
 import RecipeContext from '../../Context/RecipeContext';
 
 export default function DrinksDisplay() {
-  const { recipeData, setDataValues, filterRecipes } = useContext(RecipeContext);
+  const { filterRecipes, setValueToFilter } = useContext(RecipeContext);
+  const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
 
   const requestDrinkList = async () => {
-    setDataValues(await getDrinkList());
+    setObjectReturnedAfterReq(await getDrinkList());
   };
+  const history = useHistory();
+  const redirectToDetails = (el) => history.push({ pathname: `/bebidas/${el.idDrink}`, state: el });
 
   useEffect(() => {
     requestDrinkList();
+    return setValueToFilter('All')
   }, []);
 
-  return recipeData === null ? (
+  return objectReturnedAfterReq === null ? (
     <h1>Carregando...</h1>
   ) : (
-    <div className="item-overflow">{console.log(recipeData)}
-      {recipeData.drinks.filter(filterRecipes).map(
+    <div className="item-overflow">
+      {objectReturnedAfterReq.drinks.filter(filterRecipes).map(
         (el, index) =>
           index < 12 && (
             <div
@@ -33,6 +38,7 @@ export default function DrinksDisplay() {
                 src={el.strDrinkThumb}
                 alt={`${el.strDrink}`}
               />
+              <button type="button" onClick={() => redirectToDetails(el)}>Details</button>
             </div>
           ),
       )}
