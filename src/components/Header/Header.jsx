@@ -18,14 +18,14 @@ const Header = (pageTitle, stateOfTheBar) => {
   }
 
   const imageDisplay = (dataTestid, imageClassNameAndAlt, imageSrc, func) => (
-      <input
-        data-testid={dataTestid}
-        alt={imageClassNameAndAlt}
-        className={imageClassNameAndAlt}
-        src={imageSrc}
-        type="image"
-        onClick={func}
-      />
+    <input
+      data-testid={dataTestid}
+      alt={imageClassNameAndAlt}
+      className={imageClassNameAndAlt}
+      src={imageSrc}
+      type="image"
+      onClick={func}
+    />
   );
 
   return (
