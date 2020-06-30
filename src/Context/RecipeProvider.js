@@ -6,9 +6,7 @@ import RecipeContext from './RecipeContext';
 const RecipeProvider = ({ children }) => {
   const [recipeData, setRecipeData] = useState(null);
 
-  const setDataValues = params => {
-    return setRecipeData(params);
-  };
+  const setDataValues = (params) => setRecipeData(params);
 
   const context = {
     recipeData,
