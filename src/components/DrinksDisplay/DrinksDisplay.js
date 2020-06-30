@@ -11,7 +11,7 @@ export default function DrinksDisplay() {
     setDataValues(await getDrinkList());
   };
   const history = useHistory();
-  const redirectToDetails = (el) => history.push({pathname: `/bebidas/${el.idDrink}`, state: el});
+  const redirectToDetails = (el) => history.push({ pathname: `/bebidas/${el.idDrink}`, state: el });
 
   useEffect(() => {
     requestDrinkList();

@@ -11,7 +11,7 @@ export default function FoodDisplay() {
   };
 
   const history = useHistory();
-  const redirectToDetails = (el) => history.push({pathname: `/comidas/${el.idMeal}`, state: el});
+  const redirectToDetails = (el) => history.push({ pathname: `/comidas/${el.idMeal}`, state: el });
 
   useEffect(() => {
     functionToMakeRequisition();
