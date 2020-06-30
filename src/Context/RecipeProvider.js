@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import RecipeContext from './RecipeContext';
 import PropTypes from 'prop-types';
+import RecipeContext from './RecipeContext';
 // import * as Api from '../services/api'
 
 const RecipeProvider = ({ children }) => {
   const [recipeData, setRecipeData] = useState(null);
 
-  const setDataValues = (params) => {
+  const setDataValues = params => {
     return setRecipeData(params);
   };
 
