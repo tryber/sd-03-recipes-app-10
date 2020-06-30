@@ -34,7 +34,7 @@ export default function FoodDisplay() {
               />
             </div>
           )
-      )}
+      )};
     </div>
   );
 }

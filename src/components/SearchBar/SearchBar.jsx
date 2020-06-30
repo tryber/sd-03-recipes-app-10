@@ -4,7 +4,7 @@ import './SearchBar.style.css';
 export default function SearchBar() {
   // const [text, setText] = useState('');
   // const [category, setCategory] = useState(null);
-  console.log(window.location.pathname)
+  console.log(window.location.pathname);
   const radioBtnDisplay = (className, type, name, id, value, testid, func) => (
     <div>
       <input
@@ -41,12 +41,33 @@ export default function SearchBar() {
         </button>
       </div>
       <form className="radio-btn-container">
-        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Ingrediente', 'Ingrediente'
-        , 'ingredient-search-radio', saveValues)}
-        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Nome', 'Nome'
-        , 'name-search-radio', saveValues)}
-        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Primeira letra', 'Primeira letra'
-        , 'first-letter-search-radio', saveValues)}
+        {radioBtnDisplay(
+          'radio-btn',
+          'radio',
+          'select',
+          'Ingrediente',
+          'Ingrediente',
+          'ingredient-search-radio',
+          saveValues
+        )}
+        {radioBtnDisplay(
+          'radio-btn',
+          'radio',
+          'select',
+          'Nome',
+          'Nome',
+          'name-search-radio',
+          saveValues
+        )}
+        {radioBtnDisplay(
+          'radio-btn',
+          'radio',
+          'select',
+          'Primeira letra',
+          'Primeira letra',
+          'first-letter-search-radio',
+          saveValues
+        )}
       </form>
     </div>
   );
