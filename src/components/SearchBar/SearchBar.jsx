@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './SearchBar.style.css';
 
 export default function SearchBar() {
-  const [text, setText] = useState('');
-  const [category, setCategory] = useState(null);
+  // const [text, setText] = useState('');
+  // const [category, setCategory] = useState(null);
 
   const radioBtnDisplay = (className, type, name, id, value, testid, func) => (
     <div>
@@ -22,14 +22,14 @@ export default function SearchBar() {
 
   const saveValues = (e) => {
     console.log(e.target.value);
-    return setCategory(e.target.value);
+    // return setCategory(e.target.value);
   };
 
   return (
     <div>
       <div>
         <input
-          onChange={(e) => setText(e.target.value)}
+          // onChange={(e) => setText(e.target.value)}
           className="search-bar"
           data-testid="search-input"
           placeholder="Buscar Receitas"
