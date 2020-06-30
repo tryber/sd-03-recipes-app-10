@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { getFoodList } from '../../services/api';
 import './FoodDisplay.style.css';
 import RecipeContext from '../../Context/RecipeContext';
@@ -27,7 +27,7 @@ export default function FoodDisplay() {
       {objectReturnedAfterReq.meals.filter(filterRecipes).map(
         (el, index) =>
           index < 12 && (
-            <div
+            <Link
               className="container-display"
               key={el.strMeal}
               data-testid={`${index}-recipe-card`}
@@ -41,7 +41,7 @@ export default function FoodDisplay() {
                 src={el.strMealThumb}
                 alt={`${el.strMeal}`}
               />
-            </div>
+            </Link>
           ),
       )}
     </div>

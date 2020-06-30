@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { getDrinkList } from '../../services/api';
 import '../FoodsDisplay/FoodDisplay.style.css';
 import RecipeContext from '../../Context/RecipeContext';
@@ -26,11 +26,12 @@ export default function DrinksDisplay() {
       {objectReturnedAfterReq.drinks.filter(filterRecipes).map(
         (el, index) =>
           index < 12 && (
-            <div
+            <Link
               className="container-display"
               key={el.strDrink}
               data-testid={`${index}-recipe-card`}
-              type="button"onClick={() => redirectToDetails(el)}
+              type="button"
+              onClick={() => redirectToDetails(el)}
             >
               <h3 data-testid={`${index}-card-name`}>{el.strDrink}</h3>
               <img
@@ -39,7 +40,7 @@ export default function DrinksDisplay() {
                 src={el.strDrinkThumb}
                 alt={`${el.strDrink}`}
               />
-            </div>
+            </Link>
           ),
       )}
     </div>
