@@ -36,7 +36,7 @@ export default function DrinksDisplay() {
                 alt={`${el.strDrink}`}
               />
             </div>
-          )
+          ),
       )}
     </div>
   );

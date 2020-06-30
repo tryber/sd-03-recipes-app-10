@@ -1,13 +1,11 @@
-import React, {useContext} /* { useState } */ from 'react';
+import React/* , {useContext} */ /* { useState } */ from 'react';
 import './SearchBar.style.css';
-import RecipeContext from '../../Context/RecipeContext';
+// import RecipeContext from '../../Context/RecipeContext';
 
 export default function SearchBar() {
-  const {recipeData, setDataValues} = useContext(RecipeContext)
+  // const {recipeData, setDataValues} = useContext(RecipeContext)
   // const [text, setText] = useState('');
-  // const [category, setCategory] = useState(null);
-
-  // console.log(recipeData)
+  // const [category, setCategory] = useState(null)
   const radioBtnDisplay = (className, type, name, id, value, testid, func) => (
     <div>
       <input
