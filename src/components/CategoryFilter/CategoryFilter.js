@@ -24,7 +24,7 @@ export default function CategoryFilter(apiToCallFilters, valueToMap) {
   ) : (
     <div className="filter-div">
       <button onClick={() => superXablau('All')}>All</button>
-      {valueToMap === 'categories' && objectReturnedAfterReq.categories.map((el, index) => index <= 4 &&
+      {valueToMap === 'categories' && objectReturnedAfterReq.meals.map((el, index) => index <= 4 &&
         <button
           data-testid={`${el.strCategory}-category-filter`}
           onClick={() => superXablau(el.strCategory)}
