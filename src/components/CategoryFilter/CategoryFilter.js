@@ -25,9 +25,11 @@ export default function CategoryFilter(apiToCallFilters, valueToMap) {
     <div className="filter-div">
       <button onClick={() => superXablau('All')}>All</button>
       {valueToMap === 'categories' && objectReturnedAfterReq.categories.map((el, index) => index <= 4 &&
-        <button onClick={() => superXablau(el.strCategory)}>{el.strCategory}</button>)}
+        <button data-testid={`${el.strCategory}-category-filter`}
+          onClick={() => superXablau(el.strCategory)}>{el.strCategory}</button>)}
       {valueToMap === 'drinks' && objectReturnedAfterReq.drinks.map((el, index) => index <= 4 &&
-        <button onClick={() => superXablau(el.strCategory)}>{el.strCategory}</button>)}
+        <button data-testid={`${el.strCategory}-category-filter`}
+         onClick={() => superXablau(el.strCategory)}>{el.strCategory}</button>)}
     </div>
   );
 }
