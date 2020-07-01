@@ -3,6 +3,39 @@ import './SearchBar.style.css';
 import * as Api from '../../services/api'
 import RecipeContext from '../../Context/RecipeContext';
 
+const filterFoodLogic = async (category, text, setFoodValues) => {
+  if(category === 'Ingrediente' && text){
+    return setFoodValues(await Api.getFoodByIngredient(text))
+  } 
+  if (category === 'Nome' && text) {
+    return setFoodValues(await Api.getFoodByName(text))
+  } 
+  if (category === 'Primeira letra' && text.length === 1)
+    return setFoodValues(await Api.getFoodByFirstLetter(text))
+}
+
+const filterDrinkLogic = async (category, text, setDrinkValues) => {
+  if(category === 'Ingrediente' && text){
+    return setDrinkValues(await Api.getDrinkByIngredient(text))
+  } 
+  if (category === 'Nome' && text) {
+    return setDrinkValues(await Api.getDrinkByName(text))
+  } 
+  if (category === 'Primeira letra' && text.length === 1)
+    return setDrinkValues(await Api.getDrinkByFirstLetter(text))
+}
+
+const filteredSearch = async (e, currentPath, category, text, setFoodValues, setDrinkValues) => {
+  e.preventDefault();
+  console.log(text, category, currentPath);
+  if(currentPath === '/comidas') {
+    filterFoodLogic(category, text, setFoodValues);
+  }
+  if(currentPath === '/bebidas') {
+    filterDrinkLogic(category, text, setDrinkValues)
+}
+}
+
 export default function SearchBar() {
   const { setFoodValues, setDrinkValues } = useContext(
   RecipeContext);
@@ -30,39 +63,6 @@ export default function SearchBar() {
     return setCategory(e.target.value);
   };
 
-  const filterFoodLogic = async () => {
-    if(category === 'Ingrediente' && text){
-      return setFoodValues(await Api.getFoodByIngredient(text))
-    } 
-    if (category === 'Nome' && text) {
-      return setFoodValues(await Api.getFoodByName(text))
-    } 
-    if (category === 'Primeira letra' && text.length === 1)
-      return setFoodValues(await Api.getFoodByFirstLetter(text))
-  }
-
-  const filterDrinkLogic = async () => {
-    if(category === 'Ingrediente' && text){
-      return setDrinkValues(await Api.getDrinkByIngredient(text))
-    } 
-    if (category === 'Nome' && text) {
-      return setDrinkValues(await Api.getDrinkByName(text))
-    } 
-    if (category === 'Primeira letra' && text.length === 1)
-      return setDrinkValues(await Api.getDrinkByFirstLetter(text))
-  }
-
-  const filteredSearch = async (e) => {
-    e.preventDefault();
-    console.log(text, category, currentPath);
-    if(currentPath === '/comidas') {
-      filterFoodLogic();
-    }
-    if(currentPath === '/bebidas') {
-      filterDrinkLogic()
-  }
-}
-
   return (
     <div>
       <div>
@@ -74,7 +74,7 @@ export default function SearchBar() {
         />
       </div>
       <div className="search-btn-container">
-        <button onClick={filteredSearch} data-testid="exec-search-btn" className="search-btn-display" type="submit">
+        <button onClick={(e) => filteredSearch(e, currentPath, category, text, setFoodValues, setDrinkValues)} data-testid="exec-search-btn" className="search-btn-display" type="submit">
           Buscar
         </button>
       </div>
