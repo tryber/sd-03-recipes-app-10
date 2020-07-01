@@ -5,16 +5,14 @@ import RecipeContext from '../../Context/RecipeContext';
 
 const filterFoodLogic = async (category, text, setFoodValues) => {
   if (category === 'Ingrediente') {
-    return setFoodValues(await Api.getFoodByIngredient(text));
+    setFoodValues(await Api.getFoodByIngredient(text));
   } else if (category === 'Nome') {
-    return setFoodValues(await Api.getFoodByName(text));
+    setFoodValues(await Api.getFoodByName(text));
   } else if (category === 'Primeira letra') {
-    if (text.length === 1) {
-      return setFoodValues(await Api.getFoodByFirstLetter(text));
-    }
-    return alert('Sua busca deve conter somente 1 (um) caracter');
-  } return alert("error")
-  
+    (text.length === 1) ? setFoodValues(await Api.getFoodByFirstLetter(text))
+    : alert('Sua busca deve conter somente 1 (um) caracter');
+  }
+  return null;
 };
 
 const filterDrinkLogic = async (category, text, setDrinkValues) => {
