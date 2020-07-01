@@ -22,7 +22,7 @@ const filterFoodLogic = async (category, text, setFoodValues) => {
 const filterDrinkLogic = async (category, text, setDrinkValues) => {
   if (category === 'Ingrediente' && text) {
     return setDrinkValues(await Api.getDrinkByIngredient(text));
-  };
+  }
   if (category === 'Nome' && text) {
     return setDrinkValues(await Api.getDrinkByName(text));
   }
