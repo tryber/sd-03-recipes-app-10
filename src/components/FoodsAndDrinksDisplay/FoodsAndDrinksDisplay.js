@@ -53,12 +53,12 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
       case objectReturnedAfterReq === null:
         return <h1>Carregando...</h1>;
       case objectReturnedAfterReq[firstKey(objectReturnedAfterReq)] === null:
-        return alert("Sinto muito, não encontramos nenhuma receita para esses filtros.");
+        return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
       default:
-        return renderGrid(objectReturnedAfterReq, filterRecipes, stringObject, imgDisplay)
+        return renderGrid(objectReturnedAfterReq, filterRecipes, stringObject, imgDisplay);
     }
   };
-  return renderDisplay()
+  return renderDisplay();
 };
 
 export default FoodsAndDrinksDisplay;
