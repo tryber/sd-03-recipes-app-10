@@ -6,12 +6,11 @@ import detailsToShow from './detailsToShow';
 
 export default function Details() {
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
-  const tipeRequsition = useHistory().location.pathname.split('/')[1];
-  const itemId = useHistory().location.pathname.split('/')[2];
+  const tipeRequsition = useHistory().location.pathname.split('/');
 
   const functionToMakeRequisition = async () => {
-    if (tipeRequsition === 'comidas') setObjectReturnedAfterReq(await getFoodByID(itemId));
-    if (tipeRequsition === 'bebidas') setObjectReturnedAfterReq(await getDrinkByID(itemId));
+    if (tipeRequsition[0] === 'comidas') setObjectReturnedAfterReq(await getFoodByID(tipeRequsition[2]));
+    if (tipeRequsition[0] === 'bebidas') setObjectReturnedAfterReq(await getDrinkByID(tipeRequsition[2]));
   };
 
   useEffect(() => {
@@ -22,7 +21,7 @@ export default function Details() {
     null
   ) : (
     <div>
-      {tipeRequsition === 'comidas'
+      {tipeRequsition[0] === 'comidas'
         ? objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb'))
         : objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb'))}
     </div>
