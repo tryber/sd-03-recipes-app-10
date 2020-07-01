@@ -9,7 +9,7 @@ export default function DrinksDisplay() {
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
 
   const requestDrinkList = async () => {
-    setRecipeData(await  getDrinkList());
+    setRecipeData(await getDrinkList());
     setObjectReturnedAfterReq(await getDrinkList());
   };
   const history = useHistory();
