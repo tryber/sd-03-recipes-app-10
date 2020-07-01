@@ -12,6 +12,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import RecipesMade from './pages/RecipesMade';
 import ExploreFoodsScreen from './components/ExploreFoods/ExploreFoodsScreen';
 import ExploreDrinksScreen from './components/ExploreDrinks/ExploreDrinksScreen';
+import Details from './components/Details/Details';
 
 function App() {
   return (
@@ -22,8 +23,8 @@ function App() {
             <Route exact path="/" component={Login} />
             <Route exact path="/comidas" component={MainFoodsScreen} />
             <Route exact path="/bebidas" component={MainDrinksScreen} />
-            <Route exact path="/comidas/:id" component={null} />
-            <Route exact path="/bebidas/:id" component={null} />
+            <Route exact path="/comidas/:id" component={Details} />
+            <Route exact path="/bebidas/:id" component={Details} />
             <Route exact path="/comidas/:id/in-progress" component={null} />
             <Route exact path="/bebidas/:id/in-progress" component={null} />
             <Route exact path="/explorar" component={Explore} />

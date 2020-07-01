@@ -6,11 +6,17 @@ export default function CategoryFilter(apiToCallFilters, valueToMap) {
   const { valueToFilter, setValueToFilter } = useContext(RecipeContext);
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
 
+  const categoryButton = (el, index) => index <= 4 &&
+    <button
+      data-testid={`${el.strCategory}-category-filter`}
+      onClick={() => changeFilterValue(el.strCategory)}
+    >{el.strCategory}</button>;
+
   const functionToMakeRequisition = async () => {
     setObjectReturnedAfterReq(await apiToCallFilters());
   };
 
-  const superXablau = (val) => {
+  const changeFilterValue = (val) => {
     if (val === valueToFilter) return setValueToFilter('All');
     return setValueToFilter(val);
   };
@@ -23,17 +29,8 @@ export default function CategoryFilter(apiToCallFilters, valueToMap) {
     null
   ) : (
     <div className="filter-div">
-      <button onClick={() => superXablau('All')}>All</button>
-      {valueToMap === 'categories' && objectReturnedAfterReq.meals.map((el, index) => index <= 4 &&
-        <button
-          data-testid={`${el.strCategory}-category-filter`}
-          onClick={() => superXablau(el.strCategory)}
-        >{el.strCategory}</button>)}
-      {valueToMap === 'drinks' && objectReturnedAfterReq.drinks.map((el, index) => index <= 4 &&
-        <button
-          data-testid={`${el.strCategory}-category-filter`}
-          onClick={() => superXablau(el.strCategory)}
-        >{el.strCategory}</button>)}
+      <button onClick={() => changeFilterValue('All')}>All</button>
+      {objectReturnedAfterReq[valueToMap].map(categoryButton)}
     </div>
   );
 }

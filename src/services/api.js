@@ -33,6 +33,7 @@ export const getDrinkByFirstLetter = async (letter) => {
 };
 
 export const getDrinkByID = async (id) => {
+  console.log(id)
   const drinksByID = `${initialDrinksURL}lookup.php?i=${id}`;
   return getData(drinksByID);
 };
