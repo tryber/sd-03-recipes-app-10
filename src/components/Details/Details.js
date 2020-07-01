@@ -41,8 +41,9 @@ export default function Details() {
     null
   ) : (
     <div>
-      {tipeRequsition === 'comidas' && objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb'))}
-      {tipeRequsition === 'bebidas' && objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb'))}
+      {tipeRequsition === 'comidas'
+        ? objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb'))
+        : objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb'))}
     </div>
   );
 }

@@ -1,20 +1,15 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './FoodsAndDrinksDisplay.style.css';
 import RecipeContext from '../../Context/RecipeContext';
 
-export default function FoodsAndDrinksDisplay(valueToMap, getitemDefined, stringObject, imgDisplay) {
-  const { filterRecipes, setValueToFilter, setRecipeData } = useContext(RecipeContext);
+const FoodsAndDrinksDisplay = (valueToMap, getitemDefined, stringObject, imgDisplay) => {
+  const { filterRecipes, setValueToFilter } = useContext(RecipeContext);
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
 
   const functionToMakeRequisition = async () => {
-    setRecipeData(await getitemDefined());
     setObjectReturnedAfterReq(await getitemDefined());
   };
-
-  const history = useHistory();
-
-  const redirectToDetails = (el) => history.push((valueToMap === 'meals' && `/comidas/${el.idMeal}`) || (valueToMap === 'drinks' && `/bebidas/${el.idDrink}`));
 
   useEffect(() => {
     functionToMakeRequisition();
@@ -27,12 +22,11 @@ export default function FoodsAndDrinksDisplay(valueToMap, getitemDefined, string
     <div className="item-overflow">
       {objectReturnedAfterReq[valueToMap].filter(filterRecipes).map(
         (el, index) => index < 12 && (
-        <div
+        <Link
           className="container-display"
           key={el[stringObject]}
           data-testid={`${index}-recipe-card`}
-          type="button"
-          onClick={() => redirectToDetails(el)}
+          to={(valueToMap === 'meals' && `/comidas/${el.idMeal}`) || (valueToMap === 'drinks' && `/bebidas/${el.idDrink}`)}
         >
           <h3 data-testid={`${index}-card-name`}>{el[stringObject]}</h3>
           <img
@@ -41,9 +35,11 @@ export default function FoodsAndDrinksDisplay(valueToMap, getitemDefined, string
             src={el[imgDisplay]}
             alt={`${el[stringObject]}`}
           />
-        </div>
+        </Link>
         ),
       )}
     </div>
   );
-}
+};
+
+export default FoodsAndDrinksDisplay;

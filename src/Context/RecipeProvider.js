@@ -4,7 +4,6 @@ import RecipeContext from './RecipeContext';
 // import * as Api from '../services/api'
 
 const RecipeProvider = ({ children }) => {
-  const [recipeData, setRecipeData] = useState(null);
   const [valueToFilter, setValueToFilter] = useState('All');
 
   const filterRecipes = (objectToFilter) => {
@@ -12,10 +11,7 @@ const RecipeProvider = ({ children }) => {
     return objectToFilter.strCategory === valueToFilter;
   };
 
-
   const context = {
-    recipeData,
-    setRecipeData,
     valueToFilter,
     setValueToFilter,
     filterRecipes,
