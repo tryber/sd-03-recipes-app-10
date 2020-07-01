@@ -4,33 +4,29 @@ import * as Api from '../../services/api';
 import RecipeContext from '../../Context/RecipeContext';
 
 const filterFoodLogic = async (category, text, setFoodValues) => {
-  if (category === 'Ingrediente' && text) {
+  if (category === 'Ingrediente') {
     return setFoodValues(await Api.getFoodByIngredient(text));
-  }
-  if (category === 'Nome' && text) {
+  } else if (category === 'Nome') {
     return setFoodValues(await Api.getFoodByName(text));
-  }
-  if (category === 'Primeira letra' && text.length === 1) {
-    return setFoodValues(await Api.getFoodByFirstLetter(text));
-  }
-  if (category === 'Primeira letra' && text.length > 1) {
+  } else if (category === 'Primeira letra') {
+    if (text.length === 1) {
+      return setFoodValues(await Api.getFoodByFirstLetter(text));
+    }
     return alert('Sua busca deve conter somente 1 (um) caracter');
   }
+  return alert("Error");
 };
 
 const filterDrinkLogic = async (category, text, setDrinkValues) => {
-  if (category === 'Ingrediente' && text) {
-    return setDrinkValues(await Api.getDrinkByIngredient(text));
-  }
-  if (category === 'Nome' && text) {
-    return setDrinkValues(await Api.getDrinkByName(text));
-  }
-  if (category === 'Primeira letra' && text.length === 1) {
-    return setDrinkValues(await Api.getDrinkByFirstLetter(text));
-  }
-  if (category === 'Primeira letra' && text.length > 1) {
-    return alert('Sua busca deve conter somente 1 (um) caracter');
-  }
+  if (category === 'Ingrediente' && text) return setDrinkValues(
+    await Api.getDrinkByIngredient(text));
+  if (category === 'Nome' && text) return setDrinkValues(
+    await Api.getDrinkByName(text));
+  if (category === 'Primeira letra' && text.length === 1) return setDrinkValues(
+    await Api.getDrinkByFirstLetter(text));
+  if (category === 'Primeira letra' && text.length > 1) return alert(
+    'Sua busca deve conter somente 1 (um) caracter');
+  return null;
 };
 
 const filteredSearch = async (e, currentPath, category, text, setFoodValues, setDrinkValues) => {
