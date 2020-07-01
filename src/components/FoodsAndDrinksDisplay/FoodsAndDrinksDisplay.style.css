@@ -1,6 +1,7 @@
-/* .container-display {
-  border: 1px solid black;
-} */
+.container-display {
+  display: flex;
+  flex-direction: column;
+}
 
 .img-display {
   border-radius: 10px;

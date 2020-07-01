@@ -5,7 +5,7 @@ import { waitForElement } from '@testing-library/react';
 
 it('should renders "Carregando..."', () => {
   const { getByText } = renderWithRouter(<FoodsAndDrinksDisplay />);
-  
+
   expect(getByText(/Carregando.../i)).toBeInTheDocument();
 });
 
@@ -16,10 +16,10 @@ describe('Test to check if all elements are being rendered correctly on screen.'
       getByTestId("0-recipe-card"),
       getByTestId("11-recipe-card")
     ]);
-    
+
     await expect(receitaUm).toBeInTheDocument();
     await expect(receitaUm).toHaveTextContent("Corba");
-    
+
     await expect(receitadDoze).toBeInTheDocument();
     await expect(receitadDoze).toHaveTextContent("Pancakes");
   });

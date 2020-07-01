@@ -10,7 +10,7 @@ export default function MainFoodsScreen() {
     <div>
       {Header('Comidas', true)}
       {CategoryFilter(getFoodsCategoriesList, 'meals')}
-      {FoodsAndDrinksDisplay('meals', getFoodList, 'strMeal', 'strMealThumb')}
+      {FoodsAndDrinksDisplay(getFoodList, 'strMeal', 'strMealThumb')}
       <Footer />
     </div>
   );

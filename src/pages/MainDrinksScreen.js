@@ -10,7 +10,7 @@ export default function MainDrinksScreen() {
     <div>
       {Header('Bebidas', true)}
       {CategoryFilter(getDrinksCategoriesList, 'drinks')}
-      {FoodsAndDrinksDisplay('drinks', getDrinkList, 'strDrink', 'strDrinkThumb')}
+      {FoodsAndDrinksDisplay(getDrinkList, 'strDrink', 'strDrinkThumb')}
       <Footer />
     </div>
   );

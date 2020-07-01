@@ -8,7 +8,7 @@ const ingredientsToshow = (el) => {
         <div data-testid={`${index}-ingredient-name-and-measure`}>
           { el[`strIngredient${index}`]}
           :
-          {el[`strIngredient${index}`] }
+          {el[`strMeasure${index}`] }
         </div>,
       );
     }
