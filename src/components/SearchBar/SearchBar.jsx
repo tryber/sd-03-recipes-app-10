@@ -14,31 +14,26 @@ const filterFoodLogic = async (category, text, setFoodValues) => {
     }
     return alert('Sua busca deve conter somente 1 (um) caracter');
   }
-  return alert("Error");
 };
 
 const filterDrinkLogic = async (category, text, setDrinkValues) => {
-  if (category === 'Ingrediente' && text) return setDrinkValues(
-    await Api.getDrinkByIngredient(text));
-  if (category === 'Nome' && text) return setDrinkValues(
-    await Api.getDrinkByName(text));
-  if (category === 'Primeira letra' && text.length === 1) return setDrinkValues(
-    await Api.getDrinkByFirstLetter(text));
-  if (category === 'Primeira letra' && text.length > 1) return alert(
-    'Sua busca deve conter somente 1 (um) caracter');
-  return null;
+  if (category === 'Ingrediente') {
+    return setDrinkValues(await Api.getDrinkByIngredient(text));
+  } else if (category === 'Nome') {
+    return setDrinkValues(await Api.getDrinkByName(text));
+  } else if (category === 'Primeira letra') {
+    if (text.length === 1) {
+      return setDrinkValues(await Api.getDrinkByFirstLetter(text));
+    }
+    return alert('Sua busca deve conter somente 1 (um) caracter');
+  }
 };
 
 const filteredSearch = async (e, currentPath, category, text, setFoodValues, setDrinkValues) => {
   e.preventDefault();
-  console.log(text, category, currentPath);
   if (currentPath === '/comidas') {
     return filterFoodLogic(category, text, setFoodValues);
-  }
-  if (currentPath === '/bebidas') {
-    return filterDrinkLogic(category, text, setDrinkValues);
-  }
-  return null;
+  } return filterDrinkLogic(category, text, setDrinkValues);
 };
 
 const radioBtnDisplay = (className, type, name, id, value, testid, func) => (
