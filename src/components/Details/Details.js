@@ -3,27 +3,12 @@ import ReactPlayer from 'react-player/youtube';
 import { useHistory } from 'react-router';
 import { getFoodByID, getDrinkByID } from '../../services/api';
 import './Details.style.css';
+import ingredientsToshow from './ingredientsToshow';
 
 export default function Details() {
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
   const tipeRequsition = useHistory().location.pathname.split('/')[1];
   const itemId = useHistory().location.pathname.split('/')[2];
-
-  const ingredientsToshow = (el) => {
-    const obj = [];
-    for (let index = 1; index <= 20; index += 1) {
-      if (el[`strIngredient${index}`] !== '' && typeof el[`strIngredient${index}`] === 'string') {
-        obj.push(
-          <div data-testid={`${index}-ingredient-name-and-measure`}>
-            { el[`strIngredient${index}`]}
-            :
-            {el[`strIngredient${index}`] }
-          </div>,
-        );
-      }
-    }
-    return obj;
-  };
 
   const detailsToShow = (el, strType, strThumb) => (
     <div>
