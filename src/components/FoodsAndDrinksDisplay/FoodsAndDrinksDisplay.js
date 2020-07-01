@@ -4,7 +4,7 @@ import './FoodsAndDrinksDisplay.style.css';
 import RecipeContext from '../../Context/RecipeContext';
 
 const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
-//Again
+
 const renderGrid = (recipe, filterRecipes, stringObject, imgDisplay) => (
   <div className="item-overflow">
     {recipe[firstKey(recipe)].filter(filterRecipes).map(
