@@ -5,10 +5,11 @@ import './FoodDisplay.style.css';
 import RecipeContext from '../../Context/RecipeContext';
 
 export default function FoodDisplay() {
-  const { filterRecipes, setValueToFilter } = useContext(RecipeContext);
+  const { filterRecipes, setValueToFilter, setRecipeData } = useContext(RecipeContext);
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
 
   const functionToMakeRequisition = async () => {
+    setRecipeData(await getFoodList());
     setObjectReturnedAfterReq(await getFoodList());
   };
 

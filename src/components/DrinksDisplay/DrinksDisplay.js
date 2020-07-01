@@ -5,10 +5,11 @@ import '../FoodsDisplay/FoodDisplay.style.css';
 import RecipeContext from '../../Context/RecipeContext';
 
 export default function DrinksDisplay() {
-  const { filterRecipes, setValueToFilter } = useContext(RecipeContext);
+  const { filterRecipes, setValueToFilter, setRecipeData } = useContext(RecipeContext);
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
 
   const requestDrinkList = async () => {
+    setRecipeData(await  getDrinkList());
     setObjectReturnedAfterReq(await getDrinkList());
   };
   const history = useHistory();

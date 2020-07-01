@@ -12,11 +12,10 @@ const RecipeProvider = ({ children }) => {
     return objectToFilter.strCategory === valueToFilter;
   };
 
-  const setDataValues = (params) => setRecipeData(params);
 
   const context = {
     recipeData,
-    setDataValues,
+    setRecipeData,
     valueToFilter,
     setValueToFilter,
     filterRecipes,
