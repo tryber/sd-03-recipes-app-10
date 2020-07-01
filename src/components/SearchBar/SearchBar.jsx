@@ -16,7 +16,7 @@ const filterFoodLogic = async (category, text, setFoodValues) => {
   if (category === 'Primeira letra' && text.length > 1) {
     return alert('Sua busca deve conter somente 1 (um) caracter');
   }
-  alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+  return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
 };
 
 const filterDrinkLogic = async (category, text, setDrinkValues) => {
@@ -32,7 +32,7 @@ const filterDrinkLogic = async (category, text, setDrinkValues) => {
   if (category === 'Primeira letra' && text.length > 1) {
     return alert('Sua busca deve conter somente 1 (um) caracter');
   }
-  alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+  return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
 };
 
 const filteredSearch = async (e, currentPath, category, text, setFoodValues, setDrinkValues) => {
