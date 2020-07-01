@@ -9,7 +9,8 @@ const filterFoodLogic = async (category, text, setFoodValues) => {
   } else if (category === 'Nome') {
     setFoodValues(await Api.getFoodByName(text));
   } else if (category === 'Primeira letra') {
-    (text.length === 1) ? setFoodValues(await Api.getFoodByFirstLetter(text))
+    return (text.length === 1)
+    ? setFoodValues(await Api.getFoodByFirstLetter(text))
     : alert('Sua busca deve conter somente 1 (um) caracter');
   }
   return null;
@@ -21,11 +22,11 @@ const filterDrinkLogic = async (category, text, setDrinkValues) => {
   } else if (category === 'Nome') {
     return setDrinkValues(await Api.getDrinkByName(text));
   } else if (category === 'Primeira letra') {
-    if (text.length === 1) {
-      return setDrinkValues(await Api.getDrinkByFirstLetter(text));
-    }
-    return alert('Sua busca deve conter somente 1 (um) caracter');
-  } return alert('error')
+    return (text.length === 1)
+    ? setDrinkValues(await Api.getDrinkByFirstLetter(text))
+    : alert('Sua busca deve conter somente 1 (um) caracter');
+  } 
+  return null;
 };
 
 const filteredSearch = async (e, currentPath, category, text, setFoodValues, setDrinkValues) => {
