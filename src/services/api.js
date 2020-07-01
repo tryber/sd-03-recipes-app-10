@@ -45,7 +45,7 @@ export const getFoodList = async () => {
 };
 
 export const getFoodsCategoriesList = async () => {
-  const foodsCategories = `${initialFoodsURL}categories.php`;
+  const foodsCategories = `${initialFoodsURL}list.php?c=list`;
   return getData(foodsCategories);
 };
 
