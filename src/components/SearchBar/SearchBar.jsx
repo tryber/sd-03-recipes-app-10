@@ -13,7 +13,8 @@ const filterFoodLogic = async (category, text, setFoodValues) => {
       return setFoodValues(await Api.getFoodByFirstLetter(text));
     }
     return alert('Sua busca deve conter somente 1 (um) caracter');
-  }
+  } return alert("error")
+  
 };
 
 const filterDrinkLogic = async (category, text, setDrinkValues) => {
@@ -26,7 +27,7 @@ const filterDrinkLogic = async (category, text, setDrinkValues) => {
       return setDrinkValues(await Api.getDrinkByFirstLetter(text));
     }
     return alert('Sua busca deve conter somente 1 (um) caracter');
-  }
+  } return alert("error")
 };
 
 const filteredSearch = async (e, currentPath, category, text, setFoodValues, setDrinkValues) => {
