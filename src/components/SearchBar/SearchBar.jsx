@@ -10,8 +10,10 @@ const filterFoodLogic = async (category, text, setFoodValues) => {
   if (category === 'Nome' && text) {
     return setFoodValues(await Api.getFoodByName(text));
   }
-  if (category === 'Primeira letra' && text.length === 1)
+  if (category === 'Primeira letra' && text.length === 1){
     return setFoodValues(await Api.getFoodByFirstLetter(text));
+  }
+  return null;
 };
 
 const filterDrinkLogic = async (category, text, setDrinkValues) => {
@@ -21,8 +23,10 @@ const filterDrinkLogic = async (category, text, setDrinkValues) => {
   if (category === 'Nome' && text) {
     return setDrinkValues(await Api.getDrinkByName(text));
   }
-  if (category === 'Primeira letra' && text.length === 1)
+  if (category === 'Primeira letra' && text.length === 1){
     return setDrinkValues(await Api.getDrinkByFirstLetter(text));
+  }
+  return null;
 };
 
 const filteredSearch = async (e, currentPath, category, text, setFoodValues, setDrinkValues) => {
@@ -53,11 +57,9 @@ const radioBtnDisplay = (className, type, name, id, value, testid, func) => (
 
 export default function SearchBar() {
   const { setFoodValues, setDrinkValues } = useContext(RecipeContext);
-
   const [text, setText] = useState('');
   const [category, setCategory] = useState(null);
   const currentPath = window.location.pathname;
-
   const saveValues = (e) => setCategory(e.target.value);
 
   return (
@@ -83,11 +85,11 @@ export default function SearchBar() {
         </button>
       </div>
       <form className="radio-btn-container">
-        {radioBtnDisplay( 'radio-btn', 'radio', 'select', 'Ingrediente', 'Ingrediente'
+        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Ingrediente', 'Ingrediente'
         , 'ingredient-search-radio', saveValues)}
-        {radioBtnDisplay( 'radio-btn', 'radio', 'select', 'Nome', 'Nome'
+        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Nome', 'Nome'
         , 'name-search-radio', saveValues)}
-        {radioBtnDisplay( 'radio-btn', 'radio', 'select', 'Primeira letra', 'Primeira letra'
+        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Primeira letra', 'Primeira letra'
         , 'first-letter-search-radio', saveValues)}
       </form>
     </div>
