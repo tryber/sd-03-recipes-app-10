@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 
 export default function Profile() {
-  const [user, setUser] = useState('')
+  const [user, setUser] = useState('');
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem('user')));
-  }, [])
+  }, []);
 
   return (
     <div>

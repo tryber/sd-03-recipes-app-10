@@ -10,7 +10,7 @@ const filterFoodLogic = async (category, text, setFoodValues) => {
   if (category === 'Nome' && text) {
     return setFoodValues(await Api.getFoodByName(text));
   }
-  if (category === 'Primeira letra' && text.length === 1){
+  if (category === 'Primeira letra' && text.length === 1) {
     return setFoodValues(await Api.getFoodByFirstLetter(text));
   }
   return null;
@@ -23,7 +23,7 @@ const filterDrinkLogic = async (category, text, setDrinkValues) => {
   if (category === 'Nome' && text) {
     return setDrinkValues(await Api.getDrinkByName(text));
   }
-  if (category === 'Primeira letra' && text.length === 1){
+  if (category === 'Primeira letra' && text.length === 1) {
     return setDrinkValues(await Api.getDrinkByFirstLetter(text));
   }
   return null;
@@ -38,6 +38,7 @@ const filteredSearch = async (e, currentPath, category, text, setFoodValues, set
   if (currentPath === '/bebidas') {
     return filterDrinkLogic(category, text, setDrinkValues);
   }
+  return null;
 };
 
 const radioBtnDisplay = (className, type, name, id, value, testid, func) => (
