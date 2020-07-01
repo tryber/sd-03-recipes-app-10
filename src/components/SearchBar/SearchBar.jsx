@@ -3,37 +3,37 @@ import './SearchBar.style.css';
 import * as Api from '../../services/api';
 import RecipeContext from '../../Context/RecipeContext';
 
-const filterFoodLogic = async (category, text, setFoodValues) => {
+const filterFoodLogic = async (category, text, setObjectReturnedAfterReq) => {
   if (category === 'Ingrediente') {
-    setFoodValues(await Api.getFoodByIngredient(text));
+    setObjectReturnedAfterReq(await Api.getFoodByIngredient(text));
   } else if (category === 'Nome') {
-    setFoodValues(await Api.getFoodByName(text));
+    setObjectReturnedAfterReq(await Api.getFoodByName(text));
   } else if (category === 'Primeira letra') {
     return (text.length === 1)
-    ? setFoodValues(await Api.getFoodByFirstLetter(text))
-    : alert('Sua busca deve conter somente 1 (um) caracter');
+      ? setObjectReturnedAfterReq(await Api.getFoodByFirstLetter(text))
+      : alert('Sua busca deve conter somente 1 (um) caracter');
   }
   return null;
 };
 
-const filterDrinkLogic = async (category, text, setDrinkValues) => {
+const filterDrinkLogic = async (category, text, setObjectReturnedAfterReq) => {
   if (category === 'Ingrediente') {
-    return setDrinkValues(await Api.getDrinkByIngredient(text));
-  } else if (category === 'Nome') {
-    return setDrinkValues(await Api.getDrinkByName(text));
-  } else if (category === 'Primeira letra') {
+    return setObjectReturnedAfterReq(await Api.getDrinkByIngredient(text));
+  } if (category === 'Nome') {
+    return setObjectReturnedAfterReq(await Api.getDrinkByName(text));
+  } if (category === 'Primeira letra') {
     return (text.length === 1)
-    ? setDrinkValues(await Api.getDrinkByFirstLetter(text))
-    : alert('Sua busca deve conter somente 1 (um) caracter');
+      ? setObjectReturnedAfterReq(await Api.getDrinkByFirstLetter(text))
+      : alert('Sua busca deve conter somente 1 (um) caracter');
   }
   return null;
 };
 
-const filteredSearch = async (e, currentPath, category, text, setFoodValues, setDrinkValues) => {
+const filteredSearch = async (e, currentPath, category, text, setObjectReturnedAfterReq) => {
   e.preventDefault();
   if (currentPath === '/comidas') {
-    return filterFoodLogic(category, text, setFoodValues);
-  } return filterDrinkLogic(category, text, setDrinkValues);
+    return filterFoodLogic(category, text, setObjectReturnedAfterReq);
+  } return filterDrinkLogic(category, text, setObjectReturnedAfterReq);
 };
 
 const radioBtnDisplay = (className, type, name, id, value, testid, func) => (
@@ -52,7 +52,7 @@ const radioBtnDisplay = (className, type, name, id, value, testid, func) => (
 );
 
 export default function SearchBar() {
-  const { setFoodValues, setDrinkValues } = useContext(RecipeContext);
+  const { setObjectReturnedAfterReq } = useContext(RecipeContext);
   const [text, setText] = useState('');
   const [category, setCategory] = useState(null);
   const currentPath = window.location.pathname;
@@ -70,9 +70,8 @@ export default function SearchBar() {
       </div>
       <div className="search-btn-container">
         <button
-          onClick={(e) =>
-            filteredSearch(e, currentPath, category, text, setFoodValues, setDrinkValues)
-          }
+          onClick={(e) => filteredSearch(e, currentPath, category, text,
+            setObjectReturnedAfterReq)}
           data-testid="exec-search-btn"
           className="search-btn-display"
           type="submit"
@@ -81,12 +80,12 @@ export default function SearchBar() {
         </button>
       </div>
       <form className="radio-btn-container">
-        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Ingrediente', 'Ingrediente'
-        , 'ingredient-search-radio', saveValues)}
-        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Nome', 'Nome'
-        , 'name-search-radio', saveValues)}
-        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Primeira letra', 'Primeira letra'
-        , 'first-letter-search-radio', saveValues)}
+        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Ingrediente', 'Ingrediente',
+          'ingredient-search-radio', saveValues)}
+        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Nome', 'Nome',
+          'name-search-radio', saveValues)}
+        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Primeira letra', 'Primeira letra',
+          'first-letter-search-radio', saveValues)}
       </form>
     </div>
   );

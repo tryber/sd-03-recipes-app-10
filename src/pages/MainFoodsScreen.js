@@ -1,13 +1,16 @@
 import React from 'react';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
-import FoodDisplay from '../components/FoodsDisplay/FoodDisplay';
+import FoodsAndDrinksDisplay from '../components/FoodsAndDrinksDisplay/FoodsAndDrinksDisplay';
+import CategoryFilter from '../components/CategoryFilter/CategoryFilter';
+import { getFoodsCategoriesList, getFoodList } from '../services/api';
 
 export default function MainFoodsScreen() {
   return (
     <div>
       {Header('Comidas', true)}
-      <FoodDisplay />
+      {CategoryFilter(getFoodsCategoriesList, 'meals')}
+      {FoodsAndDrinksDisplay(getFoodList, 'strMeal', 'strMealThumb')}
       <Footer />
     </div>
   );
