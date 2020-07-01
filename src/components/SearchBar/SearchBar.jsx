@@ -25,7 +25,7 @@ const filterDrinkLogic = async (category, text, setDrinkValues) => {
       return setDrinkValues(await Api.getDrinkByFirstLetter(text));
     }
     return alert('Sua busca deve conter somente 1 (um) caracter');
-  } return alert("error")
+  } return alert('error')
 };
 
 const filteredSearch = async (e, currentPath, category, text, setFoodValues, setDrinkValues) => {
