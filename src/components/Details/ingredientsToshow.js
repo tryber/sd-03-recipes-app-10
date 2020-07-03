@@ -6,9 +6,7 @@ const ingredientsToshow = (el) => {
     if (el[`strIngredient${index}`] !== '' && typeof el[`strIngredient${index}`] === 'string') {
       obj.push(
         <div data-testid={`${index}-ingredient-name-and-measure`}>
-          { el[`strIngredient${index}`]}
-          -
-          {el[`strMeasure${index}`] }
+          {`${el[`strIngredient${index}`]} - ${el[`strMeasure${index}`]}`}
         </div>,
       );
     }
