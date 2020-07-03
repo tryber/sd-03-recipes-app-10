@@ -3,28 +3,24 @@ import PropTypes from 'prop-types';
 import RecipeContext from './RecipeContext';
 
 const RecipeProvider = ({ children }) => {
-  const [foodRecipeData, setFoodRecipeData] = useState(null);
-  const [drinkRecipeData, setDrinkRecipeData] = useState(null);
   const [valueToFilter, setValueToFilter] = useState('All');
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
-
-  const setFoodValues = (params) => setFoodRecipeData(params);
-  const setDrinkValues = (params) => setDrinkRecipeData(params);
+  const [toggleSearchBar, setToggleSearchBar] = useState(false);
 
   const filterRecipes = (objectToFilter) => {
     if (valueToFilter === 'All') return objectToFilter;
     return objectToFilter.strCategory === valueToFilter;
   };
 
+  const showSearchBar = (bool) => setToggleSearchBar(bool);
+
   const context = {
-    foodRecipeData,
-    drinkRecipeData,
     valueToFilter,
-    setFoodValues,
-    setDrinkValues,
+    objectReturnedAfterReq,
+    toggleSearchBar,
+    showSearchBar,
     setValueToFilter,
     filterRecipes,
-    objectReturnedAfterReq,
     setObjectReturnedAfterReq,
   };
 

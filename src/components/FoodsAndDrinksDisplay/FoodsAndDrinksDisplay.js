@@ -8,25 +8,26 @@ const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
 const renderGrid = (recipe, filterRecipes, stringObject, imgDisplay) => (
   <div className="item-overflow">
     {recipe[firstKey(recipe)].filter(filterRecipes).map(
-      (el, index) => index < 12 && (
-      <Link
-        className="container-display"
-        key={el[stringObject]}
-        data-testid={`${index}-recipe-card`}
-        to={
-          (firstKey(recipe) === 'meals' && `/comidas/${el.idMeal}`)
-          || (firstKey(recipe) === 'drinks' && `/bebidas/${el.idDrink}`)
-        }
-      >
-        <h3 data-testid={`${index}-card-name`}>{el[stringObject]}</h3>
-        <img
-          className="img-display"
-          data-testid={`${index}-card-img`}
-          src={el[imgDisplay]}
-          alt={`${el[stringObject]}`}
-        />
-      </Link>
-      ),
+      (el, index) =>
+        index < 12 && (
+          <Link
+            className="container-display"
+            key={el[stringObject]}
+            data-testid={`${index}-recipe-card`}
+            to={
+              (firstKey(recipe) === 'meals' && `/comidas/${el.idMeal}`) ||
+              (firstKey(recipe) === 'drinks' && `/bebidas/${el.idDrink}`)
+            }
+          >
+            <img
+              className="img-display"
+              data-testid={`${index}-card-img`}
+              src={el[imgDisplay]}
+              alt={`${el[stringObject]}`}
+            />
+            <h3 data-testid={`${index}-card-name`}>{el[stringObject]}</h3>
+          </Link>
+        ),
     )}
   </div>
 );
@@ -37,6 +38,7 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
     setValueToFilter,
     objectReturnedAfterReq,
     setObjectReturnedAfterReq,
+    showSearchBar,
   } = useContext(RecipeContext);
   const functionToMakeRequisition = async () => {
     setObjectReturnedAfterReq(null);
@@ -48,10 +50,14 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
     return setValueToFilter('All');
   }, []);
 
+  useEffect(() => () => {
+    showSearchBar(false);
+  }, []);
+
   const renderDisplay = () => {
     switch (true) {
       case objectReturnedAfterReq === null:
-        return <h1>Carregando...</h1>;
+        return null;
       case objectReturnedAfterReq[firstKey(objectReturnedAfterReq)] === null:
         return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
       default:

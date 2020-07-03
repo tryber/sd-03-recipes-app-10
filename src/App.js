@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import RecipeProvider from './Context/RecipeProvider';
 import './App.css';
-import Login from './components/Login/Login';
+import Login from './pages/Login/Login';
 import MainFoodsScreen from './pages/MainFoodsScreen';
 import MainDrinksScreen from './pages/MainDrinksScreen';
 import Explore from './pages/Explore';
