@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './FoodsAndDrinksDisplay.style.css';
 import RecipeContext from '../../Context/RecipeContext';
+import { getFoodByCategorie, getDrinkByCategorie } from '../../services/api';
 
 const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
 
@@ -42,7 +43,8 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
 
   const functionToMakeRequisition = async () => {
     if (valueToFilter === 'All') return setObjectReturnedAfterReq(await getitemDefined());
-    return alert(`mudei o filtro para: ${valueToFilter}`);
+    if(firstKey(objectReturnedAfterReq) === 'meals') return setObjectReturnedAfterReq(await getFoodByCategorie(valueToFilter));
+    return setObjectReturnedAfterReq(await getDrinkByCategorie(valueToFilter));
   };
 
   useEffect(() => {

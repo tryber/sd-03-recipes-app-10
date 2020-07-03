@@ -38,7 +38,7 @@ export default function CategoryFilter(apiToCallFilters, valueToMap) {
   }
   return (
     <div className="filter-div">
-      <button className="category-filter-btn" onClick={() => changeFilterValue('All')}>
+      <button data-testid="All-category-filter" className="category-filter-btn" onClick={() => changeFilterValue('All')}>
         All
       </button>
       {objectReturnedAfterReq[valueToMap].map(categoryButton)}
