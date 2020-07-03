@@ -19,7 +19,6 @@ export const getDrinkByCategorie = async (categorie) => {
 
 export const getDrinkByIngredient = async (ingredient) => {
   const drinksByIngredient = `${initialDrinksURL}filter.php?i=${ingredient}`;
-  console.log(drinksByIngredient);
   return getData(drinksByIngredient);
 };
 

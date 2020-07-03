@@ -1,27 +1,20 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import RecipeContext from './RecipeContext';
+import { getFoodByIngredient } from '../services/api';
 
 const RecipeProvider = ({ children }) => {
-  const [foodRecipeData, setFoodRecipeData] = useState(null);
-  const [drinkRecipeData, setDrinkRecipeData] = useState(null);
   const [valueToFilter, setValueToFilter] = useState('All');
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
 
-  const setFoodValues = (params) => setFoodRecipeData(params);
-  const setDrinkValues = (params) => setDrinkRecipeData(params);
-
-  const filterRecipes = (objectToFilter) => {
+  const filterRecipes = async (objectToFilter) => {
+    console.log('test')
     if (valueToFilter === 'All') return objectToFilter;
-    return objectToFilter.strCategory === valueToFilter;
+    return await setObjectReturnedAfterReq(getFoodByIngredient(objectToFilter.strCategory));
   };
 
   const context = {
-    foodRecipeData,
-    drinkRecipeData,
     valueToFilter,
-    setFoodValues,
-    setDrinkValues,
     setValueToFilter,
     filterRecipes,
     objectReturnedAfterReq,
