@@ -7,7 +7,7 @@ import { getFoodByCategorie, getDrinkByCategorie } from '../../services/api';
 const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
 
 const searchByCategorie = async (
-  valueToFilter, setObjectReturnedAfterReq, getitemDefined, objectReturnedAfterReq
+  valueToFilter, setObjectReturnedAfterReq, getitemDefined, objectReturnedAfterReq,
   ) => {
   if (valueToFilter === 'All') return setObjectReturnedAfterReq(await getitemDefined());
   if (firstKey(objectReturnedAfterReq) === 'meals') return setObjectReturnedAfterReq(await getFoodByCategorie(valueToFilter));
@@ -50,10 +50,9 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
   } = useContext(RecipeContext);
 
   const functionToMakeRequisition = async () => {
-    await searchByCategorie(valueToFilter,
-      setObjectReturnedAfterReq,
-      getitemDefined,
-      objectReturnedAfterReq);
+    await searchByCategorie(
+      valueToFilter, setObjectReturnedAfterReq, getitemDefined, objectReturnedAfterReq,
+      );
   };
 
   useEffect(() => {
