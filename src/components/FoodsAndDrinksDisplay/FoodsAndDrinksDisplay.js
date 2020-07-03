@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './FoodsAndDrinksDisplay.style.css';
 import RecipeContext from '../../Context/RecipeContext';
-import { getFoodByCategorie, getDrinkByCategorie } from '../../services/api';
+import { getFoodByCategory, getDrinkByCategory } from '../../services/api';
 
 const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
 
@@ -10,8 +10,8 @@ const searchByCategorie = async (
   valueToFilter, setObjectReturnedAfterReq, getitemDefined, objectReturnedAfterReq,
   ) => {
   if (valueToFilter === 'All') return setObjectReturnedAfterReq(await getitemDefined());
-  if (firstKey(objectReturnedAfterReq) === 'meals') return setObjectReturnedAfterReq(await getFoodByCategorie(valueToFilter));
-  return setObjectReturnedAfterReq(await getDrinkByCategorie(valueToFilter));
+  if (firstKey(objectReturnedAfterReq) === 'meals') return setObjectReturnedAfterReq(await getFoodByCategory(valueToFilter));
+  return setObjectReturnedAfterReq(await getDrinkByCategory(valueToFilter));
 };
 
 const renderGrid = (recipe, stringObject, imgDisplay) => (
