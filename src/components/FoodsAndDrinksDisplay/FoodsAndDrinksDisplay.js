@@ -40,6 +40,11 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
     showSearchBar,
   } = useContext(RecipeContext);
 
+  const functionToMakeRequisition = async () => {
+    if (valueToFilter === 'All') return setObjectReturnedAfterReq(await getitemDefined());
+    return alert(`mudei o filtro para: ${valueToFilter}`);
+  };
+
   useEffect(() => {
     functionToMakeRequisition();
   }, [valueToFilter]);
@@ -47,12 +52,6 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
   useEffect(() => () => {
     showSearchBar(false);
   }, []);
-  
-  const functionToMakeRequisition = async () => {
-    if (valueToFilter === 'All') return setObjectReturnedAfterReq(await getitemDefined());
-    return alert(`mudei o filtro para: ${valueToFilter}`);
-  };
-
 
   const renderDisplay = () => {
     switch (true) {

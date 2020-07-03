@@ -16,7 +16,7 @@ export default function CategoryFilter(apiToCallFilters, valueToMap) {
   }, []);
 
   const changeFilterValue = (val) => {
-    if (val === valueToFilter ) return setValueToFilter('All');
+    if (val === valueToFilter) return setValueToFilter('All');
     return setValueToFilter(val);
   };
 
