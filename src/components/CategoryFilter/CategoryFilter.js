@@ -1,43 +1,47 @@
 import React, { useState, useEffect, useContext } from 'react';
 import RecipeContext from '../../Context/RecipeContext';
 import './CategoryFilter.style.css';
-import { getFoodByIngredient, getFoodList } from '../../services/api';
 
 export default function CategoryFilter(apiToCallFilters, valueToMap) {
-  const { valueToFilter, setValueToFilter, objectReturnedAfterReq, setObjectReturnedAfterReq } = useContext(RecipeContext);
-  const [categoriesButtons, setCategoriesButtons] = useState(null);
-
-  const changeFilterValue = async (val) => {
-    if (val === valueToFilter ) return await setValueToFilter('All');
-    return await setValueToFilter(val);
-  };
-  
-
-  const categoryButton = (el, index) => index <= 4
-    && (
-    <button
-      data-testid={`${el.strCategory}-category-filter`}
-      onClick={() => changeFilterValue(el.strCategory)}
-      type="button"
-    >
-      {el.strCategory}
-    </button>
-    );
+  const { valueToFilter, setValueToFilter, toggleSearchBar } = useContext(RecipeContext);
+  const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
 
   const functionToMakeRequisition = async () => {
-    setCategoriesButtons(await apiToCallFilters());
+    setObjectReturnedAfterReq(await apiToCallFilters());
   };
 
   useEffect(() => {
     functionToMakeRequisition();
+    return setValueToFilter('All');
   }, []);
 
-  return categoriesButtons === null ? (
-    null
-  ) : (
+  const changeFilterValue = (val) => {
+    if (val === valueToFilter ) return setValueToFilter('All');
+    return setValueToFilter(val);
+  };
+
+  const categoryButton = (el, index) =>
+    index <= 4 && (
+      <button
+        data-testid={`${el.strCategory}-category-filter`}
+        onClick={() => changeFilterValue(el.strCategory)}
+        type="button"
+        key={index}
+        className="category-filter-btn"
+      >
+        {el.strCategory}
+      </button>
+    );
+
+  if (objectReturnedAfterReq === null || toggleSearchBar === true) {
+    return null;
+  }
+  return (
     <div className="filter-div">
-      <button onClick={() => changeFilterValue('All')}>All</button>
-      {categoriesButtons[valueToMap].map(categoryButton)}
+      <button className="category-filter-btn" onClick={() => changeFilterValue('All')}>
+        All
+      </button>
+      {objectReturnedAfterReq[valueToMap].map(categoryButton)}
     </div>
   );
 }

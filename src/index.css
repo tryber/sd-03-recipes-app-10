@@ -3,11 +3,6 @@ body {
   padding: 0;
 }
 
-.holder {
-  position: absolute;
-  margin-top: 3em;
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

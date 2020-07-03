@@ -1,6 +1,6 @@
 import React from 'react';
 import Profile from './Profile';
-import renderWithRouter from '../../src/components/helpers/renderWithRouter';
+import renderWithRouter from '../../components/helpers/renderWithRouter';
 import { fireEvent } from '@testing-library/react';
 
 describe('Test to check if all elements are being rendered correctly on screen.', () => {

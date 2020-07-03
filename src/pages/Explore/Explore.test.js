@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import Explore from './Explore';
-import renderWithRouter from '../../src/components/helpers/renderWithRouter';
+import renderWithRouter from '../../components/helpers/renderWithRouter';
 
 describe('Test to check if all elements are being rendered correctly on screen.', () => {
   test('should all elements have their correct data-testids', () => {
