@@ -6,6 +6,15 @@ export default function CategoryFilter(apiToCallFilters, valueToMap) {
   const { valueToFilter, setValueToFilter, toggleSearchBar } = useContext(RecipeContext);
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
 
+  const functionToMakeRequisition = async () => {
+    setObjectReturnedAfterReq(await apiToCallFilters());
+  };
+
+  useEffect(() => {
+    functionToMakeRequisition();
+    return setValueToFilter('All');
+  }, []);
+
   const changeFilterValue = (val) => {
     if (val === valueToFilter) return setValueToFilter('All');
     return setValueToFilter(val);
@@ -24,20 +33,12 @@ export default function CategoryFilter(apiToCallFilters, valueToMap) {
       </button>
     );
 
-  const functionToMakeRequisition = async () => {
-    setObjectReturnedAfterReq(await apiToCallFilters());
-  };
-
-  useEffect(() => {
-    functionToMakeRequisition();
-  }, []);
-
   if (objectReturnedAfterReq === null || toggleSearchBar === true) {
     return null;
   }
   return (
     <div className="filter-div">
-      <button className="category-filter-btn" onClick={() => changeFilterValue('All')}>
+      <button data-testid="All-category-filter" className="category-filter-btn" onClick={() => changeFilterValue('All')}>
         All
       </button>
       {objectReturnedAfterReq[valueToMap].map(categoryButton)}

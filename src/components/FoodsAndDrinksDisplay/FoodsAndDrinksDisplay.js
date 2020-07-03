@@ -2,12 +2,21 @@ import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './FoodsAndDrinksDisplay.style.css';
 import RecipeContext from '../../Context/RecipeContext';
+import { getFoodByCategorie, getDrinkByCategorie } from '../../services/api';
 
 const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
 
-const renderGrid = (recipe, filterRecipes, stringObject, imgDisplay) => (
+const searchByCategorie = async (
+  valueToFilter, setObjectReturnedAfterReq, getitemDefined, objectReturnedAfterReq,
+  ) => {
+  if (valueToFilter === 'All') return setObjectReturnedAfterReq(await getitemDefined());
+  if (firstKey(objectReturnedAfterReq) === 'meals') return setObjectReturnedAfterReq(await getFoodByCategorie(valueToFilter));
+  return setObjectReturnedAfterReq(await getDrinkByCategorie(valueToFilter));
+};
+
+const renderGrid = (recipe, stringObject, imgDisplay) => (
   <div className="item-overflow">
-    {recipe[firstKey(recipe)].filter(filterRecipes).map(
+    {recipe[firstKey(recipe)].map(
       (el, index) =>
         index < 12 && (
           <Link
@@ -34,21 +43,21 @@ const renderGrid = (recipe, filterRecipes, stringObject, imgDisplay) => (
 
 const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
   const {
-    filterRecipes,
-    setValueToFilter,
+    valueToFilter,
     objectReturnedAfterReq,
     setObjectReturnedAfterReq,
     showSearchBar,
   } = useContext(RecipeContext);
+
   const functionToMakeRequisition = async () => {
-    setObjectReturnedAfterReq(null);
-    setObjectReturnedAfterReq(await getitemDefined());
+    await searchByCategorie(
+      valueToFilter, setObjectReturnedAfterReq, getitemDefined, objectReturnedAfterReq,
+      );
   };
 
   useEffect(() => {
     functionToMakeRequisition();
-    return setValueToFilter('All');
-  }, []);
+  }, [valueToFilter]);
 
   useEffect(() => () => {
     showSearchBar(false);
@@ -61,7 +70,7 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
       case objectReturnedAfterReq[firstKey(objectReturnedAfterReq)] === null:
         return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
       default:
-        return renderGrid(objectReturnedAfterReq, filterRecipes, stringObject, imgDisplay);
+        return renderGrid(objectReturnedAfterReq, stringObject, imgDisplay);
     }
   };
   return renderDisplay();

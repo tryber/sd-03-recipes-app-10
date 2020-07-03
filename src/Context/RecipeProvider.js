@@ -7,11 +7,6 @@ const RecipeProvider = ({ children }) => {
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
 
-  const filterRecipes = (objectToFilter) => {
-    if (valueToFilter === 'All') return objectToFilter;
-    return objectToFilter.strCategory === valueToFilter;
-  };
-
   const showSearchBar = (bool) => setToggleSearchBar(bool);
 
   const context = {
@@ -20,7 +15,6 @@ const RecipeProvider = ({ children }) => {
     toggleSearchBar,
     showSearchBar,
     setValueToFilter,
-    filterRecipes,
     setObjectReturnedAfterReq,
   };
 
