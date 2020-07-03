@@ -19,7 +19,7 @@ const detailsToShow = (el, strType, strThumb) => (
         <input type="image" src={favIcon} />
       </div>
     </div>
-    <p>{el.strAlcoholic}</p>
+    <p >{el.strAlcoholic}</p>
     <p data-testid="recipe-category">{el.strCategory}</p>
     <p>Ingredients</p>
     {ingredientsToshow(el)}

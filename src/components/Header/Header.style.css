@@ -7,22 +7,22 @@
 }
 
 .title {
-  left: 80px;
+  left: 70px;
   position: absolute;
   top: 10px;
-  width: 200px;
+  width: 220px;
 }
 
 .title p {
   color: #333;
   font-family: Yellowtail, cursive;
-  font-size: 30px;
+  font-size: 29px;
   font-style: normal;
   font-weight: 100;
   margin: 0;
   padding: 0;
   text-align: center;
-  width: 200px;
+  width: 220px;
 }
 
 .profile-icon {
