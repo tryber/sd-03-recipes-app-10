@@ -1,0 +1,21 @@
+.filter-div {
+  display: flex;
+  flex-wrap: wrap;
+  height: 75px;
+  justify-content: space-around;
+  left: 0;
+  padding-top: 5px;
+  position: absolute;
+  top: 58px;
+  width: 360px;
+}
+
+.category-filter-btn {
+  background: none;
+  border: none;
+  border-bottom: 1px solid lightgray;
+  font-size: 12px;
+  margin-bottom: 5px;
+  text-align: center;
+  width: 120px;
+}

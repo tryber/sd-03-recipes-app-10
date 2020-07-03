@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import RecipeContext from './RecipeContext';
-// import * as Api from '../services/api'
 
 const RecipeProvider = ({ children }) => {
-  const [recipeData, setRecipeData] = useState(null);
+  const [valueToFilter, setValueToFilter] = useState('All');
+  const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
+  const [toggleSearchBar, setToggleSearchBar] = useState(false);
 
-  const setDataValues = (params) => setRecipeData(params);
-  console.log(recipeData);
+  const showSearchBar = (bool) => setToggleSearchBar(bool);
+
   const context = {
-    recipeData,
-    setDataValues,
+    valueToFilter,
+    objectReturnedAfterReq,
+    toggleSearchBar,
+    showSearchBar,
+    setValueToFilter,
+    setObjectReturnedAfterReq,
   };
 
   return <RecipeContext.Provider value={context}>{children}</RecipeContext.Provider>;
