@@ -1,0 +1,34 @@
+.holder {
+  display: flex;
+  flex-direction: column;
+  height: 520px;
+  position: absolute;
+  text-align: center;
+  top: 60px;
+  width: 360px;
+}
+
+.profile-info-display {
+  margin: auto;
+}
+
+.profile-btn-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-btn {
+  background: none;
+  border: none;
+  border-bottom: 1px solid lightgray;
+  color: rgb(70, 70, 70);
+  font-size: 15px;
+  height: 30px;
+  margin-bottom: 15px;
+  width: 150px;
+}
+
+.profile-email {
+  color: #333;
+  margin-bottom: 100px;
+}
