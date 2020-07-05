@@ -6,11 +6,16 @@ import { getFoodByCategory, getDrinkByCategory } from '../../services/api';
 
 const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
 
-const searchByCategorie = async (
-  valueToFilter, setObjectReturnedAfterReq, getitemDefined, objectReturnedAfterReq,
-  ) => {
+export const searchByCategorie = async (
+  valueToFilter,
+  setObjectReturnedAfterReq,
+  getitemDefined,
+  objectReturnedAfterReq,
+) => {
   if (valueToFilter === 'All') return setObjectReturnedAfterReq(await getitemDefined());
-  if (firstKey(objectReturnedAfterReq) === 'meals') return setObjectReturnedAfterReq(await getFoodByCategory(valueToFilter));
+  if (firstKey(objectReturnedAfterReq) === 'meals') {
+    return setObjectReturnedAfterReq(await getFoodByCategory(valueToFilter));
+  }
   return setObjectReturnedAfterReq(await getDrinkByCategory(valueToFilter));
 };
 
@@ -21,7 +26,7 @@ const renderGrid = (recipe, stringObject, imgDisplay) => (
         index < 12 && (
           <Link
             className="container-display"
-            key={el[stringObject]}
+            key={Math.random() * Math.PI}
             data-testid={`${index}-recipe-card`}
             to={
               (firstKey(recipe) === 'meals' && `/comidas/${el.idMeal}`) ||
@@ -51,17 +56,23 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
 
   const functionToMakeRequisition = async () => {
     await searchByCategorie(
-      valueToFilter, setObjectReturnedAfterReq, getitemDefined, objectReturnedAfterReq,
-      );
+      valueToFilter,
+      setObjectReturnedAfterReq,
+      getitemDefined,
+      objectReturnedAfterReq,
+    );
   };
 
   useEffect(() => {
     functionToMakeRequisition();
   }, [valueToFilter]);
 
-  useEffect(() => () => {
-    showSearchBar(false);
-  }, []);
+  useEffect(
+    () => () => {
+      showSearchBar(false);
+    },
+    [],
+  );
 
   const renderDisplay = () => {
     switch (true) {

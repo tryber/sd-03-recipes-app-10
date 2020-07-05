@@ -1,28 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router";
-import ReactPlayer from "react-player/youtube";
-import functionToMakeRequisition from "./funtionToMakeRequisition";
-import ingredientsToshow from "./ingredientsToshow";
-import StartButton from "./StartButton";
-import "./Details.style.css";
-import shareIcon from "../../images/shareIcon.svg";
-import favIcon from "../../images/whiteHeartIcon.svg";
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router';
+import ReactPlayer from 'react-player/youtube';
+import functionToMakeRequisition from './funtionToMakeRequisition';
+import ingredientsToshow from './ingredientsToshow';
+import StartButton from './StartButton';
+import './Details.style.css';
+import shareIcon from '../../images/shareIcon.svg';
+import favIcon from '../../images/whiteHeartIcon.svg';
 
 const detailsToShow = (el, strType, strThumb) => (
-  <div>
-    <img
-      data-testid="recipe-photo"
-      className="img-align"
-      alt={el[strType]}
-      src={el[strThumb]}
-    />
+  <div key={Math.random() * Math.PI}>
+    <img data-testid="recipe-photo" className="img-align" alt={el[strType]} src={el[strThumb]} />
     <div className="title-icons-container">
       <div>
         <h2 data-testid="recipe-title">{el[strType]}</h2>
       </div>
       <div className="icons-container">
-        <input type="image" src={shareIcon} />
-        <input type="image" src={favIcon} />
+        <input type="image" src={shareIcon} alt="share icon" />
+        <input type="image" src={favIcon} alt="favorite icon" />
       </div>
     </div>
     <p>{el.strAlcoholic}</p>
@@ -45,31 +40,29 @@ const detailsToShow = (el, strType, strThumb) => (
   </div>
 );
 
-
 export default function Details() {
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
-  const typeRequsition = useHistory().location.pathname.split("/")[1];
-  const itemId = useHistory().location.pathname.split("/")[2];
-
+  const typeRequsition = useHistory().location.pathname.split('/')[1];
+  const itemId = useHistory().location.pathname.split('/')[2];
 
   useEffect(() => {
     functionToMakeRequisition(
       typeRequsition,
       itemId,
-      setObjectReturnedAfterReq
+      setObjectReturnedAfterReq,
     );
   }, []);
 
   return objectReturnedAfterReq === null ? null : (
     <div>
-      {typeRequsition === "comidas"
-        ? objectReturnedAfterReq.meals.map((el) =>
-            detailsToShow(el, "strMeal", "strMealThumb")
-          )
-        : objectReturnedAfterReq.drinks.map((el) =>
-            detailsToShow(el, "strDrink", "strDrinkThumb")
-          )}
-      <StartButton typeRequsition={typeRequsition} itemId={itemId} recipe={objectReturnedAfterReq} />
+      {typeRequsition === 'comidas'
+        ? objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb'))
+        : objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb'))}
+      <StartButton
+        typeRequsition={typeRequsition}
+        itemId={itemId}
+        recipe={objectReturnedAfterReq}
+      />
     </div>
   );
 }
