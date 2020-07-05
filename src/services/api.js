@@ -44,6 +44,11 @@ export const getFoodList = async () => {
   return getData(initialPageFoods);
 };
 
+export const getFoodByArea = async (area) => {
+  const initialListByArea = `${initialFoodsURL}filter.php?a=${area}`;
+  return getData(initialListByArea);
+};
+
 export const getFoodsCategoriesList = async () => {
   const foodsCategories = `${initialFoodsURL}list.php?c=list`;
   return getData(foodsCategories);

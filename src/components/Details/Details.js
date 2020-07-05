@@ -8,7 +8,7 @@ import shareIcon from '../../images/shareIcon.svg';
 import favIcon from '../../images/whiteHeartIcon.svg';
 
 const detailsToShow = (el, strType, strThumb) => (
-  <div>
+  <div key={Math.random() * Math.PI} >
     <img data-testid="recipe-photo" className="img-align" alt={el[strType]} src={el[strThumb]} />
     <div className="title-icons-container">
       <div>
