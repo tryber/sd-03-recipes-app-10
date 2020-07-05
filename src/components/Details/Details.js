@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router';
 import ReactPlayer from 'react-player/youtube';
+import { typeRequsition, itemId } from '../helpers/splitsOfPath';
 import functionToMakeRequisition from './funtionToMakeRequisition';
 import ingredientsToshow from './ingredientsToshow';
 import StartButton from './StartButton';
@@ -40,8 +40,6 @@ const detailsToShow = (el, strType, strThumb) => (
   </div>
 );
 
-export const typeRequsition = useHistory().location.pathname.split('/')[1];
-export const itemId = useHistory().location.pathname.split('/')[2];
 export default function Details() {
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
 

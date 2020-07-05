@@ -1,5 +1,5 @@
 import React from 'react';
-import { itemId, typeRequsition } from './Details';
+import { itemId, typeRequsition } from '../helpers/splitsOfPath';
 
 const saveInProgressRecipes = (key, id, value) => localStorage.setItem(
   'inProgressRecipes',
