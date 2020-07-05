@@ -1,29 +1,28 @@
 import getData from './getData';
 
-test("Api up", async () => {
+test('Api up', async () => {
   jest.spyOn(global, 'fetch')
     .mockImplementation(() => Promise.resolve({
       status: 200,
       json: () => Promise.resolve({
-        value: 'aceitou top'
-      })
+        value: 'aceitou top',
+      }),
     }));
-  const response = await getData("url.test");
+  const response = await getData('url.test');
   console.log(response.value);
-  expect(fetch).toHaveBeenCalledWith("url.test");
-  expect(response.value).toBe("aceitou top");
+  expect(fetch).toHaveBeenCalledWith('url.test');
+  expect(response.value).toBe('aceitou top');
   global.fetch.mockClear();
 });
 
-
 test('APi down', async () => {
   jest.spyOn(global, 'fetch')
-  .mockImplementation(() => Promise.resolve({
-    status: 200,
-    json: () => Promise.reject({
-      value: 'API is down'
-    })
-  }));
+    .mockImplementation(() => Promise.resolve({
+      status: 200,
+      json: () => Promise.reject({
+        value: 'API is down',
+      }),
+    }));
 
   const response = await getData('url.test');
   console.log(response.value);

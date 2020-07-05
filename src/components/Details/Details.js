@@ -40,10 +40,10 @@ const detailsToShow = (el, strType, strThumb) => (
   </div>
 );
 
+export const typeRequsition = useHistory().location.pathname.split('/')[1];
+export const itemId = useHistory().location.pathname.split('/')[2];
 export default function Details() {
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
-  const typeRequsition = useHistory().location.pathname.split('/')[1];
-  const itemId = useHistory().location.pathname.split('/')[2];
 
   useEffect(() => {
     functionToMakeRequisition(
