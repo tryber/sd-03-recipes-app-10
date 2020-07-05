@@ -12,9 +12,9 @@ export const getDrinksCategoriesList = async () => {
   return getData(drinksCategories);
 };
 
-export const getDrinkByCategorie = async (categorie) => {
-  const drinksByCategorie = `${initialDrinksURL}filter.php?c=${categorie}`;
-  return getData(drinksByCategorie);
+export const getDrinkByCategory = async (category) => {
+  const drinksByCategory = `${initialDrinksURL}filter.php?c=${category}`;
+  return getData(drinksByCategory);
 };
 
 export const getDrinkByIngredient = async (ingredient) => {
@@ -44,14 +44,19 @@ export const getFoodList = async () => {
   return getData(initialPageFoods);
 };
 
+export const getFoodByArea = async (area) => {
+  const initialListByArea = `${initialFoodsURL}filter.php?a=${area}`;
+  return getData(initialListByArea);
+};
+
 export const getFoodsCategoriesList = async () => {
   const foodsCategories = `${initialFoodsURL}list.php?c=list`;
   return getData(foodsCategories);
 };
 
-export const getFoodByCategorie = async (categorie) => {
-  const foodsByCategorie = `${initialFoodsURL}filter.php?c=${categorie}`;
-  return getData(foodsByCategorie);
+export const getFoodByCategory = async (category) => {
+  const foodsByCategory = `${initialFoodsURL}filter.php?c=${category}`;
+  return getData(foodsByCategory);
 };
 
 export const getFoodByIngredient = async (ingredient) => {

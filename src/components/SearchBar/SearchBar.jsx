@@ -9,7 +9,7 @@ const filterFoodLogic = async (category, text, setObjectReturnedAfterReq) => {
   } else if (category === 'Nome') {
     setObjectReturnedAfterReq(await Api.getFoodByName(text));
   } else if (category === 'Primeira letra') {
-    return (text.length === 1)
+    return text.length === 1
       ? setObjectReturnedAfterReq(await Api.getFoodByFirstLetter(text))
       : alert('Sua busca deve conter somente 1 (um) caracter');
   }
@@ -19,10 +19,12 @@ const filterFoodLogic = async (category, text, setObjectReturnedAfterReq) => {
 const filterDrinkLogic = async (category, text, setObjectReturnedAfterReq) => {
   if (category === 'Ingrediente') {
     return setObjectReturnedAfterReq(await Api.getDrinkByIngredient(text));
-  } if (category === 'Nome') {
+  }
+  if (category === 'Nome') {
     return setObjectReturnedAfterReq(await Api.getDrinkByName(text));
-  } if (category === 'Primeira letra') {
-    return (text.length === 1)
+  }
+  if (category === 'Primeira letra') {
+    return text.length === 1
       ? setObjectReturnedAfterReq(await Api.getDrinkByFirstLetter(text))
       : alert('Sua busca deve conter somente 1 (um) caracter');
   }
@@ -33,21 +35,22 @@ const filteredSearch = async (e, currentPath, category, text, setObjectReturnedA
   e.preventDefault();
   if (currentPath === '/comidas') {
     return filterFoodLogic(category, text, setObjectReturnedAfterReq);
-  } return filterDrinkLogic(category, text, setObjectReturnedAfterReq);
+  }
+  return filterDrinkLogic(category, text, setObjectReturnedAfterReq);
 };
 
-const radioBtnDisplay = (className, type, name, id, value, testid, func) => (
+const radioBtnDisplay = (sameId, testid, func) => (
   <div>
     <input
-      className={className}
-      type={type}
-      name={name}
-      id={id}
-      value={value}
+      className="radio-btn"
+      type="radio"
+      name="select"
+      id={sameId}
+      value={sameId}
       data-testid={testid}
       onClick={func}
     />
-    <label htmlFor={id}>{value}</label>
+    <label htmlFor={sameId}>{sameId}</label>
   </div>
 );
 
@@ -60,18 +63,15 @@ export default function SearchBar() {
 
   return (
     <div>
-      <div>
-        <input
-          onChange={(e) => setText(e.target.value)}
-          className="search-bar"
-          data-testid="search-input"
-          placeholder="Buscar Receitas"
-        />
-      </div>
+      <input
+        onChange={(e) => setText(e.target.value)}
+        className="search-bar"
+        data-testid="search-input"
+        placeholder="Buscar Receitas"
+      />
       <div className="search-btn-container">
         <button
-          onClick={(e) => filteredSearch(e, currentPath, category, text,
-            setObjectReturnedAfterReq)}
+          onClick={(e) => filteredSearch(e, currentPath, category, text, setObjectReturnedAfterReq)}
           data-testid="exec-search-btn"
           className="search-btn-display"
           type="submit"
@@ -80,12 +80,9 @@ export default function SearchBar() {
         </button>
       </div>
       <form className="radio-btn-container">
-        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Ingrediente', 'Ingrediente',
-          'ingredient-search-radio', saveValues)}
-        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Nome', 'Nome',
-          'name-search-radio', saveValues)}
-        {radioBtnDisplay('radio-btn', 'radio', 'select', 'Primeira letra', 'Primeira letra',
-          'first-letter-search-radio', saveValues)}
+        {radioBtnDisplay('Ingrediente', 'ingredient-search-radio', saveValues)}
+        {radioBtnDisplay('Nome', 'name-search-radio', saveValues)}
+        {radioBtnDisplay('Primeira letra', 'first-letter-search-radio', saveValues)}
       </form>
     </div>
   );

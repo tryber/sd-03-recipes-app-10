@@ -1,4 +1,24 @@
-.container-display {
+.dropdown-container {
+  left: 30px;
+  position: absolute;
+  top: 80px;
+}
+
+.area-select {
+  background: none;
+  border: none;
+  border-bottom: 1px solid lightgray;
+  color: #333;
+  height: 30px;
+  width: 300px;
+}
+
+.area-select option {
+  background-color: lightgray;
+  color: #333;
+}
+
+.display-container {
   border-bottom: 1px solid lightgray;
   border-radius: 15px;
   box-shadow: 0 11px 18px -18px rgba(0, 0, 0, 0.795);
@@ -13,12 +33,12 @@
   box-shadow: 0 11px 18px -18px rgba(0, 0, 0, 0.795);
 }
 
-.img-display {
+.image-display {
   height: 120px;
   width: 160px;
 }
 
-.item-overflow {
+.food-overflow {
   display: flex;
   flex-direction: column;
   height: 410px;

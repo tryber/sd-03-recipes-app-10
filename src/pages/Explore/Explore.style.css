@@ -1,0 +1,21 @@
+.explore-btn-container {
+  display: flex;
+  flex-direction: column;
+  height: 520px;
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+  top: 60px;
+  width: 360px;
+}
+
+.explore-btn {
+  background: none;
+  border: none;
+  border-bottom: 1px solid lightgray;
+  color: rgb(70, 70, 70);
+  font-size: 15px;
+  height: 30px;
+  margin-bottom: 25px;
+  width: 150px;
+}

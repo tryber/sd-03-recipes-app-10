@@ -1,5 +1,4 @@
 .header {
-  background: #c4c4c4;
   height: 58px;
   left: 0;
   position: fixed;
@@ -8,29 +7,32 @@
 }
 
 .title {
-  align-items: center;
-  color: black;
-  display: flex;
-  font-family: Roboto, sans-serif;
-  font-size: 30px;
+  left: 70px;
+  position: absolute;
+  top: 10px;
+  width: 220px;
+}
+
+.title p {
+  color: #333;
+  font-family: Yellowtail, cursive;
+  font-size: 29px;
   font-style: normal;
   font-weight: 100;
-  height: 35px;
-  left: 123px;
-  line-height: 35px;
-  position: absolute;
-  top: 12px;
-  width: 119px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 220px;
 }
 
 .profile-icon {
   align-self: center;
-  border: none;
-  height: 30px;
+  border-radius: 10px;
+  height: 35px;
   left: 15px;
   position: absolute;
   top: 12px;
-  width: 30px;
+  width: 35px;
 }
 
 .search-icon {
