@@ -1,5 +1,6 @@
 import React from 'react';
-import { itemId, typeRequsition } from '../helpers/splitsOfPath';
+import { useHistory } from 'react-router';
+import propTypes from 'prop-types'
 
 const saveInProgressRecipes = (key, id, value) => localStorage.setItem(
   'inProgressRecipes',
@@ -15,14 +16,14 @@ const inProgressRecipes = JSON.parse(
 const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
 const isRecipeDone = (id) => (doneRecipes !== null ? doneRecipes : []).some((e) => e.id === id);
 
-const drinksOrMeals = typeRequsition === 'comidas' ? 'meals' : 'drinks';
-const inProgressKey = typeRequsition === 'comidas' ? 'meals' : 'cocktails';
+const drinksOrMeals = (type) => (type === 'comidas' ? 'meals' : 'drinks');
+const inProgressKey = (type) => (type === 'comidas' ? 'meals' : 'cocktails');
 
-const isRecipeInProgress = !!inProgressRecipes[inProgressKey]
-  && Object.prototype.hasOwnProperty.call(inProgressRecipes[inProgressKey], itemId);
+const isRecipeInProgress = (id) => !!inProgressRecipes[inProgressKey]
+    && Object.prototype.hasOwnProperty.call(inProgressRecipes[inProgressKey], id);
 
-const setRecipeToInProgress = (recipe) => {
-  const recipeObj = recipe[drinksOrMeals][0];
+const setRecipeToInProgress = (recipe, id, typeRequsition) => {
+  const recipeObj = recipe[drinksOrMeals(typeRequsition)][0];
   const ingredients = () => {
     let counter = 0;
     Object.entries(recipeObj).reduce(
@@ -39,11 +40,13 @@ const setRecipeToInProgress = (recipe) => {
       }, [],
     );
   };
-  return saveInProgressRecipes(drinksOrMeals, itemId, ingredients(recipe));
-  
+  return saveInProgressRecipes(drinksOrMeals(typeRequsition), id, ingredients(recipe));
 };
 
 export default function StartButton({ recipe }) {
+  const typeRequsition = useHistory().location.pathname.split('/')[1];
+  const itemId = useHistory().location.pathname.split('/')[2];
+
   console.log(inProgressKey);
   const text = () => {
     if (isRecipeInProgress) return 'Continuar Receita';
@@ -51,5 +54,9 @@ export default function StartButton({ recipe }) {
     return 'Iniciar Receita';
   };
 
-  return (<button type="button" onClick={() => setRecipeToInProgress()}>{text()}</button>);
+  return (<button type="button" onClick={() => setRecipeToInProgress(recipe, itemId, typeRequsition)}>{text()}</button>);
 }
+
+StartButton.propTypes = {
+  recipe: propTypes.shape(propTypes.object).isRequired,
+};
