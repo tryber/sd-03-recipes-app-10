@@ -22,26 +22,25 @@ export const searchByCategorie = async (
 const renderGrid = (recipe, stringObject, imgDisplay) => (
   <div className="item-overflow">
     {recipe[firstKey(recipe)].map(
-      (el, index) =>
-        index < 12 && (
-          <Link
-            className="container-display"
-            key={Math.random() * Math.PI}
-            data-testid={`${index}-recipe-card`}
-            to={
-              (firstKey(recipe) === 'meals' && `/comidas/${el.idMeal}`) ||
-              (firstKey(recipe) === 'drinks' && `/bebidas/${el.idDrink}`)
+      (el, index) => index < 12 && (
+      <Link
+        className="container-display"
+        key={Math.random() * Math.PI}
+        data-testid={`${index}-recipe-card`}
+        to={
+              (firstKey(recipe) === 'meals' && `/comidas/${el.idMeal}`)
+              || (firstKey(recipe) === 'drinks' && `/bebidas/${el.idDrink}`)
             }
-          >
-            <img
-              className="img-display"
-              data-testid={`${index}-card-img`}
-              src={el[imgDisplay]}
-              alt={`${el[stringObject]}`}
-            />
-            <h3 data-testid={`${index}-card-name`}>{el[stringObject]}</h3>
-          </Link>
-        ),
+      >
+        <img
+          className="img-display"
+          data-testid={`${index}-card-img`}
+          src={el[imgDisplay]}
+          alt={`${el[stringObject]}`}
+        />
+        <h3 data-testid={`${index}-card-name`}>{el[stringObject]}</h3>
+      </Link>
+      ),
     )}
   </div>
 );
@@ -76,7 +75,8 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
 
   const renderDisplay = () => {
     const comidasOuBebidas = window.location.pathname.split('/')[1];
-    const firstKeyValue = !!objectReturnedAfterReq && objectReturnedAfterReq[firstKey(objectReturnedAfterReq)];
+    const firstKeyValue = !!objectReturnedAfterReq
+    && objectReturnedAfterReq[firstKey(objectReturnedAfterReq)];
     switch (true) {
       case objectReturnedAfterReq === null:
         return null;
