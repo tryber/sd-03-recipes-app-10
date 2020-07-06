@@ -93,6 +93,10 @@ export default function StartButton({ recipe }) {
   );
 }
 
+StartButton.defaultProps = {
+  recipe: null,
+};
+
 StartButton.propTypes = {
-  recipe: propTypes.shape(propTypes.object).isRequired,
+  recipe: propTypes.shape(propTypes.object),
 };
