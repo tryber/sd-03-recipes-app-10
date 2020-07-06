@@ -6,6 +6,10 @@ import isFavIcon from '../../images/blackHeartIcon.svg';
 import './Details.style.css';
 import functionToMakeRequisition from './funtionToMakeRequisition';
 
+function changeFavorites(checkInLocalstorage, addToFavorites, removeFromFavorites) {
+  return !checkInLocalstorage ? addToFavorites() : removeFromFavorites();
+}
+
 const copyToClipBoard = () => {
   navigator.clipboard.writeText(window.location.href);
   navigator.clipboard.readText().then((el) => el === window.location.href && alert('Link copiado!'));
@@ -55,7 +59,7 @@ export default function HeartStateAndShareIcon() {
     functionToMakeRequisition(typeRequsition, itemId, setObjectReturnedAfterReq);
   }, []);
 
-  const addToFavorites = () => {
+  function addToFavorites() {
     setCheckInLocalstorage(true);
     (typeRequsition === 'comidas') ? localStorage.setItem('favoriteRecipes', setObjInLocalStorage('meals', 'Meal', 'comida', objectReturnedAfterReq)) :
     localStorage.setItem('favoriteRecipes', setObjInLocalStorage('drinks', 'Drink', 'bebida', objectReturnedAfterReq));
@@ -66,10 +70,6 @@ export default function HeartStateAndShareIcon() {
       .filter((el) => el.id !== itemId);
     localStorage.setItem('favoriteRecipes', JSON.stringify(findElementToRemove));
   };
-
-  function changeFavorites() {
-    return !checkInLocalstorage ? addToFavorites() : removeFromFavorites();
-  }
 
   return (
     <div className="icons-container">
@@ -83,7 +83,7 @@ export default function HeartStateAndShareIcon() {
         data-testid="favorite-btn"
         type="image"
         src={checkInLocalstorage ? isFavIcon : notFavIcon}
-        onClick={() => changeFavorites()}
+        onClick={() => changeFavorites(checkInLocalstorage, addToFavorites, removeFromFavorites)}
       />
     </div>
   );
