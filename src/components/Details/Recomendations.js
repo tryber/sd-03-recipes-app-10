@@ -20,7 +20,7 @@ const Recomendations = () => {
       {recomendetions && recomendetions[key].map((item, index) => (index < 6
         && (
         <div
-          key={item[key]}
+          key={Math.random() * Math.PI}
           data-testid={`${index}-recomendation-card`}
           className="recomendation-card"
         >

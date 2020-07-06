@@ -18,8 +18,9 @@ const detailsToShow = (el, strType, strThumb) => (
       </div>
       <HeartStateAndShareIcon />
     </div>
-    <p>{el.strAlcoholic}</p>
-    <p data-testid="recipe-category">{el.strCategory}</p>
+    {strType === 'strMeal'
+      ? <p data-testid="recipe-category">{el.strCategory}</p>
+      : <p data-testid="recipe-category">{el.strAlcoholic}</p>}
     <p>Ingredients</p>
     {ingredientsToshow(el)}
     <p>Instructions</p>
