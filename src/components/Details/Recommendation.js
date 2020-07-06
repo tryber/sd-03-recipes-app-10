@@ -39,10 +39,10 @@ export default function Recommendation() {
 
   const sertifyRecomendation = () => {
     typeRequsition === 'comidas' ? drinksRecomendation() : foodRecomendation();
-  }
+  };
   useEffect(() => {
-    sertifyRecomendation()
-    return setRecomendation(null)
+    sertifyRecomendation();
+    return setRecomendation(null);
   }, []);
   return (
     <div>
