@@ -27,10 +27,8 @@ const renderGrid = (recipe, stringObject, imgDisplay) => (
         className="container-display"
         key={Math.random() * Math.PI}
         data-testid={`${index}-recipe-card`}
-        to={
-              (firstKey(recipe) === 'meals' && `/comidas/${el.idMeal}`)
-              || (firstKey(recipe) === 'drinks' && `/bebidas/${el.idDrink}`)
-            }
+        to={(firstKey(recipe) === 'meals' && `/comidas/${el.idMeal}`)
+              || (firstKey(recipe) === 'drinks' && `/bebidas/${el.idDrink}`)}
       >
         <img
           className="img-display"
@@ -47,18 +45,12 @@ const renderGrid = (recipe, stringObject, imgDisplay) => (
 
 const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
   const {
-    valueToFilter,
-    objectReturnedAfterReq,
-    setObjectReturnedAfterReq,
-    showSearchBar,
+    valueToFilter, objectReturnedAfterReq, setObjectReturnedAfterReq, showSearchBar,
   } = useContext(RecipeContext);
 
   const functionToMakeRequisition = async () => {
     await searchByCategorie(
-      valueToFilter,
-      setObjectReturnedAfterReq,
-      getitemDefined,
-      objectReturnedAfterReq,
+      valueToFilter, setObjectReturnedAfterReq, getitemDefined, objectReturnedAfterReq,
     );
   };
 

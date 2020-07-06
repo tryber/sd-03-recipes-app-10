@@ -34,9 +34,8 @@ const inProgressKey = (type) => (type === 'comidas' ? 'meals' : 'cocktails');
 
 const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
 const isRecipeInProgress = (id, type) => {
-  // console.log('inProgressRecipes[inProgressKey(type)]:', inProgressRecipes[inProgressKey(type)]);
-  console.log(inProgressRecipes);
-  return !!inProgressRecipes && !!inProgressRecipes[inProgressKey(type)]
+  console.log('testando', inProgressRecipes);
+  return !!inProgressRecipes
   && Object.prototype.hasOwnProperty.call(inProgressRecipes[inProgressKey(type)], id);
 };
 
@@ -61,7 +60,7 @@ export const ingredients = (recipeObj) => {
 const setRecipeToInProgress = (recipe, id, typeRequsition) => {
   const recipeObj = recipe[drinksOrMeals(typeRequsition)][0];
 
-  return saveInProgressRecipes(drinksOrMeals(typeRequsition), id, ingredients(recipeObj));
+  return saveInProgressRecipes(inProgressKey(typeRequsition), id, ingredients(recipeObj));
 };
 
 export default function StartButton({ recipe }) {
