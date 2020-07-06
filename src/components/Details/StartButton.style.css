@@ -1,4 +1,4 @@
 .start-btn {
-  border: 0 0 0 3px solid lightgray;
+  border-bottom: 3px solid lightgray;
   position: fixed;
 }
