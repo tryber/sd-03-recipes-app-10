@@ -38,7 +38,8 @@ export default function Recommendation() {
   const foodRecomendation = async () => setRecomendation(await getFoodList());
 
   const sertifyRecomendation = () => {
-    typeRequsition === 'comidas' ? drinksRecomendation() : foodRecomendation();
+    if(typeRequsition === 'comidas') return drinksRecomendation();
+    return foodRecomendation();
   };
   useEffect(() => {
     sertifyRecomendation();
