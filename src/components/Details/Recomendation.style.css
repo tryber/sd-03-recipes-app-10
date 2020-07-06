@@ -1,20 +1,20 @@
-.recomendation-card{
-    margin-left: 3px;
+.recomendation-card {
+  margin-left: 3px;
 }
 
-.recomendation-container{
-    display: flex;
-    height: 25vh;
-    margin-top: 5px;
-    position: relative;
-    overflow: scroll;
+.recomendation-container {
+  display: flex;
+  height: 25vh;
+  margin-top: 5px;
+  overflow: scroll;
+  position: relative;
 }
 
-.recomendation-image{
-    height: 20vh;
-    width: 49vw;
+.recomendation-image {
+  height: 20vh;
+  width: 49vw;
 }
 
-p{
-    margin-top:1px
+p {
+  margin-top: 1px;
 }
