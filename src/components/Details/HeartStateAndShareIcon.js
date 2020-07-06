@@ -57,8 +57,8 @@ export default function HeartStateAndShareIcon() {
 
   const addToFavorites = () => {
     setCheckInLocalstorage(true);
-    (typeRequsition === 'comidas') && localStorage.setItem('favoriteRecipes', setObjInLocalStorage('meals', 'Meal', 'comida', objectReturnedAfterReq));
-    (typeRequsition === 'bebidas') && localStorage.setItem('favoriteRecipes', setObjInLocalStorage('drinks', 'Drink', 'bebida', objectReturnedAfterReq));
+    (typeRequsition === 'comidas') ? localStorage.setItem('favoriteRecipes', setObjInLocalStorage('meals', 'Meal', 'comida', objectReturnedAfterReq)) :
+    localStorage.setItem('favoriteRecipes', setObjInLocalStorage('drinks', 'Drink', 'bebida', objectReturnedAfterReq));
   };
   const removeFromFavorites = () => {
     setCheckInLocalstorage(false);
@@ -67,13 +67,9 @@ export default function HeartStateAndShareIcon() {
     localStorage.setItem('favoriteRecipes', JSON.stringify(findElementToRemove));
   };
 
-  function changeFavorites (){
+  function changeFavorites() {
     return !checkInLocalstorage ? addToFavorites() : removeFromFavorites();
-  };
-
-  function checkIcon (){
-    return checkInLocalstorage ? isFavIcon : notFavIcon;
-  };
+  }
 
   return (
     <div className="icons-container">
