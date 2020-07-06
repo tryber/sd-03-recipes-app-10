@@ -61,7 +61,7 @@ export default function HeartStateAndShareIcon() {
 
   function addToFavorites() {
     setCheckInLocalstorage(true);
-    if (typeRequsition === 'comidas') return localStorage.setItem('favoriteRecipes', setObjInLocalStorage('meals', 'Meal', 'comida', objectReturnedAfterReq)) :
+    if (typeRequsition === 'comidas') return localStorage.setItem('favoriteRecipes', setObjInLocalStorage('meals', 'Meal', 'comida', objectReturnedAfterReq))
     return localStorage.setItem('favoriteRecipes', setObjInLocalStorage('drinks', 'Drink', 'bebida', objectReturnedAfterReq));
   };
   const removeFromFavorites = () => {
