@@ -1,9 +1,4 @@
-.start-btn{ 
-    bottom: '0px';
-    margin: 5px;
-    height: 10vh;
-    text-align: center;
-    position: 'fixed';
-    width: 100vw;
-    padding: 0;
- }
+.start-btn {
+  border: none none none 3px solid lightgray;
+  position: fixed;
+}

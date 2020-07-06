@@ -80,11 +80,10 @@ export default function StartButton({ recipe }) {
       <button
         className="start-btn"
         style={{
-          bottom: '0px',
-          margin: '5px',
+          bottom: 0,
           height: '10vh',
+          margin: '5px',
           textAalign: 'center',
-          position: 'fixed',
           width: '100vw',
         }}
         data-testid="start-recipe-btn"

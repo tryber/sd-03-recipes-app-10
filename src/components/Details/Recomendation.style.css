@@ -3,16 +3,16 @@
 }
 
 .recomendation-container{
-    position: relative;
-    margin-top: 5px;
     display: flex;
     height: 25vh;
+    margin-top: 5px;
+    position: relative;
     overflow: scroll;
 }
 
 .recomendation-image{
-    width: 49vw;
     height: 20vh;
+    width: 49vw;
 }
 
 p{
