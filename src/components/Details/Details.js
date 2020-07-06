@@ -4,8 +4,8 @@ import ReactPlayer from 'react-player/youtube';
 import functionToMakeRequisition from './funtionToMakeRequisition';
 import ingredientsToshow from './ingredientsToshow';
 import './Details.style.css';
-import shareIcon from '../../images/shareIcon.svg';
-import favIcon from '../../images/whiteHeartIcon.svg';
+import Recommendation from './ Recommendation';
+import HeartStateAndShareIcon from './HeartStateAndShareIcon';
 
 const detailsToShow = (el, strType, strThumb) => (
   <div>
@@ -14,12 +14,9 @@ const detailsToShow = (el, strType, strThumb) => (
       <div>
         <h2 data-testid="recipe-title">{el[strType]}</h2>
       </div>
-      <div className="icons-container">
-        <input type="image" src={shareIcon} />
-        <input type="image" src={favIcon} />
-      </div>
+    <HeartStateAndShareIcon />
     </div>
-    <p >{el.strAlcoholic}</p>
+    <p>{el.strAlcoholic}</p>
     <p data-testid="recipe-category">{el.strCategory}</p>
     <p>Ingredients</p>
     {ingredientsToshow(el)}
@@ -31,6 +28,7 @@ const detailsToShow = (el, strType, strThumb) => (
         <ReactPlayer data-testid="video" width="100%" height="100%" url={el.strYoutube} />
       </div>
     )}
+    <Recommendation />
   </div>
 );
 
@@ -41,13 +39,13 @@ export default function Details() {
 
   useEffect(() => {
     functionToMakeRequisition(typeRequsition, itemId, setObjectReturnedAfterReq);
-  }, []);
+  }, [typeRequsition]);
 
   return objectReturnedAfterReq === null ? null : (
     <div>
       {typeRequsition === 'comidas'
-        ? objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb'))
-        : objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb'))}
+        ? objectReturnedAfterReq.meals !== undefined && objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb'))
+        : objectReturnedAfterReq.drinks !== undefined  && objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb'))}
     </div>
   );
 }
