@@ -61,7 +61,7 @@ export const ingredients = (recipeObj) => {
 const setRecipeToInProgress = (recipe, id, typeRequsition) => {
   const recipeObj = recipe[drinksOrMeals(typeRequsition)][0];
 
-  return saveInProgressRecipes(drinksOrMeals(typeRequsition), id, ingredients(recipeObj));
+  return saveInProgressRecipes(inProgressKey(typeRequsition), id, ingredients(recipeObj));
 };
 
 export default function StartButton({ recipe }) {
@@ -95,6 +95,10 @@ export default function StartButton({ recipe }) {
   );
 }
 
+StartButton.defaultProps = {
+  recipe: null,
+};
+
 StartButton.propTypes = {
-  recipe: propTypes.shape(propTypes.object).isRequired,
+  recipe: propTypes.shape(propTypes.object),
 };
