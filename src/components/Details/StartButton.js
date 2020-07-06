@@ -69,7 +69,6 @@ export default function StartButton({ recipe }) {
   const itemId = useHistory().location.pathname.split('/')[2];
 
   const text = () => {
-    console.log('isRecipeInProgress(typeRequsition):', typeRequsition);
     if (isRecipeInProgress(itemId, typeRequsition)) return 'Continuar Receita';
     if (isRecipeDone(itemId)) return null;
     return 'Iniciar Receita';

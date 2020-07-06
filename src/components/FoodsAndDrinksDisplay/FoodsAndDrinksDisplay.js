@@ -62,14 +62,10 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
     );
   };
 
-  useEffect(() => {
-    functionToMakeRequisition();
-  }, [valueToFilter]);
+  useEffect(() => functionToMakeRequisition(), [valueToFilter]);
 
   useEffect(
-    () => () => {
-      showSearchBar(false);
-    },
+    () => () => showSearchBar(false),
     [],
   );
 

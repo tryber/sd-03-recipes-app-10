@@ -7,8 +7,7 @@ import StartButton from './StartButton';
 import Recomendations from './Recomendations';
 
 import './Details.style.css';
-import shareIcon from '../../images/shareIcon.svg';
-import favIcon from '../../images/whiteHeartIcon.svg';
+import HeartStateAndShareIcon from './HeartStateAndShareIcon';
 
 const detailsToShow = (el, strType, strThumb) => (
   <div key={Math.random() * Math.PI}>
@@ -17,12 +16,9 @@ const detailsToShow = (el, strType, strThumb) => (
       <div>
         <h2 data-testid="recipe-title">{el[strType]}</h2>
       </div>
-      <div className="icons-container">
-        <input type="image" src={shareIcon} alt="share icon" data-testid="share-btn" />
-        <input type="image" src={favIcon} alt="favorite icon" data-testid="favorite-btn" />
-      </div>
+      <HeartStateAndShareIcon />
     </div>
-    <p data-testid="recipe-category">{el.strAlcoholic}</p>
+    <p>{el.strAlcoholic}</p>
     <p data-testid="recipe-category">{el.strCategory}</p>
     <p>Ingredients</p>
     {ingredientsToshow(el)}
