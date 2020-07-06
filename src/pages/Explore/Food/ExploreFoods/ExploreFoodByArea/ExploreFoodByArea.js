@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../../../../components/Header/Header';
 import Footer from '../../../../../components/Footer/Footer';
 import getData from '../../../../../services/getData';
 import { getFoodByArea, getFoodList } from '../../../../../services/api';
 import './ExploreFoodByArea.style.css';
-// import RecipeContext from '../../../../../Context/RecipeContext';
+import RecipeContext from '../../../../../Context/RecipeContext';
 
 /* ------------------------------------------------------------ */
 /* Requisição para as opções de Area */
@@ -47,6 +47,7 @@ const renderGrid = (recipe) => (
 );
 
 export default function ExploreFoodByArea() {
+  const { toggleSearchBar, showSearchBar } = useContext(RecipeContext);
   /* Opções do select */
   const [foodOptions, setFoodOptions] = useState([]);
   /* Lista de cards */
@@ -64,7 +65,7 @@ export default function ExploreFoodByArea() {
 
   return (
     <div>
-      {Header('Explorar Origem', true)}
+      {Header('Explorar Origem', true, true)} 
       <div className="dropdown-container">
         <select
           data-testid="explore-by-area-dropdown"
