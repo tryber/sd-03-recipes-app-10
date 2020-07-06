@@ -10,17 +10,17 @@ export default function ExploreFoodsScreen() {
       {Header('Explorar Comidas', false)}
       <div className="explore-btn-container">
         <Link to="/explorar/comidas/ingredientes">
-          <button data-testid="explore-by-ingredient" className="explore-btn">
-            Por Ingrediente
+          <button type="button" data-testid="explore-by-ingredient" className="explore-btn">
+            Por Ingredientes
           </button>
         </Link>
         <Link to="/explorar/comidas/area">
-          <button data-testid="explore-by-area" className="explore-btn">
+          <button type="button" data-testid="explore-by-area" className="explore-btn">
             Por Local de Origem
           </button>
         </Link>
-        <Link>
-          <button data-testid="explore-surprise" className="explore-btn">
+        <Link to="/comidas/52771">
+          <button type="button" data-testid="explore-surprise" className="explore-btn">
             Me Surpreenda!
           </button>
         </Link>

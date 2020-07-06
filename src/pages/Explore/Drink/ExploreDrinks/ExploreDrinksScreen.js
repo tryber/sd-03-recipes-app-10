@@ -9,12 +9,12 @@ export default function ExploreDrinksScreen() {
       {Header('Explorar Bebidas', false)}
       <div className="explore-btn-container">
         <Link to="/explorar/bebidas/ingredientes">
-          <button data-testid="explore-by-ingredient" className="explore-btn">
-            Por Ingrediente
+          <button type="button" data-testid="explore-by-ingredient" className="explore-btn">
+            Por Ingredientes
           </button>
         </Link>
-        <Link>
-          <button data-testid="explore-surprise" className="explore-btn">
+        <Link to="/bebidas/178319">
+          <button type="button" data-testid="explore-surprise" className="explore-btn">
             Me Surpreenda!
           </button>
         </Link>
