@@ -61,16 +61,16 @@ export default function HeartStateAndShareIcon() {
     (typeRequsition === 'bebidas') && localStorage.setItem('favoriteRecipes', setObjInLocalStorage('drinks', 'Drink', 'bebida', objectReturnedAfterReq));
   };
 
-  const changeFavorites = () => {
-    if (checkInLocalstorage === false) return addToFavorites();
-    return removeFromFavorites();
-  };
-
   const removeFromFavorites = () => {
     setCheckInLocalstorage(false);
     const findElementToRemove = JSON.parse(localStorage.getItem('favoriteRecipes'))
       .filter((el) => el.id !== itemId);
     localStorage.setItem('favoriteRecipes', JSON.stringify(findElementToRemove));
+  };
+
+  const changeFavorites = () => {
+    if (checkInLocalstorage === false) return addToFavorites();
+    return removeFromFavorites();
   };
 
   const checkIcon = () => {
