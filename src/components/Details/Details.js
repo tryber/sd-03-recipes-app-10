@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import functionToMakeRequisition from './funtionToMakeRequisition';
 import ingredientsToshow from './ingredientsToshow';
 import StartButton from './StartButton';
+import Recomendations from './Recomendations';
 
 import './Details.style.css';
 import shareIcon from '../../images/shareIcon.svg';
@@ -17,11 +18,11 @@ const detailsToShow = (el, strType, strThumb) => (
         <h2 data-testid="recipe-title">{el[strType]}</h2>
       </div>
       <div className="icons-container">
-        <input type="image" src={shareIcon} alt="share icon" />
-        <input type="image" src={favIcon} alt="favorite icon" />
+        <input type="image" src={shareIcon} alt="share icon" data-testid="share-btn" />
+        <input type="image" src={favIcon} alt="favorite icon" data-testid="favorite-btn" />
       </div>
     </div>
-    <p>{el.strAlcoholic}</p>
+    <p data-testid="recipe-category">{el.strAlcoholic}</p>
     <p data-testid="recipe-category">{el.strCategory}</p>
     <p>Ingredients</p>
     {ingredientsToshow(el)}
@@ -58,6 +59,7 @@ export default function Details() {
       {typeRequsition === 'comidas'
         ? objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb'))
         : objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb'))}
+      <Recomendations />
       <StartButton
         typeRequsition={typeRequsition}
         itemId={itemId}

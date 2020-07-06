@@ -19,15 +19,16 @@ test('APi down', async () => {
   jest.spyOn(global, 'fetch')
     .mockImplementation(() => Promise.resolve({
       status: 200,
-      json: () => Promise.reject({
+      json: (error) => Promise.reject({
+        error,
         value: 'API is down',
       }),
     }));
 
   const response = await getData('url.test');
-  console.log(response.value);
+  console.log(response);
 
-  expect(response.value).toBe('API is down');
+  expect(response.recipe).toBe(null);
   expect(fetch).toHaveBeenCalledWith('url.test');
   global.fetch.mockClear();
 });

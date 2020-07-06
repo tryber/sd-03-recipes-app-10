@@ -330,7 +330,9 @@ describe('Quando o botão "Iniciar Receita" for clicado, a rota deve mudar para 
     });
 
     cy.get('[data-testid="start-recipe-btn"]').click();
-    cy.location().should((loc) => expect(loc.pathname).to.eq('/comidas/52771/in-progress'));
+    cy.location().should((loc) => { 
+    console.log(loc)
+    return expect(loc.pathname).to.eq('/comidas/52771/in-progress')});
   });
 
   it('Redireciona para tela de receita da bebida em processo', () => {

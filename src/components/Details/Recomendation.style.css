@@ -1,0 +1,20 @@
+.recomendation-card{
+    margin-left: 3px;
+}
+
+.recomendation-container{
+    position: relative;
+    margin-top: 5px;
+    display: flex;
+    height: 25vh;
+    overflow: scroll;
+}
+
+.recomendation-image{
+    width: 49vw;
+    height: 20vh;
+}
+
+p{
+    margin-top:1px
+}
