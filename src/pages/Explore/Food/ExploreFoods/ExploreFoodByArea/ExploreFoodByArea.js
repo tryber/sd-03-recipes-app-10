@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../../../../components/Header/Header';
 import Footer from '../../../../../components/Footer/Footer';
 import getData from '../../../../../services/getData';
 import { getFoodByArea, getFoodList } from '../../../../../services/api';
 import './ExploreFoodByArea.style.css';
-import RecipeContext from '../../../../../Context/RecipeContext';
 
 /* ------------------------------------------------------------ */
 /* Requisição para as opções de Area */
@@ -25,29 +24,27 @@ const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
 const renderGrid = (recipe) => (
   <div className="food-overflow">
     {recipe[firstKey(recipe)].map(
-      (el, index) =>
-        index < 12 && (
-          <Link
-            className="display-container"
-            key={Math.random() * Math.PI}
-            data-testid={`${index}-recipe-card`}
-            to={`/comidas/${el.idMeal}`}
-          >
-            <img
-              className="image-display"
-              data-testid={`${index}-card-img`}
-              src={`${el.strMealThumb}`}
-              alt={`${el.strMeal}`}
-            />
-            <h3 data-testid={`${index}-card-name`}>{`${el.strMeal}`}</h3>
-          </Link>
-        ),
+      (el, index) => index < 12 && (
+      <Link
+        className="display-container"
+        key={Math.random() * Math.PI}
+        data-testid={`${index}-recipe-card`}
+        to={`/comidas/${el.idMeal}`}
+      >
+        <img
+          className="image-display"
+          data-testid={`${index}-card-img`}
+          src={`${el.strMealThumb}`}
+          alt={`${el.strMeal}`}
+        />
+        <h3 data-testid={`${index}-card-name`}>{`${el.strMeal}`}</h3>
+      </Link>
+      ),
     )}
   </div>
 );
 
 export default function ExploreFoodByArea() {
-  const { toggleSearchBar, showSearchBar } = useContext(RecipeContext);
   /* Opções do select */
   const [foodOptions, setFoodOptions] = useState([]);
   /* Lista de cards */
@@ -65,7 +62,7 @@ export default function ExploreFoodByArea() {
 
   return (
     <div>
-      {Header('Explorar Origem', true, true)} 
+      {Header('Explorar Origem', true, true)}
       <div className="dropdown-container">
         <select
           data-testid="explore-by-area-dropdown"
