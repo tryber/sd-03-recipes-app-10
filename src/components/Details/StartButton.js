@@ -36,7 +36,7 @@ const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
 const isRecipeInProgress = (id, type) => {
   // console.log('inProgressRecipes[inProgressKey(type)]:', inProgressRecipes[inProgressKey(type)]);
   console.log(inProgressRecipes);
-  return !!inProgressRecipes[inProgressKey(type)]
+  return !!inProgressRecipes
   && Object.prototype.hasOwnProperty.call(inProgressRecipes[inProgressKey(type)], id);
 };
 
