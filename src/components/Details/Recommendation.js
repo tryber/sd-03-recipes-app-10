@@ -1,7 +1,7 @@
-import React, { useState, useEffect  } from 'react'
-import { getDrinkList, getFoodList } from '../../services/api';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
+import { getDrinkList, getFoodList } from '../../services/api';
 
 const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
 
@@ -34,17 +34,21 @@ const renderGrid = (recipe, stringObject, imgDisplay) => (
 export default function Recommendation() {
   const typeRequsition = useHistory().location.pathname.split('/')[1];
   const [recomendation, setRecomendation] = useState(null);
-  const drinksRecomendation = async () => setRecomendation(await getDrinkList())
-  const foodRecomendation = async () => setRecomendation(await getFoodList())
+  const drinksRecomendation = async () => setRecomendation(await getDrinkList());
+  const foodRecomendation = async () => setRecomendation(await getFoodList());
+
+  const sertifyRecomendation = () => {
+    typeRequsition === 'comidas' ? drinksRecomendation() : foodRecomendation();
+  }
   useEffect(() => {
-    typeRequsition === 'comidas' ? drinksRecomendation() : foodRecomendation()
+    sertifyRecomendation()
     return setRecomendation(null)
-  }, [])
+  }, []);
   return (
     <div>
       Recomendadas
-      {recomendation!==null && typeRequsition === 'comidas' && renderGrid(recomendation, 'strDrink', 'strDrinkThumb')}
-      {recomendation!==null && typeRequsition === 'bebidas' && renderGrid(recomendation, 'strMeal', 'strMealThumb')}
+      {recomendation !== null && typeRequsition === 'comidas' && renderGrid(recomendation, 'strDrink', 'strDrinkThumb')}
+      {recomendation !== null && typeRequsition === 'bebidas' && renderGrid(recomendation, 'strMeal', 'strMealThumb')}
     </div>
-  )
+  );
 }

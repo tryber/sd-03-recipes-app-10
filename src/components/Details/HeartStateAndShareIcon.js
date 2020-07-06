@@ -6,63 +6,63 @@ import './Details.style.css';
 import functionToMakeRequisition from './funtionToMakeRequisition';
 import { useHistory } from 'react-router';
 
+const copyToClipBoard = () => {
+  navigator.clipboard.writeText(window.location.href);
+  navigator.clipboard.readText().then((el) => el === window.location.href && alert('Link copiado!'));
+};
+
+const setObjInLocalStorage = (accessObj, stringObject, type, objectReturnedAfterReq) => {
+  const newArray = [];
+  if (JSON.parse(localStorage.getItem('favoriteRecipes')) !== null){
+    const allFavorited = JSON.parse(localStorage.getItem('favoriteRecipes'))
+    newArray.push(objectReturnedAfterReq[accessObj].map(el => JSON.stringify([
+    allFavorited.push({
+      id: el[`id${stringObject}`],
+      type: type,
+      category: el.strCategory,
+      alcoholicOrNot: el.strAlcoholic,
+      area: el.strArea ? el.strArea: '',
+      name: el[`str${stringObject}`],
+      image: el[`str${stringObject}Thumb`]
+    })
+    ]))
+  );
+    return JSON.stringify(allFavorited);
+  }
+  newArray.push(objectReturnedAfterReq[accessObj].map(el =>
+    JSON.stringify([{
+      id: el[`id${stringObject}`],
+      type: el.type,
+      area: el.strArea,
+      category: el.strCategory,
+      alcoholicOrNot: '',
+      name: el[`str${stringObject}`],
+      image: el[`str${stringObject}Thumb`],
+    }]),
+  ));
+  return newArray;
+}
+
 export default function HeartStateAndShareIcon() {
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
   const typeRequsition = useHistory().location.pathname.split('/')[1];
   const itemId = useHistory().location.pathname.split('/')[2];
   const isInLocalStorage = JSON.parse(localStorage.getItem('favoriteRecipes')) !== null
-    && JSON.parse(localStorage.getItem('favoriteRecipes')).some(el => el.id === itemId)
+    && JSON.parse(localStorage.getItem('favoriteRecipes')).some((el) => el.id === itemId)
   const [checkInLocalstorage, setCheckInLocalstorage] = useState(isInLocalStorage);
 
   useEffect(() => {
     functionToMakeRequisition(typeRequsition, itemId, setObjectReturnedAfterReq);
   }, []);
 
-  const copyToClipBoard = () => {
-    navigator.clipboard.writeText(window.location.href);
-    navigator.clipboard.readText().then(el => el === window.location.href && alert("Link copiado!"))
-  };
-
-  const setObjInLocalStorage = (accessObj, stringObject, type) => {
-    const newArray = []
-    if(JSON.parse(localStorage.getItem('favoriteRecipes')) !== null){
-      const allFavorited = JSON.parse(localStorage.getItem('favoriteRecipes'))
-      newArray.push(objectReturnedAfterReq[accessObj].map(el => JSON.stringify([
-      allFavorited.push({
-        id: el[`id${stringObject}`],
-        type: type,
-        category: el.strCategory,
-        alcoholicOrNot: el.strAlcoholic,
-        area: el.strArea ? el.strArea: '',
-        name: el[`str${stringObject}`],
-        image: el[`str${stringObject}Thumb`]
-      })
-      ]))
-    );
-      return JSON.stringify(allFavorited)
-    }
-    newArray.push(objectReturnedAfterReq[accessObj].map(el =>
-      JSON.stringify([{
-        id: el[`id${stringObject}`],
-        type: type,
-        area: el.strArea,
-        category: el.strCategory,
-        alcoholicOrNot: '',
-        name: el[`str${stringObject}`],
-        image: el[`str${stringObject}Thumb`]
-      }])
-    ));
-    return newArray;
-  }
-
   const addToFavorites = () => {
     setCheckInLocalstorage(true);
-    typeRequsition ==='comidas' && localStorage.setItem('favoriteRecipes', setObjInLocalStorage('meals','Meal', 'comida'));
-    typeRequsition ==='bebidas' && localStorage.setItem('favoriteRecipes', setObjInLocalStorage('drinks','Drink', 'bebida'));
+    typeRequsition === 'comidas' && localStorage.setItem('favoriteRecipes', setObjInLocalStorage('meals','Meal', 'comida', objectReturnedAfterReq));
+    typeRequsition === 'bebidas' && localStorage.setItem('favoriteRecipes', setObjInLocalStorage('drinks','Drink', 'bebida', objectReturnedAfterReq));
   };
 
   const changeFavorites = () => {
-    if(checkInLocalstorage === false) return addToFavorites()
+    if (checkInLocalstorage === false) return addToFavorites()
     return removeFromFavorites();
   };
   

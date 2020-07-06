@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player/youtube';
 import functionToMakeRequisition from './funtionToMakeRequisition';
 import ingredientsToshow from './ingredientsToshow';
 import './Details.style.css';
-import Recommendation from './ Recommendation';
+import Recommendation from './Recommendation';
 import HeartStateAndShareIcon from './HeartStateAndShareIcon';
 
 const detailsToShow = (el, strType, strThumb) => (
@@ -14,7 +14,7 @@ const detailsToShow = (el, strType, strThumb) => (
       <div>
         <h2 data-testid="recipe-title">{el[strType]}</h2>
       </div>
-    <HeartStateAndShareIcon />
+      <HeartStateAndShareIcon />
     </div>
     <p>{el.strAlcoholic}</p>
     <p data-testid="recipe-category">{el.strCategory}</p>
@@ -45,7 +45,7 @@ export default function Details() {
     <div>
       {typeRequsition === 'comidas'
         ? objectReturnedAfterReq.meals !== undefined && objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb'))
-        : objectReturnedAfterReq.drinks !== undefined  && objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb'))}
+        : objectReturnedAfterReq.drinks !== undefined && objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb'))}
     </div>
   );
 }
