@@ -49,7 +49,6 @@ export const ingredients = (recipeObj) => {
         acc[counter] = `${acc[counter]} - ${value}`;
         counter += 1;
       }
-      console.log(acc);
       return acc;
     }, [],
   );
