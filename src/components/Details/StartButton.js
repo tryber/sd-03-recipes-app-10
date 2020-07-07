@@ -33,10 +33,10 @@ const drinksOrMeals = (type) => (type === 'comidas' ? 'meals' : 'drinks');
 const inProgressKey = (type) => (type === 'comidas' ? 'meals' : 'cocktails');
 
 const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
-function isRecipeInProgress (id, type) {
+function isRecipeInProgress(id, type) {
   return !!inProgressRecipes
   && Object.prototype.hasOwnProperty.call(inProgressRecipes[inProgressKey(type)], id);
-};
+}
 
 export const ingredients = (recipeObj) => {
   let counter = 0;
@@ -54,7 +54,7 @@ export const ingredients = (recipeObj) => {
     }, [],
   );
   return recipeObj;
-}
+};
 
 const setRecipeToInProgress = (recipe, id, typeRequsition) => {
   const recipeObj = recipe[drinksOrMeals(typeRequsition)][0];

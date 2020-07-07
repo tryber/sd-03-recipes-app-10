@@ -37,7 +37,6 @@ const renderGrid = (recipe, index, setLocalStorageFavorites, setCopied) => (
         <h3 data-testid={`${index}-card-name`}>{recipe.name}</h3>
       </Link>
     }
-
     <div className="icons-container">
       <input
         data-testid="share-btn"
