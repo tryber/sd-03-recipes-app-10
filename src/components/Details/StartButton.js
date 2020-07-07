@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './StartButton.style.css';
 
-const saveInProgressRecipes = (key, id, value) => {
+function saveInProgressRecipes(key, id, value) {
   const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
   const recipe = {};
   recipe[id] = value;

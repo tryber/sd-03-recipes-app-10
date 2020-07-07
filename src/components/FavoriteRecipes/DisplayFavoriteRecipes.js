@@ -9,14 +9,14 @@ const removeFromFavorites = (itemId, setLocalStorageFavorites) => {
   const findElementToRemove = JSON.parse(localStorage.getItem('favoriteRecipes'))
     .filter((el) => el.id !== itemId);
   localStorage.setItem('favoriteRecipes', JSON.stringify(findElementToRemove));
-  setLocalStorageFavorites(findElementToRemove)
+  setLocalStorageFavorites(findElementToRemove);
 };
 
 const copyToClipBoard = (itemLink, setCopied) => {
   navigator.clipboard.writeText(`http://localhost:3000${itemLink}`);
   navigator.clipboard.readText().then((el) => el === `http://localhost:3000${itemLink}` &&
   setCopied(true)).then(setTimeout(() => {
-    setCopied(false)
+    setCopied(false);
   }, 2000));
 };
 
@@ -35,9 +35,9 @@ const renderGrid = (recipe, index, setLocalStorageFavorites, setCopied) => (
           alt={recipe.name}
         />
         <h3 data-testid={`${index}-card-name`}>{recipe.name}</h3>
-        {console.log(recipe)}
       </Link>
     }
+
     <div className="icons-container">
       <input
         data-testid="share-btn"

@@ -14,7 +14,7 @@ const copyToClipBoard = (setCopied) => {
   navigator.clipboard.writeText(window.location.href);
   navigator.clipboard.readText().then((el) => el === window.location.href && setCopied(true))
     .then(setTimeout(() => {
-      setCopied(false)
+      setCopied(false);
     }, 2000));
 };
 
@@ -75,7 +75,7 @@ export default function HeartStateAndShareIcon() {
 
   return (
     <div className="icons-container">
-    {copied && <p>Link copiado!</p>}
+      {copied && <p>Link copiado!</p>}
       <input
         data-testid="share-btn"
         type="image"
