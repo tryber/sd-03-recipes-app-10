@@ -23,9 +23,9 @@ const renderGrid = (recipe, index) => (
 export default function DisplayFavoriteRecipes() {
   return (
   JSON.parse(localStorage.getItem('favoriteRecipes')) !== null
-  && JSON.parse(localStorage.getItem('favoriteRecipes')).map((el, index) => 
+  && JSON.parse(localStorage.getItem('favoriteRecipes')).map((el, index) =>
     <div>
       {renderGrid(el, index)}
     </div>)
   );
-};
+}
