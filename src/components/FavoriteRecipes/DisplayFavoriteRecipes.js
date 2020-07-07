@@ -26,6 +26,6 @@ export default function DisplayFavoriteRecipes() {
   && JSON.parse(localStorage.getItem('favoriteRecipes')).map((el, index) => 
     <div>
       {renderGrid(el, index)}
-    </div>);
-  )
+    </div>)
+  );
 };
