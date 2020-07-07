@@ -21,20 +21,22 @@ const copyToClipBoard = (itemLink, setCopied) => {
 };
 
 const renderGrid = (recipe, index, setLocalStorageFavorites, setCopied) => (
-  <div className="container-display">]
-    <Link
-      key={Math.random() * Math.PI}
-      data-testid={`${index}-recipe-card`}
-      to={(recipe.type === 'comida' && `/comidas/${recipe.id}`)
-            || (recipe.type === 'bebida' && `/bebidas/${recipe.id}`)}
-    >
-      <img
-        className="img-display"
-        src={recipe.image}
-        alt={recipe.name}
-      />
-      <h3 data-testid={`${index}-card-name`}>{recipe.name}</h3>
-    </Link>
+  <div className="container-display">
+    {
+      <Link
+        key={Math.random() * Math.PI}
+        data-testid={`${index}-recipe-card`}
+        to={(recipe.type === 'comida' && `/comidas/${recipe.id}`)
+              || (recipe.type === 'bebida' && `/bebidas/${recipe.id}`)}
+      >
+        <img
+          className="img-display"
+          src={recipe.image}
+          alt={recipe.name}
+        />
+        <h3 data-testid={`${index}-card-name`}>{recipe.name}</h3>
+      </Link>
+    }
     <div className="icons-container">
       <input
         data-testid="share-btn"
