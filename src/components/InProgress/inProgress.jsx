@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 
 import shareIcon from '../../images/shareIcon.svg';
 import favIcon from '../../images/whiteHeartIcon.svg';
 import functionToMakeRequisition from '../Details/funtionToMakeRequisition';
-import { firstCrunkOfPath, secondChunkOfPath } from '../helpers/scrapPath';
 
 const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
-
-const localKey = firstCrunkOfPath === 'comidas' ? 'meals' : 'cocktails';
 
 export const ingredients = (recipeObj) => {
   let counter = 0;
@@ -72,10 +70,13 @@ const detailsToShow = (el, strType, dones, setDones) => (
 const InProgress = () => {
   const [data, setData] = useState(null);
   const [dones, setDones] = useState([]);
+  const itemId = useHistory().location.pathname.split('/')[2];
+  const typeRequsition = useHistory().location.pathname.split('/')[1];
+  const localKey = typeRequsition === 'comidas' ? 'meals' : 'cocktails';
   useEffect(() => {
     functionToMakeRequisition(
-      firstCrunkOfPath,
-      secondChunkOfPath,
+      typeRequsition,
+      itemId,
       setData,
     );
   }, []);
@@ -86,12 +87,12 @@ const InProgress = () => {
         ...inProgressRecipes,
         [localKey]: {
           ...inProgressRecipes[localKey],
-          [secondChunkOfPath]: dones,
+          [itemId]: dones,
         },
       }));
   }, [dones]);
   if (data === null) return (<h1>Loading...</h1>);
-  return firstCrunkOfPath.includes('comidas')
+  return typeRequsition.includes('comidas')
     ? detailsToShow(data.meals[0], 'strMeal', dones, setDones)
     : detailsToShow(data.drinks[0], 'strDrink', dones, setDones);
 };
