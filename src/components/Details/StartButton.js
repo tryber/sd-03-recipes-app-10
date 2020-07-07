@@ -24,7 +24,7 @@ function saveInProgressRecipes(key, id, value) {
       },
     }),
   );
-};
+}
 
 const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
 const isRecipeDone = (id) => (doneRecipes !== null ? doneRecipes : []).some((e) => e.id === id);
@@ -33,7 +33,7 @@ const drinksOrMeals = (type) => (type === 'comidas' ? 'meals' : 'drinks');
 const inProgressKey = (type) => (type === 'comidas' ? 'meals' : 'cocktails');
 
 const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
-const isRecipeInProgress = (id, type) => {
+function isRecipeInProgress (id, type){
   return !!inProgressRecipes
   && Object.prototype.hasOwnProperty.call(inProgressRecipes[inProgressKey(type)], id);
 };
