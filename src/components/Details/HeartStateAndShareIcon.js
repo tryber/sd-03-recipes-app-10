@@ -10,9 +10,12 @@ function changeFavorites(checkInLocalstorage, addToFavorites, removeFromFavorite
   return !checkInLocalstorage ? addToFavorites() : removeFromFavorites();
 }
 
-const copyToClipBoard = () => {
+const copyToClipBoard = (setCopied) => {
   navigator.clipboard.writeText(window.location.href);
-  navigator.clipboard.readText().then((el) => el === window.location.href && alert('Link copiado!'));
+  navigator.clipboard.readText().then((el) => el === window.location.href && setCopied(true))
+    .then(setTimeout(() => {
+      setCopied(false)
+    }, 2000));
 };
 
 const setObjInLocalStorage = (accessObj, stringObject, type, objectReturnedAfterReq) => {
@@ -51,6 +54,7 @@ export default function HeartStateAndShareIcon() {
   const isInLocalStorage = JSON.parse(localStorage.getItem('favoriteRecipes')) !== null
     && JSON.parse(localStorage.getItem('favoriteRecipes')).some((el) => el.id === itemId);
   const [checkInLocalstorage, setCheckInLocalstorage] = useState(isInLocalStorage);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     functionToMakeRequisition(typeRequsition, itemId, setObjectReturnedAfterReq);
@@ -71,11 +75,12 @@ export default function HeartStateAndShareIcon() {
 
   return (
     <div className="icons-container">
+    {copied && <p>Link copiado!</p>}
       <input
         data-testid="share-btn"
         type="image"
         src={shareIcon}
-        onClick={() => copyToClipBoard()}
+        onClick={() => copyToClipBoard(setCopied)}
         alt="share-button"
       />
       <input
