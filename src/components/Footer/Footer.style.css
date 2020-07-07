@@ -7,28 +7,37 @@
 }
 
 .drink-icon {
-  border: none;
+  border: 1px solid lightgray;
   height: 40px;
-  left: 16px;
+  left: 10px;
   position: absolute;
-  top: 9px;
   width: 40px;
+  background-color: white;
+  padding: 5px;
+  border-radius: 15px;
+  box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);
 }
 
 .explore-icon {
-  border: none;
+  /* border: 1px solid lightgray; */
   height: 40px;
-  left: 160px;
+  left: 154px;
   position: absolute;
-  top: 9px;
   width: 40px;
+  background-color: white;
+  padding: 5px;
+  border-radius: 15px;
+  box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);
 }
 
 .meal-icon {
-  border: none;
+  border: 1px solid lightgray;
   height: 40px;
-  left: 302px;
+  left: 296px;
   position: absolute;
-  top: 9px;
   width: 40px;
+  background-color: white;
+  padding: 5px;
+  border-radius: 15px;
+  box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);
 }

@@ -2,13 +2,17 @@
   border-bottom: none;
   border-left: none;
   border-right: 1px solid lightgray;
+  box-shadow: 0 11px 18px -15px rgba(0, 0, 0, 0.795);
+  background-color: white;
+  border-radius: 10px;
   border-top: none;
   box-sizing: border-box;
   height: 35px;
   left: 12px;
   position: absolute;
   top: 60px;
-  width: 280px;
+  width: 279px;
+  padding-left: 10px;
 }
 
 .search-bar:focus {
@@ -17,7 +21,7 @@
 
 .search-btn-container {
   height: 35px;
-  left: 293px;
+  left: 295px;
   position: absolute;
   top: 60px;
   width: 60px;
@@ -26,6 +30,9 @@
 .search-btn-display {
   background: none;
   border: none;
+  box-shadow: 0 11px 18px -15px rgba(0, 0, 0, 0.795);
+  background-color: white;
+  border-radius: 10px;
   color: rgb(70, 70, 70);
   height: 35px;
   width: 60px;

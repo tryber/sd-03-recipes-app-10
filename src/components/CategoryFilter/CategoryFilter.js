@@ -20,25 +20,24 @@ export default function CategoryFilter(apiToCallFilters, valueToMap) {
     return setValueToFilter(val);
   };
 
-  const categoryButton = (el, index) =>
-    index <= 4 && (
-      <button
-        data-testid={`${el.strCategory}-category-filter`}
-        onClick={() => changeFilterValue(el.strCategory)}
-        type="button"
-        key={index}
-        className="category-filter-btn"
-      >
-        {el.strCategory}
-      </button>
-    );
+  const categoryButton = (el, index) => index <= 4 && (
+  <button
+    data-testid={`${el.strCategory}-category-filter`}
+    onClick={() => changeFilterValue(el.strCategory)}
+    type="button"
+    key={index}
+    className="category-filter-btn"
+  >
+    {el.strCategory}
+  </button>
+  );
 
   if (objectReturnedAfterReq === null || toggleSearchBar === true) {
     return null;
   }
   return (
     <div className="filter-div">
-      <button data-testid="All-category-filter" className="category-filter-btn" onClick={() => changeFilterValue('All')}>
+      <button type="button" data-testid="All-category-filter" className="category-filter-btn" onClick={() => changeFilterValue('All')}>
         All
       </button>
       {objectReturnedAfterReq[valueToMap].map(categoryButton)}
