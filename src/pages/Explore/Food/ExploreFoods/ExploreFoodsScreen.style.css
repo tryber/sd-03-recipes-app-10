@@ -9,7 +9,11 @@
   border-bottom: 1px solid lightgray;
   color: rgb(70, 70, 70);
   font-size: 15px;
-  height: 30px;
-  margin-bottom: 15px;
-  width: 150px;
+  height: 40px;
+  margin-bottom: 25px;
+  width: 220px;
+  background-color: white;
+  padding: 5px;
+  border-radius: 15px;
+  box-shadow: 0 11px 18px -13px rgba(0, 0, 0, 0.795);
 }

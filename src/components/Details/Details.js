@@ -7,25 +7,33 @@ import StartButton from './StartButton';
 import Recomendations from './Recomendations';
 
 import './Details.style.css';
-import HeartStateAndShareIcon from './HeartStateAndShareIcon';
+import shareIcon from '../../images/shareIcon.svg';
+import favIcon from '../../images/whiteHeartIcon.svg';
 
-const detailsToShow = (el, strType, strThumb) => (
+const detailsToShow = (el, strType, strThumb, typeRequsition, itemId, objectReturnedAfterReq) => (
   <div key={Math.random() * Math.PI}>
-    <img data-testid="recipe-photo" className="img-align" alt={el[strType]} src={el[strThumb]} />
-    <div className="title-icons-container">
-      <div>
-        <h2 data-testid="recipe-title">{el[strType]}</h2>
-      </div>
-      <HeartStateAndShareIcon />
+    <div className="img-container">
+      <img data-testid="recipe-photo" className="img" alt={el[strType]} src={el[strThumb]} />
     </div>
-    {strType === 'strMeal'
-      ? <p data-testid="recipe-category">{el.strCategory}</p>
-      : <p data-testid="recipe-category">{el.strAlcoholic}</p>}
-    <p>Ingredients</p>
-    {ingredientsToshow(el)}
-    <p>Instructions</p>
-    <div data-testid="instructions">{el.strInstructions}</div>
-    {el.strYoutube !== undefined && (
+    <div className="details-container">
+      <div className="title-icons-container">
+        <div>
+          <h2 data-testid="recipe-title">{el[strType]}</h2>
+          <p data-testid="recipe-category">{el.strCategory}</p>
+          <p data-testid="recipe-category">{el.strAlcoholic}</p>
+        </div>
+        <div className="icons-container">
+          <input type="image" src={shareIcon} alt="share icon" data-testid="share-btn" />
+          <input type="image" src={favIcon} alt="favorite icon" data-testid="favorite-btn" />
+        </div>
+      </div>
+      <div className="ing-display">
+        <h3 style={{ textAlign: 'left', marginBottom: '10px', paddingLeft: '10px' }}>Ingredients</h3>
+        {ingredientsToshow(el)}
+      </div>
+      <p>Instructions</p>
+      <div data-testid="instructions">{el.strInstructions}</div>
+      {el.strYoutube !== undefined && (
       <div>
         <p>Video</p>
         <ReactPlayer
@@ -35,7 +43,14 @@ const detailsToShow = (el, strType, strThumb) => (
           url={el.strYoutube}
         />
       </div>
-    )}
+      )}
+      <Recomendations />
+      <StartButton
+        typeRequsition={typeRequsition}
+        itemId={itemId}
+        recipe={objectReturnedAfterReq}
+      />
+    </div>
   </div>
 );
 
@@ -54,15 +69,8 @@ export default function Details() {
   return objectReturnedAfterReq === null ? null : (
     <div>
       {typeRequsition === 'comidas'
-        ? objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb'))
-        : objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb'))}
-      <Recomendations />
-
-      <StartButton
-        typeRequsition={typeRequsition}
-        itemId={itemId}
-        recipe={objectReturnedAfterReq}
-      />
+        ? objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb', typeRequsition, itemId, objectReturnedAfterReq))
+        : objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb', typeRequsition, itemId, objectReturnedAfterReq))}
     </div>
   );
 }

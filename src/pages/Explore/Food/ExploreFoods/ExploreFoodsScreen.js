@@ -19,7 +19,7 @@ export default function ExploreFoodsScreen() {
             Por Local de Origem
           </button>
         </Link>
-        <Link to="/comidas/52771">
+        <Link to="/comidas/surprise">
           <button type="button" data-testid="explore-surprise" className="explore-btn">
             Me Surpreenda!
           </button>

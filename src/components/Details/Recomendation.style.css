@@ -1,20 +1,25 @@
 .recomendation-card {
-  margin-left: 3px;
+  margin-right: 10px;
+  padding: 5px;
+  background-color: white;
+  padding: 5px;
+  border-radius: 15px;
+  box-shadow: 0 10px 15px -15px rgba(0, 0, 0, 0.795);
 }
 
 .recomendation-container {
   display: flex;
-  height: 25vh;
-  margin-top: 5px;
   overflow: scroll;
-  position: relative;
+  height: 200px;
+  padding-bottom: 10px;
 }
 
 .recomendation-image {
-  height: 20vh;
-  width: 49vw;
+  border-radius: 15px;
+  height: 150px;
+  width: 170px;
 }
 
-p {
+.recomendation-card p {
   margin-top: 1px;
 }

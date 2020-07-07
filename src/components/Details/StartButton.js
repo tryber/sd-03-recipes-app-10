@@ -4,8 +4,9 @@ import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './StartButton.style.css';
 
+const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+
 const saveInProgressRecipes = (key, id, value) => {
-  const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
   const recipe = {};
   recipe[id] = value;
   if (inProgressRecipes === null) {
@@ -26,22 +27,9 @@ const saveInProgressRecipes = (key, id, value) => {
   );
 };
 
-const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
-const isRecipeDone = (id) => (doneRecipes !== null ? doneRecipes : []).some((e) => e.id === id);
-
-const drinksOrMeals = (type) => (type === 'comidas' ? 'meals' : 'drinks');
-const inProgressKey = (type) => (type === 'comidas' ? 'meals' : 'cocktails');
-
-const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
-const isRecipeInProgress = (id, type) => {
-  console.log('testando', inProgressRecipes);
-  return !!inProgressRecipes
-  && Object.prototype.hasOwnProperty.call(inProgressRecipes[inProgressKey(type)], id);
-};
-
 export const ingredients = (recipeObj) => {
   let counter = 0;
-  Object.entries(recipeObj).reduce(
+  return Object.entries(recipeObj).reduce(
     (acc = [], [key, value]) => {
       if (key.includes('strIngredient') && !!value) {
         acc.push(value);
@@ -50,12 +38,19 @@ export const ingredients = (recipeObj) => {
         acc[counter] = `${acc[counter]} - ${value}`;
         counter += 1;
       }
-      console.log(acc);
       return acc;
     }, [],
   );
-  return recipeObj;
 };
+
+const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+const isRecipeDone = (id) => (doneRecipes !== null ? doneRecipes : []).some((e) => e.id === id);
+
+const drinksOrMeals = (type) => (type === 'comidas' ? 'meals' : 'drinks');
+const inProgressKey = (type) => (type === 'comidas' ? 'meals' : 'cocktails');
+
+const isRecipeInProgress = (id, type) => !!inProgressRecipes
+  && Object.prototype.hasOwnProperty.call(inProgressRecipes[inProgressKey(type)], id);
 
 const setRecipeToInProgress = (recipe, id, typeRequsition) => {
   const recipeObj = recipe[drinksOrMeals(typeRequsition)][0];
@@ -73,22 +68,17 @@ export default function StartButton({ recipe }) {
     return 'Iniciar Receita';
   };
   return (
-    <Link to={`/${typeRequsition}/${itemId}/in-progress`}>
-      <button
-        className="start-btn"
-        style={{
-          bottom: 0,
-          height: '10vh',
-          margin: '5px',
-          textAalign: 'center',
-          width: '100vw',
-        }}
-        data-testid="start-recipe-btn"
-        type="button"
-        onClick={() => setRecipeToInProgress(recipe, itemId, typeRequsition)}
-      >
-        {text()}
-      </button>
+    <Link to={{ pathname: `/${typeRequsition}/${itemId}/in-progress`, recipe }}>
+      <div className="start-btn-container">
+        <button
+          className="start-btn"
+          data-testid="start-recipe-btn"
+          type="button"
+          onClick={() => setRecipeToInProgress(recipe, itemId, typeRequsition)}
+        >
+          {text()}
+        </button>
+      </div>
     </Link>
   );
 }
