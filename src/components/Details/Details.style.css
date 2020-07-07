@@ -9,6 +9,7 @@
 }
 
 .img-container {
+  width: 360px;
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);

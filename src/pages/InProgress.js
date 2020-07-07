@@ -23,11 +23,11 @@ const InProgress = () => {
       <p data-testid="recipe-category">{el.strAlcoholic}</p>
       <p data-testid="recipe-category">{el.strCategory}</p>
       {console.log(el)}
-        <p>Ingredients</p>
+      <p>Ingredients</p>
       <div style={{ display: 'grid' }}>
         {ingredients(el).map((e) => (
           <label>
-            <input type="checkbox" checked={Object.values(inProgressRecipes).includes(e)} onChange={e => console.log(e.target.value)} />
+            <input type="checkbox" checked={Object.values(inProgressRecipes).includes(e)} onChange={(e) => console.log(e.target.value)} />
             {e}
           </label>
         ))}

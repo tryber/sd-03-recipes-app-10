@@ -7,8 +7,7 @@ import StartButton from './StartButton';
 import Recomendations from './Recomendations';
 
 import './Details.style.css';
-import shareIcon from '../../images/shareIcon.svg';
-import favIcon from '../../images/whiteHeartIcon.svg';
+import HeartStateAndShareIcon from './HeartStateAndShareIcon';
 
 const detailsToShow = (el, strType, strThumb, typeRequsition, itemId, objectReturnedAfterReq) => (
   <div key={Math.random() * Math.PI}>
@@ -23,8 +22,7 @@ const detailsToShow = (el, strType, strThumb, typeRequsition, itemId, objectRetu
           <p data-testid="recipe-category">{el.strAlcoholic}</p>
         </div>
         <div className="icons-container">
-          <input type="image" src={shareIcon} alt="share icon" data-testid="share-btn" />
-          <input type="image" src={favIcon} alt="favorite icon" data-testid="favorite-btn" />
+          <HeartStateAndShareIcon />
         </div>
       </div>
       <div className="ing-display">
@@ -34,15 +32,15 @@ const detailsToShow = (el, strType, strThumb, typeRequsition, itemId, objectRetu
       <p>Instructions</p>
       <div data-testid="instructions">{el.strInstructions}</div>
       {el.strYoutube !== undefined && (
-      <div>
-        <p>Video</p>
-        <ReactPlayer
-          data-testid="video"
-          width="100%"
-          height="100%"
-          url={el.strYoutube}
-        />
-      </div>
+        <div>
+          <p>Video</p>
+          <ReactPlayer
+            data-testid="video"
+            width="340px"
+            height="250px"
+            url={el.strYoutube}
+          />
+        </div>
       )}
       <Recomendations />
       <StartButton
