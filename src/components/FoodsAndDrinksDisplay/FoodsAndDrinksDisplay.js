@@ -28,7 +28,7 @@ const renderGrid = (recipe, stringObject, imgDisplay) => (
         key={Math.random() * Math.PI}
         data-testid={`${index}-recipe-card`}
         to={(firstKey(recipe) === 'meals' && `/comidas/${el.idMeal}`)
-              || (firstKey(recipe) === 'drinks' && `/bebidas/${el.idDrink}`)}
+        || (firstKey(recipe) === 'drinks' && `/bebidas/${el.idDrink}`)}
       >
         <img
           className="img-display"

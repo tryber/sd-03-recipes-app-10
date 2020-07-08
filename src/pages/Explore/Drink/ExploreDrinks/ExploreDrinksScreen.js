@@ -1,14 +1,14 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../../../components/Header/Header';
 import Footer from '../../../../components/Footer/Footer';
 import { getRandomDrink } from '../../../../services/api';
-import RecipeContext from '../../../../Context/RecipeContext';
+// import RecipeContext from '../../../../Context/RecipeContext';
 
 const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
 
 export default function ExploreDrinksScreen() {
-  const { objectReturnedAfterReq, setObjectReturnedAfterReq } = useContext(RecipeContext);
+  const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
   const firstKeyValue = !!objectReturnedAfterReq
   && objectReturnedAfterReq[firstKey(objectReturnedAfterReq)];
 
@@ -19,8 +19,6 @@ export default function ExploreDrinksScreen() {
   }, []);
 
   const [randomDrinkId] = Object.values(firstKeyValue).map((el) => el.idDrink);
-
-  console.log(randomDrinkId);
 
   return (
     <div>

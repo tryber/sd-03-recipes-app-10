@@ -30,7 +30,7 @@ const detailsToShow = (el, strType, strThumb) => (
         {ingredientsToshow(el)}
       </div>
       <div className="instr-display">
-        <p>Instructions</p>
+        <h3>Instructions</h3>
         <div data-testid="instructions">{el.strInstructions}</div>
       </div>
       {el.strYoutube !== undefined && (

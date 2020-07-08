@@ -1,15 +1,14 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../../../components/Header/Header';
 import Footer from '../../../../components/Footer/Footer';
 import './ExploreFoodsScreen.style.css';
-import RecipeContext from '../../../../Context/RecipeContext';
 import { getRandomMeal } from '../../../../services/api';
 
 const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
 
 export default function ExploreFoodsScreen() {
-  const { objectReturnedAfterReq, setObjectReturnedAfterReq } = useContext(RecipeContext);
+  const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
   const firstKeyValue = !!objectReturnedAfterReq
   && objectReturnedAfterReq[firstKey(objectReturnedAfterReq)];
 
@@ -21,7 +20,6 @@ export default function ExploreFoodsScreen() {
 
   const [randomMealId] = Object.values(firstKeyValue).map((el) => el.idMeal);
 
-  console.log(randomMealId);
   return (
     <div>
       {Header('Explorar Comidas', false)}

@@ -3,7 +3,7 @@
   height: 180px;
   margin-top: 10px;
   overflow-x: scroll;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   padding-bottom: 10px;
 }
 
