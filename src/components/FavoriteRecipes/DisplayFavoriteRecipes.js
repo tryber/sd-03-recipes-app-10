@@ -68,9 +68,9 @@ export default function DisplayFavoriteRecipes() {
     {allButtonsToFilter.map((el) => <button className="buttons-filter-display">{el}</button>)}
     {localStorageFavorites.map((el, index) =>
       <div className="favorites-display">
-          {copied && <p>Link copiado!</p>}
-          {renderGrid(el, index, setLocalStorageFavorites, setCopied)}
-        </div>)}
-      </div>
+        {copied && <p>Link copiado!</p>}
+        {renderGrid(el, index, setLocalStorageFavorites, setCopied)}
+      </div>)}
+    </div>
   );
 }
