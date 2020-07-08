@@ -38,7 +38,7 @@ export const getDrinkByID = async (id) => {
 };
 
 export const getDrinkListByIngredient = async () => {
-  const drinksListByIngredient = `${initialDrinksURL}list.php?i=list`
+  const drinksListByIngredient = `${initialDrinksURL}list.php?i=list`;
   return getData(drinksListByIngredient);
 };
 
