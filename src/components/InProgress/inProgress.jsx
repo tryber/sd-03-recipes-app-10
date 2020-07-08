@@ -53,7 +53,7 @@ const InProgress = () => {
   }, [dones]);
   if (data === null) return (<h1>Loading...</h1>);
   console.log('data', data);
-  const drinksOrMeals = typeRequsition === 'comidas' ? 'meals' : 'drinks'
+  const drinksOrMeals = typeRequsition === 'comidas' ? 'meals' : 'drinks';
   return (
     <Details
       data={data[drinksOrMeals][0]}

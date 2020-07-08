@@ -1,9 +1,10 @@
-import React  from 'react';
+import React from 'react';
+import propTypes from 'prop-types';
 
 import shareIcon from '../../images/shareIcon.svg';
 import favIcon from '../../images/whiteHeartIcon.svg';
 
-export default function ({ data, str, children }) {
+export default function Details({ data, str, children }) {
   console.log(str, children);
   console.log(data);
   return (
@@ -29,3 +30,9 @@ export default function ({ data, str, children }) {
   // return detailsToShow(el, strType);
   // return this.children
 }
+
+Details.propTypes = {
+  children: propTypes.node.isRequired,
+  str: propTypes.string.isRequired,
+  data: propTypes.isRequired,
+};

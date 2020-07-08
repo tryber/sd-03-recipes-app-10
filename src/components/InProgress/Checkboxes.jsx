@@ -33,7 +33,12 @@ export default function Checkboxes({ data, dones, setDones }) {
     <div style={{ display: 'grid' }}>
       {ingredients(data).map((e) => (
         <label key={Math.random()} htmlFor={e}>
-          <input name={e} type="checkbox" checked={dones.includes(e)} onChange={(event) => toggleCheckbox(event.target, dones, setDones)} />
+          <input
+            name={e}
+            type="checkbox"
+            checked={dones.includes(e)}
+            onChange={(event) => toggleCheckbox(event.target, dones, setDones)}
+          />
           {e}
         </label>
       ))}
@@ -44,5 +49,5 @@ export default function Checkboxes({ data, dones, setDones }) {
 Checkboxes.propTypes = {
   dones: propTypes.arrayOf(propTypes.string).isRequired,
   setDones: propTypes.func.isRequired,
-  data: propTypes.object.isRequired,
+  data: propTypes.isRequired,
 };

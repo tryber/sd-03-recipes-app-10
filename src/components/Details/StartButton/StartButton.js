@@ -32,6 +32,13 @@ const isRecipeInProgress = (id, doesObjPathExists, inProgressKey) => (doesObjPat
   ? false
   : Object.keys(inProgressRecipes[inProgressKey]).includes(id));
 
+const text = (id, typeRequsition, inProgressKey) => {
+  console.log('id, typeRequsition, inProgressKey:', id, typeRequsition, inProgressKey);
+  if (isRecipeInProgress(id, typeRequsition, inProgressKey)) return 'Continuar Receita';
+  if (isRecipeDone(typeRequsition)) return null;
+  return 'Iniciar Receita';
+};
+
 export default function StartButton() {
   const typeRequsition = useLocation().pathname.split('/')[1];
   const id = useLocation().pathname.split('/')[2];
@@ -40,12 +47,7 @@ export default function StartButton() {
   const doesObjPathExists = inProgressRecipes !== null && inProgressRecipes !== []
   && !!inProgressRecipes[inProgressKey] && inProgressRecipes[inProgressKey][id];
 
-  const text = () => {
-    console.log('id, typeRequsition, inProgressKey:', id, typeRequsition, inProgressKey)
-    if (isRecipeInProgress(id, typeRequsition, inProgressKey)) return 'Continuar Receita';
-    if (isRecipeDone(typeRequsition)) return null;
-    return 'Iniciar Receita';
-  };
+  text(id, typeRequsition, inProgressKey);
   console.log('id:', id);
   return !!isRecipeDone && (
     <Link to={{ pathname: `/${typeRequsition}/${id}/in-progress` }}>
