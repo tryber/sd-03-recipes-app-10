@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './StartButton.style.css';
 
@@ -28,28 +28,31 @@ const saveInProgressRecipes = (key, id, doesObjPathExists) => {
 const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
 const isRecipeDone = (id) => (doneRecipes || []).some((e) => e.id === id);
 
-const isRecipeInProgress = (id, doesObjPathExists, inProgressKey) => (doesObjPathExists
-  ? false
-  : Object.keys(inProgressRecipes[inProgressKey]).includes(id));
+const isRecipeInProgress = (doesObjPathExists) => (
+  inProgressRecipes && doesObjPathExists);
 
-const text = (id, typeRequsition, inProgressKey) => {
-  console.log('id, typeRequsition, inProgressKey:', id, typeRequsition, inProgressKey);
+const text = (id, typeRequsition, inProgressKey, doesObjPathExists) => {
+  console.log('id, typeRequsition, isRecipeInProgress(id, typeRequsition, inProgressKey):', id, typeRequsition, isRecipeInProgress(id, typeRequsition, inProgressKey));
+  console.log('doesObjPathExists', doesObjPathExists);
+  if (!isRecipeDone(id) && !isRecipeInProgress(id, typeRequsition, inProgressKey)) return 'Iniciar Receita';
   if (isRecipeInProgress(id, typeRequsition, inProgressKey)) return 'Continuar Receita';
-  if (isRecipeDone(typeRequsition)) return null;
-  return 'Iniciar Receita';
+  return null;
 };
 
 export default function StartButton() {
   const typeRequsition = useLocation().pathname.split('/')[1];
   const id = useLocation().pathname.split('/')[2];
   const inProgressKey = (typeRequsition === 'comidas' ? 'meals' : 'cocktails');
-  // console.log()
-  const doesObjPathExists = inProgressRecipes !== null && inProgressRecipes !== []
+  const doesObjPathExists = !!inProgressRecipes && inProgressRecipes !== []
   && !!inProgressRecipes[inProgressKey] && inProgressRecipes[inProgressKey][id];
 
-  text(id, typeRequsition, inProgressKey);
+  useEffect(() => {
+    console.log('ussing effect', inProgressRecipes);
+    // text(id, typeRequsition, inProgressKey, doesObjPathExists);
+  }, [isRecipeDone, isRecipeInProgress]);
+
   console.log('id:', id);
-  return !!isRecipeDone && (
+  return !isRecipeDone(id) && (
     <Link to={{ pathname: `/${typeRequsition}/${id}/in-progress` }}>
       <button
         className="start-btn"
@@ -64,7 +67,7 @@ export default function StartButton() {
         type="button"
         onClick={() => saveInProgressRecipes(inProgressKey, id, doesObjPathExists)}
       >
-        {text()}
+        {text(id, typeRequsition, inProgressKey, doesObjPathExists)}
       </button>
     </Link>
   );
