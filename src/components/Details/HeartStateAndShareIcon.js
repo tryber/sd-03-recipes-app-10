@@ -48,7 +48,7 @@ const setObjInLocalStorage = (accessObj, stringObject, type, objectReturnedAfter
 };
 
 export default function HeartStateAndShareIcon() {
-  const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
+  const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(nullll);
   const typeRequsition = useHistory().location.pathname.split('/')[1];
   const itemId = useHistory().location.pathname.split('/')[2];
   const isInLocalStorage = JSON.parse(localStorage.getItem('favoriteRecipes')) !== null
