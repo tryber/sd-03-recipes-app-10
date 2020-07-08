@@ -1,12 +1,10 @@
 import React from 'react';
-import propTypes from 'prop-types';
+import propTypes, { node } from 'prop-types';
 
 import shareIcon from '../../images/shareIcon.svg';
 import favIcon from '../../images/whiteHeartIcon.svg';
 
 export default function Details({ data, str, children }) {
-  console.log(str, children);
-  console.log(data);
   return (
     <div key={Math.random()}>
       <img data-testid="recipe-photo" className="img-align" alt={data[str]} src={data[`${str}Thumb`]} />
@@ -25,6 +23,7 @@ export default function Details({ data, str, children }) {
       {children}
       <p>Instructions</p>
       <div data-testid="instructions">{data.strInstructions}</div>
+
     </div>
   );
   // return detailsToShow(el, strType);
@@ -32,7 +31,7 @@ export default function Details({ data, str, children }) {
 }
 
 Details.propTypes = {
-  children: propTypes.node.isRequired,
   str: propTypes.string.isRequired,
   data: propTypes.isRequired,
+  children: node.isRequired,
 };

@@ -53,7 +53,6 @@ export default function Details() {
       setObjectReturnedAfterReq,
     );
   }, []);
-  console.log(useLocation())
   return objectReturnedAfterReq === null ? null : (
     <div>
       {typeRequsition}
