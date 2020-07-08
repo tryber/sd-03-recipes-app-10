@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './DisplayFavoriteRecipe.style.css';
 import shareIcon from '../../images/shareIcon.svg';
@@ -64,17 +64,22 @@ export default function DisplayFavoriteRecipes() {
 
   const changeFavoriteRecipes = (valueToFilter) => {
     const localToFilter = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    if(valueToFilter==='Food')
-      return setLocalStorageFavorites(localToFilter.filter((el) => el.type==='comida'));
-    if(valueToFilter==='Drink')
-      return setLocalStorageFavorites(localToFilter.filter((el) => el.type==='bebida'));
+    if (valueToFilter === 'Food')
+      return setLocalStorageFavorites(localToFilter.filter((el) => el.type === 'comida'));
+    if (valueToFilter === 'Drink')
+      return setLocalStorageFavorites(localToFilter.filter((el) => el.type === 'bebida'));
     return setLocalStorageFavorites(localToFilter);
-  }
+  };
 
   return (
     localStorageFavorites !== null
   && <div>
-    {allButtonsToFilter.map((el) => <button className="buttons-filter-display" onClick={() => changeFavoriteRecipes(el)}>{el}</button>)}
+    {allButtonsToFilter.map((el) => <button
+      className="buttons-filter-display"
+      onClick={() => changeFavoriteRecipes(el)}
+    >
+      {el}
+    </button>)}
     {localStorageFavorites.map((el, index) =>
       <div className="favorites-display">
         {copied && <p>Link copiado!</p>}
