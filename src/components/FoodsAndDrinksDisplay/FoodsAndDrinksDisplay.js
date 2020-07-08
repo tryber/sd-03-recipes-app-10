@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link /* , Redirect */ } from 'react-router-dom';
 import './FoodsAndDrinksDisplay.style.css';
 import RecipeContext from '../../Context/RecipeContext';
 import { getFoodByCategory, getDrinkByCategory } from '../../services/api';
@@ -66,7 +66,7 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
   );
 
   const renderDisplay = () => {
-    const comidasOuBebidas = window.location.pathname.split('/')[1];
+    // const comidasOuBebidas = window.location.pathname.split('/')[1];
     const firstKeyValue = !!objectReturnedAfterReq
     && objectReturnedAfterReq[firstKey(objectReturnedAfterReq)];
     switch (true) {
