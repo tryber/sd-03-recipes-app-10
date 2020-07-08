@@ -75,14 +75,14 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
       case firstKeyValue === null:
         functionToMakeRequisition();
         return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-      case firstKeyValue.length === 1:
-        return (
-          <Redirect
-            to={`/${comidasOuBebidas}/${
-              firstKeyValue[0][comidasOuBebidas.includes('comidas') ? 'idMeal' : 'idDrink']
-            }`}
-          />
-        );
+      // case firstKeyValue.length === 1:
+      //   return (
+      //     <Redirect
+      //       to={`/${comidasOuBebidas}/${
+      //         firstKeyValue[0][comidasOuBebidas.includes('comidas') ? 'idMeal' : 'idDrink']
+      //       }`}
+      //     />
+      //   );
       default:
         return renderGrid(objectReturnedAfterReq, stringObject, imgDisplay);
     }
