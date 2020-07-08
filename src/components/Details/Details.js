@@ -61,6 +61,8 @@ export default function Details() {
     );
   }, []);
   console.log(useLocation());
+  console.log('type requisition', typeRequsition);
+  console.log('objectReturned', objectReturnedAfterReq);
   return objectReturnedAfterReq === null ? null : (
     <div>
       {typeRequsition === 'comidas'

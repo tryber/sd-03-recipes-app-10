@@ -34,8 +34,8 @@ const isRecipeInProgress = (doesObjPathExists) => (
 const text = (id, typeRequsition, inProgressKey, doesObjPathExists) => {
   console.log('id, typeRequsition, isRecipeInProgress(id, typeRequsition, inProgressKey):', id, typeRequsition, isRecipeInProgress(id, typeRequsition, inProgressKey));
   console.log('doesObjPathExists', doesObjPathExists);
-  if (!isRecipeDone(id) && !isRecipeInProgress(id, typeRequsition, inProgressKey)) return 'Iniciar Receita';
   if (isRecipeInProgress(id, typeRequsition, inProgressKey)) return 'Continuar Receita';
+  if (!isRecipeDone(id) && !isRecipeInProgress(id, typeRequsition, inProgressKey)) return 'Iniciar Receita';
   return null;
 };
 
@@ -56,13 +56,6 @@ export default function StartButton() {
     <Link to={{ pathname: `/${typeRequsition}/${id}/in-progress` }}>
       <button
         className="start-btn"
-        style={{
-          bottom: 0,
-          height: '10vh',
-          margin: '5px',
-          textAalign: 'center',
-          width: '100vw',
-        }}
         data-testid="start-recipe-btn"
         type="button"
         onClick={() => saveInProgressRecipes(inProgressKey, id, doesObjPathExists)}

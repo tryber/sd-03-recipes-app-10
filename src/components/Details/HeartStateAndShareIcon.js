@@ -40,7 +40,7 @@ const setObjInLocalStorage = (accessObj, stringObject, type, objectReturnedAfter
     type: el.type,
     area: el.strArea,
     category: el.strCategory,
-    alcoholicOrNot: '',
+    alcoholicOrNot: el.strAlcoholic,
     name: el[`str${stringObject}`],
     image: el[`str${stringObject}Thumb`],
   }])));

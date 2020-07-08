@@ -7,7 +7,11 @@ const filterFoodLogic = async (category, text, setObjectReturnedAfterReq) => {
   if (category === 'Ingrediente') {
     setObjectReturnedAfterReq(await Api.getFoodByIngredient(text));
   } else if (category === 'Nome') {
-    setObjectReturnedAfterReq(await Api.getFoodByName(text));
+    const response = await Api.getFoodByName(text);
+    const [responseId] = response.meals.map((el) => el.idMeal);
+    return (await response.meals.length) === 1
+      ? window.location.assign(`/comidas/${responseId}`)
+      : setObjectReturnedAfterReq(response);
   } else if (category === 'Primeira letra') {
     return text.length === 1
       ? setObjectReturnedAfterReq(await Api.getFoodByFirstLetter(text))
@@ -21,7 +25,11 @@ const filterDrinkLogic = async (category, text, setObjectReturnedAfterReq) => {
     return setObjectReturnedAfterReq(await Api.getDrinkByIngredient(text));
   }
   if (category === 'Nome') {
-    return setObjectReturnedAfterReq(await Api.getDrinkByName(text));
+    const response = await Api.getDrinkByName(text);
+    const [responseId] = response.drinks.map((el) => el.idDrink);
+    return (await response.drinks.length) === 1
+      ? window.location.assign(`/bebidas/${responseId}`)
+      : setObjectReturnedAfterReq(response);
   }
   if (category === 'Primeira letra') {
     return text.length === 1

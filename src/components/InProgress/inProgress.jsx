@@ -17,18 +17,20 @@ const InProgress = () => {
     functionToMakeRequisition(typeRequsition, itemId, setData);
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem(
-      'inProgressRecipes',
-      JSON.stringify({
-        ...inProgressRecipes,
-        [localKey]: {
-          ...inProgressRecipes[localKey],
-          [itemId]: dones,
-        },
-      }),
-    );
-  }, [dones]);
+  useEffect(() => localStorage.setItem('inProgressRecipes',
+    inProgressRecipes !== null && inProgressRecipes[localKey] ? JSON.stringify({
+      ...inProgressRecipes,
+      [localKey]: {
+        ...inProgressRecipes[localKey],
+        [itemId]: dones,
+      },
+    }) : JSON.stringify({
+      ...inProgressRecipes,
+      [localKey]: {
+
+        [itemId]: dones,
+      },
+    })), [dones]);
   if (data === null) return (<h1>Loading...</h1>);
   console.log('data', data);
   const drinksOrMeals = typeRequsition === 'comidas' ? 'meals' : 'drinks';
