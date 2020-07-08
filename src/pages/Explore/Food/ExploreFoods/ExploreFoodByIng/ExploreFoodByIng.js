@@ -6,20 +6,20 @@ import { getFoodListByIngredient } from '../../../../../services/api';
 
 const renderGrid = (recipe) => (
   <div className="food-overflow">
-    {recipe.meals.slice(0, 12).map((el) => (
+    {recipe.meals.slice(0, 12).map((el, index) => (
       <Link
         className="display-container"
         key={Math.random() * Math.PI}
-        data-testid={`${el.strIngredient}-recipe-card`}
+        data-testid={`${index}-ingredient-card`}
         to={`/comidas/${el.idIngredient}`}
       >
         <img
           className="image-display"
-          data-testid={`${el.strMeal}-card-img`}
+          data-testid={`${index}-card-img`}
           src={`https://www.themealdb.com/images/ingredients/${el.strIngredient}-Small.png`}
           alt={`${el.strIngredient}`}
         />
-        <h3 data-testid={`${el.strIngredient}-card-name`}>{`${el.strIngredient}`}</h3>
+        <h3 data-testid={`${index}-card-name`}>{`${el.strIngredient}`}</h3>
       </Link>
     ))}
   </div>
