@@ -71,6 +71,6 @@ export default function DisplayFavoriteRecipes() {
         {copied && <p>Link copiado!</p>}
         {renderGrid(el, index, setLocalStorageFavorites, setCopied)}
       </div>)}
-    </div>
+  </div>
   );
 }
