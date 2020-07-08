@@ -12,7 +12,7 @@ const renderGrid = (drinks) => (
         className="display-container"
         key={Math.random() * Math.PI}
         data-testid={`${index}-ingredient-card`}
-        to={`/comidas/${el.idIngredient}`}
+        to={`/drinks/${el.idIngredient}`}
       >
         <img
           className="image-display"
