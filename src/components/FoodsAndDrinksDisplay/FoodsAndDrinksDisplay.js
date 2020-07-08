@@ -46,7 +46,11 @@ const renderGrid = (recipe, stringObject, imgDisplay) => (
 
 const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
   const {
-    valueToFilter, objectReturnedAfterReq, setObjectReturnedAfterReq, showSearchBar, comingFromIngredients
+    valueToFilter,
+    objectReturnedAfterReq,
+    setObjectReturnedAfterReq,
+    showSearchBar,
+    comingFromIngredients,
   } = useContext(RecipeContext);
 
   const functionToMakeRequisition = async () => {
