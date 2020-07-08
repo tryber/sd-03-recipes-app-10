@@ -1,92 +1,60 @@
 import React from 'react';
-import { useHistory } from 'react-router';
-import propTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './StartButton.style.css';
+import { firstCrunkOfPath, secondChunkOfPath } from '../helpers/scrapPath';
 
 const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+const inProgressKey = (firstCrunkOfPath === 'comidas' ? 'meals' : 'cocktails');
+const doesObjPathExists = inProgressRecipes !== null
+&& !!inProgressRecipes[inProgressKey] && !!inProgressRecipes[inProgressKey][secondChunkOfPath];
 
-const saveInProgressRecipes = (key, id, value) => {
-  const recipe = {};
-  recipe[id] = value;
+const saveInProgressRecipes = (key, id) => {
+  console.log(id, key);
+  console.log(inProgressRecipes);
   if (inProgressRecipes === null) {
     return localStorage.setItem(
       'inProgressRecipes',
-      JSON.stringify({ [key]: recipe }),
+      JSON.stringify({ [key]: { [id]: [] } }),
     );
   }
-  return localStorage.setItem(
-    'inProgressRecipes',
-    JSON.stringify({
-      ...inProgressRecipes,
-      [key]: {
-        ...inProgressRecipes[key],
-        [id]: value,
-      },
-    }),
-  );
-};
-
-export const ingredients = (recipeObj) => {
-  let counter = 0;
-  return Object.entries(recipeObj).reduce(
-    (acc = [], [key, value]) => {
-      if (key.includes('strIngredient') && !!value) {
-        acc.push(value);
-      }
-      if (key.includes('strMeasure') && !!acc[counter]) {
-        acc[counter] = `${acc[counter]} - ${value}`;
-        counter += 1;
-      }
-      return acc;
-    }, [],
-  );
+  if (!doesObjPathExists) {
+    return localStorage.setItem(
+      'inProgressRecipes',
+      JSON.stringify({
+        ...inProgressRecipes,
+        [key]: { [id]: [], ...inProgressRecipes[key] },
+      }),
+    );
+  }
+  return null;
 };
 
 const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
 const isRecipeDone = (id) => (doneRecipes !== null ? doneRecipes : []).some((e) => e.id === id);
 
-const drinksOrMeals = (type) => (type === 'comidas' ? 'meals' : 'drinks');
-const inProgressKey = (type) => (type === 'comidas' ? 'meals' : 'cocktails');
+const isRecipeInProgress = (id) => (!doesObjPathExists
+  ? false
+  : Object.keys(inProgressRecipes[inProgressKey]).includes(id));
 
-const isRecipeInProgress = (id, type) => !!inProgressRecipes
-  && Object.prototype.hasOwnProperty.call(inProgressRecipes[inProgressKey(type)], id);
-
-const setRecipeToInProgress = (recipe, id, typeRequsition) => {
-  const recipeObj = recipe[drinksOrMeals(typeRequsition)][0];
-
-  return saveInProgressRecipes(inProgressKey(typeRequsition), id, ingredients(recipeObj));
-};
-
-export default function StartButton({ recipe }) {
-  const typeRequsition = useHistory().location.pathname.split('/')[1];
-  const itemId = useHistory().location.pathname.split('/')[2];
-
+export default function StartButton() {
+  const { pathname } = useLocation();
+  const id = pathname.split('/')[2];
   const text = () => {
-    if (isRecipeInProgress(itemId, typeRequsition)) return 'Continuar Receita';
-    if (isRecipeDone(itemId)) return null;
+    if (isRecipeInProgress(id, firstCrunkOfPath)) return 'Continuar Receita';
+    if (isRecipeDone(firstCrunkOfPath)) return null;
     return 'Iniciar Receita';
   };
-  return (
-    <Link to={{ pathname: `/${typeRequsition}/${itemId}/in-progress`, recipe }}>
-      <div className="start-btn-container">
-        <button
-          className="start-btn"
-          data-testid="start-recipe-btn"
-          type="button"
-          onClick={() => setRecipeToInProgress(recipe, itemId, typeRequsition)}
-        >
-          {text()}
-        </button>
-      </div>
+  console.log('id:', id);
+  return isRecipeDone && (
+    <Link to={{ pathname: `/${firstCrunkOfPath}/${id}/in-progress` }}>
+      <button
+        className="start-btn"
+        data-testid="start-recipe-btn"
+        type="button"
+        onClick={() => saveInProgressRecipes(inProgressKey, id)}
+      >
+        {text()}
+      </button>
     </Link>
   );
 }
-
-StartButton.defaultProps = {
-  recipe: null,
-};
-
-StartButton.propTypes = {
-  recipe: propTypes.shape(propTypes.object),
-};

@@ -7,34 +7,34 @@
 }
 
 .drink-icon {
-  height: 40px;
-  left: 10px;
-  position: absolute;
-  width: 40px;
   background-color: white;
-  padding: 5px;
   border-radius: 15px;
   box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);
+  height: 40px;
+  left: 10px;
+  padding: 5px;
+  position: absolute;
+  width: 40px;
 }
 
 .explore-icon {
-  height: 40px;
-  left: 154px;
-  position: absolute;
-  width: 40px;
   background-color: white;
-  padding: 5px;
   border-radius: 15px;
   box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);
+  height: 40px;
+  left: 154px;
+  padding: 5px;
+  position: absolute;
+  width: 40px;
 }
 
 .meal-icon {
-  height: 40px;
-  left: 296px;
-  position: absolute;
-  width: 40px;
   background-color: white;
-  padding: 5px;
   border-radius: 15px;
   box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);
+  height: 40px;
+  left: 296px;
+  padding: 5px;
+  position: absolute;
+  width: 40px;
 }

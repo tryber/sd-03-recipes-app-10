@@ -24,13 +24,15 @@ const Recomendations = () => {
           data-testid={`${index}-recomendation-card`}
           className="recomendation-card"
         >
-          <img
-            data-testid={`${index}-recomendation-image`}
-            className="recomendation-image"
-            src={item[`str${srtSufix}Thumb`]}
-            alt={item[key]}
-          />
           <p data-testid={`${index}-recomendation-title`}>{item[`str${srtSufix}`]}</p>
+          <div>
+            <img
+              data-testid={`${index}-recomendation-image`}
+              className="recomendation-image"
+              src={item[`str${srtSufix}Thumb`]}
+              alt={item[key]}
+            />
+          </div>
         </div>
         )
       ))}

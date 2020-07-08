@@ -1,23 +1,17 @@
-.container-display {
-  border-bottom: 1px solid lightgray;
+.food-cards-display {
+  background-color: white;
   border-radius: 15px;
   box-shadow: 0 11px 18px -18px rgba(0, 0, 0, 0.795);
   display: flex;
   flex-direction: row;
   margin-bottom: 15px;
-  padding: 15px;
-  background-color: white;
-}
-
-.container-display:last-child {
-  border: none;
-  box-shadow: 0 11px 18px -18px rgba(0, 0, 0, 0.795);
 }
 
 .img-display {
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
   height: 120px;
   width: 160px;
-  border-radius: 15px;
 }
 
 .item-overflow {
@@ -36,6 +30,5 @@ h3 {
 }
 
 a {
-  color: rgb(73, 72, 72);
   text-decoration: none;
 }

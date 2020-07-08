@@ -17,7 +17,7 @@ const detailsToShow = (el, strType, strThumb, typeRequsition, itemId, objectRetu
     <div className="details-container">
       <div className="title-icons-container">
         <div>
-          <h2 data-testid="recipe-title">{el[strType]}</h2>
+          <h2 className="recipe-title" data-testid="recipe-title">{el[strType]}</h2>
           <p data-testid="recipe-category">{el.strCategory}</p>
           <p data-testid="recipe-category">{el.strAlcoholic}</p>
         </div>
@@ -29,8 +29,10 @@ const detailsToShow = (el, strType, strThumb, typeRequsition, itemId, objectRetu
         <h3 style={{ textAlign: 'left', marginBottom: '10px', paddingLeft: '10px' }}>Ingredients</h3>
         {ingredientsToshow(el)}
       </div>
-      <p>Instructions</p>
-      <div data-testid="instructions">{el.strInstructions}</div>
+      <div className="instr-display">
+        <p>Instructions</p>
+        <div data-testid="instructions">{el.strInstructions}</div>
+      </div>
       {el.strYoutube !== undefined && (
         <div>
           <p>Video</p>

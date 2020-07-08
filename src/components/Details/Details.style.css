@@ -1,25 +1,26 @@
 .details-container {
   border-radius: 15px;
   height: 300px;
+  overflow-x: hidden;
   overflow-y: scroll;
   padding: 10px;
   position: absolute;
   top: 280px;
-  width: 340px;
+  width: 339px;
 }
 
 .img-container {
-  width: 360px;
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);
   text-align: center;
+  width: 360px;
 }
 
 .img {
   border-radius: 15px;
   height: 240px;
-  margin-top: 15px;
+  margin-top: 13px;
   width: 330px;
 }
 
@@ -27,9 +28,15 @@
   display: flex;
   height: 50px;
   justify-content: space-between;
+  padding-left: 10px;
 }
 
-.title-icons-container h2, p{
+.recipe-title {
+  margin: 0;
+  padding: 0;
+}
+
+.title-icons-container p {
   margin: 0;
   padding: 0;
 }
@@ -39,7 +46,7 @@
   justify-content: space-between;
 }
 
-.icons-container input{
+.icons-container input {
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);
@@ -55,4 +62,14 @@
   box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);
   margin-top: 65px;
   padding: 5px;
+}
+
+.instr-display {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 15px;
+  text-align: justify;
 }

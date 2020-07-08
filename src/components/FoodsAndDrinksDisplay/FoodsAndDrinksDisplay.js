@@ -24,7 +24,7 @@ const renderGrid = (recipe, stringObject, imgDisplay) => (
     {recipe[firstKey(recipe)].map(
       (el, index) => index < 12 && (
       <Link
-        className="container-display"
+        className="food-cards-display"
         key={Math.random() * Math.PI}
         data-testid={`${index}-recipe-card`}
         to={(firstKey(recipe) === 'meals' && `/comidas/${el.idMeal}`)

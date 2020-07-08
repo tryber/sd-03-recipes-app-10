@@ -1,18 +1,18 @@
 .search-bar {
+  background-color: white;
   border-bottom: none;
   border-left: none;
-  border-right: 1px solid lightgray;
-  box-shadow: 0 11px 18px -15px rgba(0, 0, 0, 0.795);
-  background-color: white;
   border-radius: 10px;
+  border-right: 1px solid lightgray;
   border-top: none;
+  box-shadow: 0 11px 18px -15px rgba(0, 0, 0, 0.795);
   box-sizing: border-box;
   height: 35px;
   left: 12px;
+  padding-left: 10px;
   position: absolute;
   top: 60px;
   width: 279px;
-  padding-left: 10px;
 }
 
 .search-bar:focus {
@@ -29,10 +29,10 @@
 
 .search-btn-display {
   background: none;
-  border: none;
-  box-shadow: 0 11px 18px -15px rgba(0, 0, 0, 0.795);
   background-color: white;
+  border: none;
   border-radius: 10px;
+  box-shadow: 0 11px 18px -15px rgba(0, 0, 0, 0.795);
   color: rgb(70, 70, 70);
   height: 35px;
   width: 60px;
