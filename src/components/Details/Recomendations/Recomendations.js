@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getFoodList, getDrinkList } from '../../services/api';
+import { getFoodList, getDrinkList } from '../../../services/api';
 import './Recomendation.style.css';
 
 const Recomendations = () => {
@@ -20,7 +20,7 @@ const Recomendations = () => {
       {!!recomendetions && recomendetions[key].map((item, index) => (index < 6
         && (
         <div
-          key={Math.random() * Math.PI}
+          key={Math.random()}
           data-testid={`${index}-recomendation-card`}
           className="recomendation-card"
         >
