@@ -24,22 +24,23 @@ const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
 const renderGrid = (recipe) => (
   <div className="food-overflow">
     {recipe[firstKey(recipe)].map(
-      (el, index) => index < 12 && (
-      <Link
-        className="display-container"
-        key={Math.random() * Math.PI}
-        data-testid={`${index}-recipe-card`}
-        to={`/comidas/${el.idMeal}`}
-      >
-        <img
-          className="image-display"
-          data-testid={`${index}-card-img`}
-          src={`${el.strMealThumb}`}
-          alt={`${el.strMeal}`}
-        />
-        <h3 data-testid={`${index}-card-name`}>{`${el.strMeal}`}</h3>
-      </Link>
-      ),
+      (el, index) =>
+        index < 12 && (
+          <Link
+            className="display-container"
+            key={Math.random() * Math.PI}
+            data-testid={`${index}-recipe-card`}
+            to={`/comidas/${el.idMeal}`}
+          >
+            <img
+              className="image-display"
+              data-testid={`${index}-card-img`}
+              src={`${el.strMealThumb}`}
+              alt={`${el.strMeal}`}
+            />
+            <h3 data-testid={`${index}-card-name`}>{`${el.strMeal}`}</h3>
+          </Link>
+        )
     )}
   </div>
 );

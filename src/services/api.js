@@ -63,6 +63,10 @@ export const getFoodByIngredient = async (ingredient) => {
   const foodsByIngredient = `${initialFoodsURL}filter.php?i=${ingredient}`;
   return getData(foodsByIngredient);
 };
+export const getFoodListByIngredient = async () => {
+  const foodsListByIngredient = `${initialFoodsURL}list.php?i=list`;
+  return getData(foodsListByIngredient);
+};
 
 export const getFoodByName = async (name) => {
   const foodsByName = `${initialFoodsURL}search.php?s=${name}`;
