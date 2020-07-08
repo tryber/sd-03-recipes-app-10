@@ -31,9 +31,10 @@ const toggleCheckbox = (target, dones, setDones) => {
 export default function Checkboxes({ data, dones, setDones }) {
   return data && (
     <div style={{ display: 'grid' }}>
-      {ingredients(data).map((e) => (
+      {ingredients(data).map((e, index) => (
         <label key={Math.random()} htmlFor={e}>
           <input
+            data-testid={`${index}-ingredient-step`}
             name={e}
             type="checkbox"
             checked={dones.includes(e)}

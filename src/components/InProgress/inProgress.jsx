@@ -5,26 +5,6 @@ import functionToMakeRequisition from '../Details/funtionToMakeRequisition';
 import Details from './Details';
 import Checkboxes from './Checkboxes';
 
-// const detailsToShow = (el, strType, dones, setDones) => (
-//   <div key={Math.random() * Math.PI}>
-//     <img data-testid="recipe-photo" className="img-align" alt={el[strType]} src={el[`${strType}Thumb`]} />
-//     <div className="title-icons-container">
-//       <div>
-//         <h2 data-testid="recipe-title">{el[strType]}</h2>
-//       </div>
-//       <div className="icons-container">
-//         <input type="image" src={shareIcon} alt="share icon" data-testid="share-btn" />
-//         <input type="image" src={favIcon} alt="favorite icon" data-testid="favorite-btn" />
-//       </div>
-//     </div>
-//     <p data-testid="recipe-category">{el.strAlcoholic}</p>
-//     <p data-testid="recipe-category">{el.strCategory}</p>
-//     <p>Ingredients</p>
-//     {checkboxBox(el, dones, setDones)}
-//     <p>Instructions</p>
-//     <div data-testid="instructions">{el.strInstructions}</div>
-//   </div>
-// );
 const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
 
 const InProgress = () => {
@@ -42,7 +22,7 @@ const InProgress = () => {
   }, []);
 
   useEffect(() => localStorage.setItem('inProgressRecipes',
-    inProgressRecipes[localKey] ? JSON.stringify({
+    inProgressRecipes !== null && inProgressRecipes[localKey] ? JSON.stringify({
       ...inProgressRecipes,
       [localKey]: {
         ...inProgressRecipes[localKey],

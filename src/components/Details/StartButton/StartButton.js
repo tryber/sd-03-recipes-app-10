@@ -34,8 +34,8 @@ const isRecipeInProgress = (doesObjPathExists) => (
 const text = (id, typeRequsition, inProgressKey, doesObjPathExists) => {
   console.log('id, typeRequsition, isRecipeInProgress(id, typeRequsition, inProgressKey):', id, typeRequsition, isRecipeInProgress(id, typeRequsition, inProgressKey));
   console.log('doesObjPathExists', doesObjPathExists);
-  if (!isRecipeDone(id) && !isRecipeInProgress(id, typeRequsition, inProgressKey)) return 'Iniciar Receita';
   if (isRecipeInProgress(id, typeRequsition, inProgressKey)) return 'Continuar Receita';
+  if (!isRecipeDone(id) && !isRecipeInProgress(id, typeRequsition, inProgressKey)) return 'Iniciar Receita';
   return null;
 };
 
