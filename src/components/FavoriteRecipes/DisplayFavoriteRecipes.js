@@ -64,10 +64,12 @@ export default function DisplayFavoriteRecipes() {
 
   const changeFavoriteRecipes = (valueToFilter) => {
     const localToFilter = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    if (valueToFilter === 'Food')
+    if (valueToFilter === 'Food') {
       return setLocalStorageFavorites(localToFilter.filter((el) => el.type === 'comida'));
-    if (valueToFilter === 'Drink')
+    }
+    if (valueToFilter === 'Drink') {
       return setLocalStorageFavorites(localToFilter.filter((el) => el.type === 'bebida'));
+    }
     return setLocalStorageFavorites(localToFilter);
   };
 
