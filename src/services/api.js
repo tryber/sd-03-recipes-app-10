@@ -37,6 +37,11 @@ export const getDrinkByID = async (id) => {
   return getData(drinksByID);
 };
 
+export const getDrinkListByIngredient = async () => {
+  const drinksListByIngredient = `${initialDrinksURL}list.php?i=list`
+  return getData(drinksListByIngredient);
+};
+
 const initialFoodsURL = 'https://www.themealdb.com/api/json/v1/1/';
 
 export const getFoodList = async () => {
