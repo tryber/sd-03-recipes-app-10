@@ -20,6 +20,7 @@ export const searchByCategorie = async (
 };
 
 const renderGrid = (recipe, stringObject, imgDisplay) => (
+
   <div className="item-overflow">
     {recipe[firstKey(recipe)].map(
       (el, index) => index < 12 && (
@@ -45,7 +46,7 @@ const renderGrid = (recipe, stringObject, imgDisplay) => (
 
 const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
   const {
-    valueToFilter, objectReturnedAfterReq, setObjectReturnedAfterReq, showSearchBar,
+    valueToFilter, objectReturnedAfterReq, setObjectReturnedAfterReq, showSearchBar, comingFromIngredients
   } = useContext(RecipeContext);
 
   const functionToMakeRequisition = async () => {
@@ -55,8 +56,8 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
   };
 
   useEffect(() => {
-    functionToMakeRequisition();
-  }, [valueToFilter]);
+    if (comingFromIngredients === false) functionToMakeRequisition();
+  }, [valueToFilter, comingFromIngredients]);
 
   useEffect(
     () => () => {

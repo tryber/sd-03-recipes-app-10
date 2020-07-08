@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import RecipeContext from '../../../../../Context/RecipeContext';
 import Header from '../../../../../components/Header/Header';
 import Footer from '../../../../../components/Footer/Footer';
-import { getDrinkListByIngredient } from '../../../../../services/api';
+import { getDrinkListByIngredient, getDrinkByIngredient } from '../../../../../services/api';
 
-const renderGrid = (drinks) => (
+const renderGrid = (drinks, cb) => (
   <div className="food-overflow">
-    {console.log(drinks)}
     {drinks.drinks.slice(0, 12).map((el, index) => (
       <Link
+        onClick={() => cb(el.strIngredient1)}
         className="display-container"
         key={Math.random() * Math.PI}
         data-testid={`${index}-ingredient-card`}
-        to={`/drinks/${el.idIngredient}`}
+        to="/bebidas"
       >
         <img
           className="image-display"
@@ -27,9 +28,14 @@ const renderGrid = (drinks) => (
 );
 
 export default function ExploreFoodByIng() {
-  /* Lista de cards */
+  const { setObjectReturnedAfterReq, setComingFromIngredients } = useContext(RecipeContext);
   const [drinkByIng, setDrinkByIng] = useState(null);
-
+  const handleSelectedIng = async (ingredient) => {
+    setComingFromIngredients(true);
+    const drinks = getDrinkByIngredient(ingredient);
+    const savedDrinks = await drinks;
+    return setObjectReturnedAfterReq(savedDrinks);
+  };
   const requestDrinkByIng = async () => {
     const reqType = getDrinkListByIngredient();
     return setDrinkByIng(await reqType.then(reqType));
@@ -37,13 +43,13 @@ export default function ExploreFoodByIng() {
 
   useEffect(() => {
     requestDrinkByIng();
+    setObjectReturnedAfterReq(null);
   }, []);
 
   return (
     <div>
-      {console.log(drinkByIng)}
       {Header('Explorar bebidas por ingredientes', true, true)}
-      {drinkByIng === null ? null : renderGrid(drinkByIng)}
+      {drinkByIng === null ? null : renderGrid(drinkByIng, handleSelectedIng)}
       <Footer />
     </div>
   );

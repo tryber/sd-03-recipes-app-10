@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../../../../../components/Header/Header';
 import Footer from '../../../../../components/Footer/Footer';
-import { getFoodListByIngredient } from '../../../../../services/api';
+import RecipeContext from '../../../../../Context/RecipeContext';
+import { getFoodListByIngredient, getFoodByIngredient } from '../../../../../services/api';
 
 const renderGrid = (recipe, cb) => (
   <div className="food-overflow">
@@ -12,7 +13,7 @@ const renderGrid = (recipe, cb) => (
         className="display-container"
         key={Math.random() * Math.PI}
         data-testid={`${index}-ingredient-card`}
-        to={`/comidas/${el.idIngredient}`}
+        to="/comidas"
       >
         <img
           className="image-display"
@@ -27,13 +28,13 @@ const renderGrid = (recipe, cb) => (
 );
 
 export default function ExploreFoodByIng() {
-  const location = useLocation();
-  const [selectedIng, setSelectedIng] = useState(null);
-  /* Lista de cards */
+  const { setObjectReturnedAfterReq, setComingFromIngredients } = useContext(RecipeContext);
   const [foodByIng, setfoodByIng] = useState(null);
-  const handleSelectedIng = (name) => {
-    setSelectedIng(name);
-    console.log(name, location.pathname);
+  const handleSelectedIng = async (ingredient) => {
+    setComingFromIngredients(true);
+    const foods = getFoodByIngredient(ingredient);
+    const saveFoods = await foods;
+    return setObjectReturnedAfterReq(saveFoods);
   };
   const requestFoodByIng = async () => {
     const reqType = getFoodListByIngredient();
@@ -42,6 +43,7 @@ export default function ExploreFoodByIng() {
 
   useEffect(() => {
     requestFoodByIng();
+    setObjectReturnedAfterReq(null);
   }, []);
 
   return (

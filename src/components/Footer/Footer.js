@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
+import RecipeContext from '../../Context/RecipeContext';
 import './Footer.style.css';
 import exploreIcon from '../../images/exploreIcon.svg';
 import drinkIcon from '../../images/drinkIcon.svg';
@@ -13,6 +14,10 @@ const imageDisplay = (dataTestid, imageClassNameAndAlt, imageSrc) => <img
 />;
 
 export default function Footer() {
+  const { setComingFromIngredients } = useContext(RecipeContext);
+  const handleClick = () => {
+    setComingFromIngredients(false);
+  };
   return (
     <div className="footer-container" data-testid="footer">
       <Link to="/bebidas">
@@ -21,7 +26,7 @@ export default function Footer() {
       <Link to="/explorar">
         {imageDisplay('explore-bottom-btn', 'explore-icon', exploreIcon)}
       </Link>
-      <Link to="/comidas">
+      <Link onClick={handleClick} to="/comidas">
         {imageDisplay('food-bottom-btn', 'meal-icon', mealIcon)}
       </Link>
     </div>
