@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player/youtube';
-import { useHistory } from 'react-router';
+import { useLocation } from 'react-router';
 import functionToMakeRequisition from './funtionToMakeRequisition';
 import ingredientsToshow from './ingredientsToshow';
-import StartButton from './StartButton';
-import Recomendations from './Recomendations';
+import StartButton from './StartButton/StartButton';
+import Recomendations from './Recomendations/Recomendations';
 
 import './Details.style.css';
 import shareIcon from '../../images/shareIcon.svg';
@@ -44,8 +44,8 @@ const detailsToShow = (el, strType, strThumb) => (
 
 export default function Details() {
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
-  const typeRequsition = useHistory().location.pathname.split('/')[1];
-  const itemId = useHistory().location.pathname.split('/')[2];
+  const typeRequsition = useLocation().pathname.split('/')[1];
+  const itemId = useLocation().pathname.split('/')[2];
   useEffect(() => {
     functionToMakeRequisition(
       typeRequsition,
@@ -53,9 +53,10 @@ export default function Details() {
       setObjectReturnedAfterReq,
     );
   }, []);
-
+  console.log(useLocation())
   return objectReturnedAfterReq === null ? null : (
     <div>
+      {typeRequsition}
       {typeRequsition === 'comidas'
         ? objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb'))
         : objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb'))}
