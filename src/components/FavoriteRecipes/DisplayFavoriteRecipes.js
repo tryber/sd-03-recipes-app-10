@@ -4,6 +4,7 @@ import './DisplayFavoriteRecipe.style.css';
 import shareIcon from '../../images/shareIcon.svg';
 import isFavIcon from '../../images/blackHeartIcon.svg';
 
+const allButtonsToFilter = ["All", "Food", "Drinks"];
 
 const removeFromFavorites = (itemId, setLocalStorageFavorites) => {
   const findElementToRemove = JSON.parse(localStorage.getItem('favoriteRecipes'))
@@ -63,10 +64,13 @@ export default function DisplayFavoriteRecipes() {
 
   return (
     localStorageFavorites !== null
-  && localStorageFavorites.map((el, index) =>
-    <div className="favorites-display">
+  && <div>
+  {allButtonsToFilter.map(el=><button className="buttons-filter-display">{el}</button>)}
+  {localStorageFavorites.map((el, index) =>
+  <div className="favorites-display">
       {copied && <p>Link copiado!</p>}
       {renderGrid(el, index, setLocalStorageFavorites, setCopied)}
-    </div>)
+    </div>)}
+  </div>
   );
 }
