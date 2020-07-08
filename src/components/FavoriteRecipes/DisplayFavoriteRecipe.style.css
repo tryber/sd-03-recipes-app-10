@@ -1,3 +1,7 @@
+.buttons-filter-display {
+  margin-top: 58px;
+}
+
 .container-display {
   border-bottom: 1px solid lightgray;
   border-radius: 15px;
@@ -12,8 +16,8 @@
 }
 
 .favorites-display {
-  margin-bottom: -58px;
-  margin-top: 58px;
+  margin-bottom: -82px;
+  margin-top: 82px;
 }
 
 .img-display {
