@@ -19,11 +19,9 @@ export default function ExploreFoodsScreen() {
             Por Local de Origem
           </button>
         </Link>
-        <Link to="/comidas/surprise">
-          <button type="button" data-testid="explore-surprise" className="explore-btn">
-            Me Surpreenda!
-          </button>
-        </Link>
+        <button type="button" data-testid="explore-surprise" className="explore-btn">
+          Me Surpreenda!
+        </button>
       </div>
       <Footer />
     </div>

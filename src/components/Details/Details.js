@@ -9,20 +9,20 @@ import Recomendations from './Recomendations';
 import './Details.style.css';
 import HeartStateAndShareIcon from './HeartStateAndShareIcon';
 
-const detailsToShow = (el, strType, strThumb, typeRequsition, itemId, objectReturnedAfterReq) => (
+const detailsToShow = (el, strType, strThumb) => (
   <div key={Math.random() * Math.PI}>
     <div className="img-container">
       <img data-testid="recipe-photo" className="img" alt={el[strType]} src={el[strThumb]} />
+      <div className="icons-container">
+        <HeartStateAndShareIcon />
+      </div>
     </div>
     <div className="details-container">
       <div className="title-icons-container">
         <div>
-          <h2 className="recipe-title" data-testid="recipe-title">{el[strType]}</h2>
+          <h3 className="recipe-title" data-testid="recipe-title">{el[strType]}</h3>
           <p data-testid="recipe-category">{el.strCategory}</p>
           <p data-testid="recipe-category">{el.strAlcoholic}</p>
-        </div>
-        <div className="icons-container">
-          <HeartStateAndShareIcon />
         </div>
       </div>
       <div className="ing-display">
@@ -45,11 +45,6 @@ const detailsToShow = (el, strType, strThumb, typeRequsition, itemId, objectRetu
         </div>
       )}
       <Recomendations />
-      <StartButton
-        typeRequsition={typeRequsition}
-        itemId={itemId}
-        recipe={objectReturnedAfterReq}
-      />
     </div>
   </div>
 );
@@ -69,8 +64,13 @@ export default function Details() {
   return objectReturnedAfterReq === null ? null : (
     <div>
       {typeRequsition === 'comidas'
-        ? objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb', typeRequsition, itemId, objectReturnedAfterReq))
-        : objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb', typeRequsition, itemId, objectReturnedAfterReq))}
+        ? objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb'))
+        : objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb'))}
+      <StartButton
+        typeRequsition={typeRequsition}
+        itemId={itemId}
+        recipe={objectReturnedAfterReq}
+      />
     </div>
   );
 }

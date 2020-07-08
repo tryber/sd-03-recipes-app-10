@@ -13,11 +13,9 @@ export default function ExploreDrinksScreen() {
             Por Ingredientes
           </button>
         </Link>
-        <Link to="/bebidas/178319">
-          <button type="button" data-testid="explore-surprise" className="explore-btn">
-            Me Surpreenda!
-          </button>
-        </Link>
+        <button type="button" data-testid="explore-surprise" className="explore-btn">
+          Me Surpreenda!
+        </button>
       </div>
       <Footer />
     </div>
