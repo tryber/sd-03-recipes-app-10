@@ -70,19 +70,37 @@ export default function DisplayFavoriteRecipes() {
   );
   const [copied, setCopied] = useState(false);
 
+  const changeFavoriteRecipes = (valueToFilter) => {
+    const localToFilter = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (valueToFilter === 'Food') {
+      return setLocalStorageFavorites(localToFilter.filter((el) => el.type === 'comida'));
+    }
+    if (valueToFilter === 'Drink') {
+      return setLocalStorageFavorites(localToFilter.filter((el) => el.type === 'bebida'));
+    }
+    return setLocalStorageFavorites(localToFilter);
+  };
+
   return (
-    localStorageFavorites !== null && (
-      <div>
-        {allButtonsToFilter.map((el) => (
-          <button type="button" className="buttons-filter-display">{el}</button>
-        ))}
-        {localStorageFavorites.map((el, index) => (
-          <div className="favorites-display">
-            {copied && <p>Link copiado!</p>}
-            {renderGrid(el, index, setLocalStorageFavorites, setCopied)}
-          </div>
-        ))}
+    localStorageFavorites !== null
+  && (
+  <div>
+    {allButtonsToFilter.map((el) => (
+      <button
+        type="button"
+        className="buttons-filter-display"
+        onClick={() => changeFavoriteRecipes(el)}
+      >
+        {el}
+      </button>
+    ))}
+    {localStorageFavorites.map((el, index) => (
+      <div className="favorites-display">
+        {copied && <p>Link copiado!</p>}
+        {renderGrid(el, index, setLocalStorageFavorites, setCopied)}
       </div>
-    )
+    ))}
+  </div>
+  )
   );
 }

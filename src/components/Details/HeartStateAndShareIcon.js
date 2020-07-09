@@ -25,10 +25,10 @@ const setObjInLocalStorage = (accessObj, stringObject, type, objectReturnedAfter
     newArray.push(objectReturnedAfterReq[accessObj].map((el) => JSON.stringify([
       allFavorited.push({
         id: el[`id${stringObject}`],
-        type: el.type,
+        type,
         category: el.strCategory,
-        alcoholicOrNot: el.strAlcoholic,
-        area: el.strArea,
+        alcoholicOrNot: el.strAlcoholic ? el.strAlcoholic : '',
+        area: el.strArea ? el.strArea : '',
         name: el[`str${stringObject}`],
         image: el[`str${stringObject}Thumb`],
       }),
@@ -37,10 +37,10 @@ const setObjInLocalStorage = (accessObj, stringObject, type, objectReturnedAfter
   }
   newArray.push(objectReturnedAfterReq[accessObj].map((el) => JSON.stringify([{
     id: el[`id${stringObject}`],
-    type: el.type,
-    area: el.strArea,
+    type,
+    area: el.strArea ? el.strArea : '',
     category: el.strCategory,
-    alcoholicOrNot: el.strAlcoholic,
+    alcoholicOrNot: el.strAlcoholic ? el.strAlcoholic : '',
     name: el[`str${stringObject}`],
     image: el[`str${stringObject}Thumb`],
   }])));
