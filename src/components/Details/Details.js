@@ -45,7 +45,6 @@ const detailsToShow = (el, strType, strThumb) => (
           />
         </div>
       )}
-      <Recomendations />
     </div>
   </div>
 );

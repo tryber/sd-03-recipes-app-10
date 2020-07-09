@@ -18,7 +18,7 @@ const Recomendations = () => {
   console.log(recomendetions);
   return (
     <div className="recomendation-container">
-      {!!recomendetions && recomendetions[key].map((item, index) => (index < 6
+      {!!recomendetions && recomendetions[key].map((item, index) => index < 6
         && (
         <div
           key={Math.random()}
@@ -37,8 +37,7 @@ const Recomendations = () => {
             </div>
           </Link>
         </div>
-        )
-      ))}
+        ))}
     </div>
   );
 };
