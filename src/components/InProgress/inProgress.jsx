@@ -17,6 +17,8 @@ const InProgress = () => {
     typeRequsition,
     doesObjPathExists,
     setData,
+    setDones,
+    localStoragePath,
   } = useContext(InProgressContext);
   useEffect(() => {
     functionToMakeRequisition(
@@ -25,18 +27,20 @@ const InProgress = () => {
       setData,
     );
   }, []);
-
-  useEffect(() => {}, [inProgressRecipes]);
+  useEffect(() => {
+  }, [dones]);
   if (data === null) return (<h1>Loading...</h1>);
   const drinksOrMeals = typeRequsition === 'comidas' ? 'meals' : 'drinks';
   return (
     <>
+      {!!data && (
       <Details
         data={data[drinksOrMeals][0]}
         str={typeRequsition === 'comidas' ? 'strMeal' : 'strDrink'}
       >
         <Checkboxes />
       </Details>
+      )}
       <FinishButton
         dones={dones}
         ingredientsQuantity={doesObjPathExists && inProgressRecipes[localKey][itemId].length}

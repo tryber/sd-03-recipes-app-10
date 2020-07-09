@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './StartButton.style.css';
+import InProgressContext from '../../../Context/InProgressContext';
 
 const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
 
@@ -13,7 +14,8 @@ const saveInProgressRecipes = (key, id, doesObjPathExists) => {
       JSON.stringify({ [key]: { [id]: [] } }),
     );
   }
-  if (!doesObjPathExists) {
+  console.log('doesObjPathExists:', doesObjPathExists);
+  if (doesObjPathExists && console.log('doesObjPathExists():', doesObjPathExists())) {
     return localStorage.setItem(
       'inProgressRecipes',
       JSON.stringify({
@@ -26,32 +28,28 @@ const saveInProgressRecipes = (key, id, doesObjPathExists) => {
 };
 
 const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
-const isRecipeDone = (id) => (doneRecipes || []).some((e) => e.id === id);
+const isRecipeDone = (id) => doneRecipes?.id && doneRecipes.some((e) => e.id === id);
 
-const isRecipeInProgress = (doesObjPathExists) => (
-  inProgressRecipes && doesObjPathExists);
 
-const text = (id, typeRequsition, inProgressKey, doesObjPathExists) => {
-  console.log('id, typeRequsition, isRecipeInProgress(id, typeRequsition, inProgressKey):', id, typeRequsition, isRecipeInProgress(id, typeRequsition, inProgressKey));
-  console.log('doesObjPathExists', doesObjPathExists);
-  if (isRecipeInProgress(id, typeRequsition, inProgressKey)) return 'Continuar Receita';
-  if (!isRecipeDone(id) && !isRecipeInProgress(id, typeRequsition, inProgressKey)) return 'Iniciar Receita';
-  return null;
+const text = (id, typeRequsition, inProgressKey, localStoragePath) => {
+  if (localStoragePath !== [] && !!localStoragePath) return 'Continuar Receita';
+  if (isRecipeDone === undefined) return null;
+  return 'Iniciar Receita';
 };
 
 export default function StartButton() {
+  const { localStoragePath } = useContext(InProgressContext);
+  const isRecipeInProgress = 
+  inProgressRecipes && localStoragePath;
   const typeRequsition = useLocation().pathname.split('/')[1];
   const id = useLocation().pathname.split('/')[2];
   const inProgressKey = (typeRequsition === 'comidas' ? 'meals' : 'cocktails');
-  const doesObjPathExists = !!inProgressRecipes && inProgressRecipes !== []
-  && !!inProgressRecipes[inProgressKey] && inProgressRecipes[inProgressKey][id];
 
   useEffect(() => {
-    console.log('ussing effect', inProgressRecipes);
-    // text(id, typeRequsition, inProgressKey, doesObjPathExists);
-  }, [isRecipeDone, isRecipeInProgress]);
+    console.log(doneRecipes?.id)
 
-  console.log('id:', id);
+  }, [doneRecipes, inProgressRecipes]);
+
   return !isRecipeDone(id) && (
     <Link to={{ pathname: `/${typeRequsition}/${id}/in-progress` }}>
       <button
@@ -62,12 +60,13 @@ export default function StartButton() {
           margin: '5px',
           textAalign: 'center',
           width: '100vw',
+          display: isRecipeInProgress
         }}
         data-testid="start-recipe-btn"
         type="button"
-        onClick={() => saveInProgressRecipes(inProgressKey, id, doesObjPathExists)}
+        onClick={() => saveInProgressRecipes([])}
       >
-        {text(id, typeRequsition, inProgressKey, doesObjPathExists)}
+        {text(id, typeRequsition, inProgressKey, localStoragePath)}
       </button>
     </Link>
   );

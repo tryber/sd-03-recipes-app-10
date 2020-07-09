@@ -19,7 +19,8 @@ export const ingredients = (recipeObj) => {
 };
 const toggleCheckbox = (index, dones, setDones) => {
   if (!dones) return setDones([index]);
-  if (!!dones && dones.includes(index)) {
+
+  if (dones.includes(index)) {
     return setDones(
       (prev) => [
         ...prev.slice(0, prev.indexOf(index)),
@@ -27,22 +28,26 @@ const toggleCheckbox = (index, dones, setDones) => {
       ],
     );
   }
-  return setDones((prevDones) => [...prevDones, index]);
+  console.log('toggleCheckbox:', index);
+  return setDones((prevDones) => {
+    console.log(prevDones);
+    return ([...prevDones, index]);
+  });
 };
 
 export default function Checkboxes() {
   const {
-    doesObjPathExists, saveInProgress, requestKey, setDones, data, dones,
+    saveInProgress, requestKey, setDones, data, dones,
   } = useContext(InProgressContext);
+
   useEffect(() => {
-    console.log('using effect check box', doesObjPathExists);
-    if (!doesObjPathExists) {
-      saveInProgress([]);
+    if (!!dones && dones !== []) {
+      saveInProgress([...dones]);
     }
-  }, []);
+  }, [toggleCheckbox]);
+
   return data ? (
     <div style={{ display: 'grid' }}>
-      {console.log(requestKey)}
       {!!data[requestKey][0] && ingredients(data[requestKey][0]).map((e, index) => (
         <label
           className={!!dones && dones.includes(index) ? 'crossed' : 'not-crossed'}

@@ -5,6 +5,7 @@ import functionToMakeRequisition from './funtionToMakeRequisition';
 import ingredientsToshow from './ingredientsToshow';
 import StartButton from './StartButton/StartButton';
 import Recomendations from './Recomendations/Recomendations';
+import InProgressProvider from '../../Context/InProgressProvider';
 
 import './Details.style.css';
 import shareIcon from '../../images/shareIcon.svg';
@@ -60,11 +61,13 @@ export default function Details() {
         ? objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb'))
         : objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb'))}
       <Recomendations />
-      <StartButton
-        typeRequsition={typeRequsition}
-        itemId={itemId}
-        recipe={objectReturnedAfterReq}
-      />
+      <InProgressProvider>
+        <StartButton
+          typeRequsition={typeRequsition}
+          itemId={itemId}
+          recipe={objectReturnedAfterReq}
+        />
+      </InProgressProvider>
     </div>
   );
 }
