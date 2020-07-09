@@ -51,7 +51,7 @@ const detailsToShow = (el, strType, strThumb) => (
 );
 
 // const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
-// const checkObjectToMap = (objectReturnedAfterReq) => ((firstKey(objectReturnedAfterReq) === 
+// const checkObjectToMap = (objectReturnedAfterReq) => ((firstKey(objectReturnedAfterReq) ===
 // 'meals' && useHistory().location.pathname.split('/')[1] === 'comidas')
 //  || (firstKey(objectReturnedAfterReq) === 'drinks' && useHistory()
 // .location.pathname.split('/')[1] === 'bebidas'));
