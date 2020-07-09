@@ -36,7 +36,7 @@ const text = (localStoragePath) => {
 
 export default function StartButton() {
   const { localStoragePath } = useContext(InProgressContext);
-  const isRecipeInProgress = inProgressRecipes && localStoragePath;
+  // const isRecipeInProgress = inProgressRecipes && localStoragePath;
   const typeRequsition = useLocation().pathname.split('/')[1];
   const id = useLocation().pathname.split('/')[2];
 
