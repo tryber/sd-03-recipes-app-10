@@ -6,16 +6,14 @@ import Checkboxes from './Checkboxes';
 
 import FinishButton from './FinishButton';
 
-const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
 
 const InProgress = () => {
   const {
     dones,
     data,
     itemId,
-    localKey,
     typeRequsition,
-    doesObjPathExists,
+    localStoragePath,
     setData,
   } = useContext(InProgressContext);
   useEffect(() => {
@@ -30,7 +28,7 @@ const InProgress = () => {
   if (data === null) return (<h1>Loading...</h1>);
   const drinksOrMeals = typeRequsition === 'comidas' ? 'meals' : 'drinks';
   return (
-    <>
+    <div>
       {!!data && (
       <Details
         data={data[drinksOrMeals][0]}
@@ -41,9 +39,9 @@ const InProgress = () => {
       )}
       <FinishButton
         dones={dones}
-        ingredientsQuantity={doesObjPathExists && inProgressRecipes[localKey][itemId].length}
+        ingredientsQuantity={!!localStoragePath && localStoragePath}
       />
-    </>
+    </div>
   );
 };
 

@@ -28,10 +28,9 @@ const saveInProgressRecipes = (key, id, doesObjPathExists) => {
 };
 
 const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
-const isRecipeDone = (id) => doneRecipes?.id && doneRecipes.some((e) => e.id === id);
+const isRecipeDone = (id) => doneRecipes[id] && doneRecipes.some((e) => e.id === id);
 
-
-const text = (id, typeRequsition, inProgressKey, localStoragePath) => {
+const text = (localStoragePath) => {
   if (localStoragePath !== [] && !!localStoragePath) return 'Continuar Receita';
   if (isRecipeDone === undefined) return null;
   return 'Iniciar Receita';
@@ -39,15 +38,11 @@ const text = (id, typeRequsition, inProgressKey, localStoragePath) => {
 
 export default function StartButton() {
   const { localStoragePath } = useContext(InProgressContext);
-  const isRecipeInProgress = 
-  inProgressRecipes && localStoragePath;
+  const isRecipeInProgress = inProgressRecipes && localStoragePath;
   const typeRequsition = useLocation().pathname.split('/')[1];
   const id = useLocation().pathname.split('/')[2];
-  const inProgressKey = (typeRequsition === 'comidas' ? 'meals' : 'cocktails');
 
   useEffect(() => {
-    console.log(doneRecipes?.id)
-
   }, [doneRecipes, inProgressRecipes]);
 
   return !isRecipeDone(id) && (
@@ -60,13 +55,13 @@ export default function StartButton() {
           margin: '5px',
           textAalign: 'center',
           width: '100vw',
-          display: isRecipeInProgress
+          display: isRecipeInProgress,
         }}
         data-testid="start-recipe-btn"
         type="button"
         onClick={() => saveInProgressRecipes([])}
       >
-        {text(id, typeRequsition, inProgressKey, localStoragePath)}
+        {text(localStoragePath)}
       </button>
     </Link>
   );

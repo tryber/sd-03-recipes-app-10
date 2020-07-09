@@ -34,10 +34,10 @@ const InProgressProvider = ({ children }) => {
   const typeRequsition = useLocation().pathname.split('/')[1];
   const localKey = typeRequsition === 'comidas' ? 'meals' : 'cocktails';
   const requestKey = (typeRequsition === 'comidas' ? 'meals' : 'drinks');
-  const localStoragePath = inProgressRecipes?.[localKey]?.[itemId];
+  const localStoragePath = !!inProgressRecipes && !!inProgressRecipes[localKey] && !!inProgressRecipes[localKey][itemId] && inProgressRecipes[localKey][itemId];
 
   const [data, setData] = useState(null);
-  const [dones, setDones] = useState(!!localStoragePath ? [...localStoragePath] : []);
+  const [dones, setDones] = useState(localStoragePath ? [...localStoragePath] : []);
 
   const context = ({
     dones,
