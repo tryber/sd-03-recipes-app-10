@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './FoodsAndDrinksDisplay.style.css';
 import RecipeContext from '../../Context/RecipeContext';
 import { getFoodByCategory, getDrinkByCategory } from '../../services/api';
@@ -20,15 +20,16 @@ export const searchByCategorie = async (
 };
 
 const renderGrid = (recipe, stringObject, imgDisplay) => (
+
   <div className="item-overflow">
     {recipe[firstKey(recipe)].map(
       (el, index) => index < 12 && (
       <Link
-        className="container-display"
+        className="food-cards-display"
         key={Math.random() * Math.PI}
         data-testid={`${index}-recipe-card`}
         to={(firstKey(recipe) === 'meals' && `/comidas/${el.idMeal}`)
-              || (firstKey(recipe) === 'drinks' && `/bebidas/${el.idDrink}`)}
+        || (firstKey(recipe) === 'drinks' && `/bebidas/${el.idDrink}`)}
       >
         <img
           className="img-display"
@@ -49,30 +50,28 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
     objectReturnedAfterReq,
     setObjectReturnedAfterReq,
     showSearchBar,
+    comingFromIngredients,
   } = useContext(RecipeContext);
 
   const functionToMakeRequisition = async () => {
     await searchByCategorie(
-      valueToFilter,
-      setObjectReturnedAfterReq,
-      getitemDefined,
-      objectReturnedAfterReq,
+      valueToFilter, setObjectReturnedAfterReq, getitemDefined, objectReturnedAfterReq,
     );
   };
 
   useEffect(() => {
-    functionToMakeRequisition();
-  }, [valueToFilter]);
+    if (comingFromIngredients === false) functionToMakeRequisition();
+  }, [valueToFilter, comingFromIngredients]);
 
   useEffect(
     () => () => {
       showSearchBar(false);
+      setObjectReturnedAfterReq(null);
     },
     [],
   );
 
   const renderDisplay = () => {
-    const comidasOuBebidas = window.location.pathname.split('/')[1];
     const firstKeyValue = !!objectReturnedAfterReq
     && objectReturnedAfterReq[firstKey(objectReturnedAfterReq)];
     switch (true) {
@@ -81,8 +80,6 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
       case firstKeyValue === null:
         functionToMakeRequisition();
         return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-      case firstKeyValue.length === 1:
-        return <Redirect to={`/${comidasOuBebidas}/${firstKeyValue[0][comidasOuBebidas.includes('comidas') ? 'idMeal' : 'idDrink']}`} />;
       default:
         return renderGrid(objectReturnedAfterReq, stringObject, imgDisplay);
     }

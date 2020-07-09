@@ -26,8 +26,8 @@ const Login = () => {
 
   return (
     <div style={{ margin: 'auto', height: '640px', display: 'flex' }}>
-      <form style={{ margin: 'auto', display: 'flex', flexDirection: 'column' }}>
-        <h1 className="app-name">{" Bon APP'étit! "}</h1>
+      <form className="form-container">
+        <h1 className="app-name">{" Bon App'étit! "}</h1>
         <input
           className="login-and-pass-input"
           data-testid="email-input"

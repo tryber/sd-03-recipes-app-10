@@ -17,11 +17,7 @@ const InProgress = () => {
     setData,
   } = useContext(InProgressContext);
   useEffect(() => {
-    functionToMakeRequisition(
-      typeRequsition,
-      itemId,
-      setData,
-    );
+    functionToMakeRequisition(typeRequsition, itemId, setData);
   }, []);
   useEffect(() => {
   }, [dones]);
