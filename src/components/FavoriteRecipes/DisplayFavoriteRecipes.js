@@ -7,18 +7,23 @@ import isFavIcon from '../../images/blackHeartIcon.svg';
 const allButtonsToFilter = ['All', 'Food', 'Drinks'];
 
 const removeFromFavorites = (itemId, setLocalStorageFavorites) => {
-  const findElementToRemove = JSON.parse(localStorage.getItem('favoriteRecipes'))
-    .filter((el) => el.id !== itemId);
+  const findElementToRemove = JSON.parse(localStorage.getItem('favoriteRecipes')).filter(
+    (el) => el.id !== itemId,
+  );
   localStorage.setItem('favoriteRecipes', JSON.stringify(findElementToRemove));
   setLocalStorageFavorites(findElementToRemove);
 };
 
 const copyToClipBoard = (itemLink, setCopied) => {
   navigator.clipboard.writeText(`http://localhost:3000${itemLink}`);
-  navigator.clipboard.readText().then((el) => el === `http://localhost:3000${itemLink}` &&
-  setCopied(true)).then(setTimeout(() => {
-    setCopied(false);
-  }, 2000));
+  navigator.clipboard
+    .readText()
+    .then((el) => el === `http://localhost:3000${itemLink}` && setCopied(true))
+    .then(
+      setTimeout(() => {
+        setCopied(false);
+      }, 2000),
+    );
 };
 
 const renderGrid = (recipe, index, setLocalStorageFavorites, setCopied) => (
@@ -26,14 +31,12 @@ const renderGrid = (recipe, index, setLocalStorageFavorites, setCopied) => (
     <Link
       key={Math.random() * Math.PI}
       data-testid={`${index}-recipe-card`}
-      to={(recipe.type === 'comida' && `/comidas/${recipe.id}`)
-            || (recipe.type === 'bebida' && `/bebidas/${recipe.id}`)}
+      to={
+        (recipe.type === 'comida' && `/comidas/${recipe.id}`)
+        || (recipe.type === 'bebida' && `/bebidas/${recipe.id}`)
+      }
     >
-      <img
-        className="img-display"
-        src={recipe.image}
-        alt={recipe.name}
-      />
+      <img className="img-display" src={recipe.image} alt={recipe.name} />
       <h3>{recipe.name}</h3>
       <h3>{recipe.category}</h3>
       <h3>{recipe.area}</h3>
@@ -43,8 +46,11 @@ const renderGrid = (recipe, index, setLocalStorageFavorites, setCopied) => (
         data-testid="share-btn"
         type="image"
         src={shareIcon}
-        onClick={() => copyToClipBoard((recipe.type === 'comida' && `/comidas/${recipe.id}`)
-        || (recipe.type === 'bebida' && `/bebidas/${recipe.id}`), setCopied)}
+        onClick={() => copyToClipBoard(
+          (recipe.type === 'comida' && `/comidas/${recipe.id}`)
+              || (recipe.type === 'bebida' && `/bebidas/${recipe.id}`),
+          setCopied,
+        )}
         alt="share-button"
       />
       <input
@@ -59,7 +65,9 @@ const renderGrid = (recipe, index, setLocalStorageFavorites, setCopied) => (
 );
 
 export default function DisplayFavoriteRecipes() {
-  const [localStorageFavorites, setLocalStorageFavorites] = useState(JSON.parse(localStorage.getItem('favoriteRecipes')));
+  const [localStorageFavorites, setLocalStorageFavorites] = useState(
+    JSON.parse(localStorage.getItem('favoriteRecipes')),
+  );
   const [copied, setCopied] = useState(false);
 
   const changeFavoriteRecipes = (valueToFilter) => {
@@ -75,18 +83,24 @@ export default function DisplayFavoriteRecipes() {
 
   return (
     localStorageFavorites !== null
-  && <div>
-    {allButtonsToFilter.map((el) => <button
-      className="buttons-filter-display"
-      onClick={() => changeFavoriteRecipes(el)}
-    >
-      {el}
-    </button>)}
-    {localStorageFavorites.map((el, index) =>
+  && (
+  <div>
+    {allButtonsToFilter.map((el) => (
+      <button
+        type="button"
+        className="buttons-filter-display"
+        onClick={() => changeFavoriteRecipes(el)}
+      >
+        {el}
+      </button>
+    ))}
+    {localStorageFavorites.map((el, index) => (
       <div className="favorites-display">
         {copied && <p>Link copiado!</p>}
         {renderGrid(el, index, setLocalStorageFavorites, setCopied)}
-      </div>)}
+      </div>
+    ))}
   </div>
+  )
   );
 }

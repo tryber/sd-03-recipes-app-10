@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Header from '../../../../components/Header/Header';
 import Footer from '../../../../components/Footer/Footer';
 import { getRandomDrink } from '../../../../services/api';
-// import RecipeContext from '../../../../Context/RecipeContext';
 
 const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
 

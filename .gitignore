@@ -23,7 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 .vscode
-
+package-lock.json
+yarn.lock
 
 cypress/screenshots/
 cypress/videos/
