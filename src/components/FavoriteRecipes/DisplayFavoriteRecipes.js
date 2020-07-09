@@ -62,12 +62,12 @@ const renderGrid = (recipe, index, setLocalStorageFavorites, setCopied) => (
         (recipe.type === 'comida' && `/comidas/${recipe.id}`)
         || (recipe.type === 'bebida' && `/bebidas/${recipe.id}`)
       }
-    >
+      >
+      <h3>{recipe.alcoholicOrNot}</h3>
+      <h3>{recipe.area}</h3>
       <img data-testid={`${index}-horizontal-image`} className="img-display" src={recipe.image} alt={recipe.name} />
       <h3 data-testid={`${index}-horizontal-name`}>{recipe.name}</h3>
       <h3 data-testid={`${index}-horizontal-top-text`}>{recipe.category}</h3>
-      <h3>{recipe.alcoholicOrNot}</h3>
-      <h3>{recipe.area}</h3>
     </Link>
     <div className="icons-favorites-page">
       <input
