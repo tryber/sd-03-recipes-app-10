@@ -69,6 +69,8 @@ describe('A lista de ingredientes deve conter um checkbox para cada um dos items
 });
 
 describe('Ao clicar no checkbox de um ingrediente, o nome dele deve ser "riscado" da lista', () => {
+  const getIngredients = () => cy.get('[data-testid*="ingredient-step"]').find('input[type="checkbox"]');
+
   it('verifica se é possível marcar todos os passos da receita de comida', () => {
     cy.visit('http://localhost:3000/comidas/52771/in-progress', {
       onBeforeLoad(win) {
@@ -76,10 +78,9 @@ describe('Ao clicar no checkbox de um ingrediente, o nome dele deve ser "riscado
       },
     });
 
-    cy.get('[data-testid*="ingredient-step"]')
-      .find('input[type="checkbox"]')
-      .check()
-      .should('have.css', 'text-decoration', 'none solid rgb(0, 0, 0)');
+    getIngredients().check();
+
+    getIngredients().should('have.css', 'text-decoration', 'none solid rgb(0, 0, 0)');
   });
 
   it('verifica se é possível marcar todos os passos da receita de bebida', () => {
@@ -89,10 +90,9 @@ describe('Ao clicar no checkbox de um ingrediente, o nome dele deve ser "riscado
       },
     });
 
-    cy.get('[data-testid*="ingredient-step"]')
-      .find('input[type="checkbox"]')
-      .check()
-      .should('have.css', 'text-decoration', 'none solid rgb(0, 0, 0)');
+    getIngredients().check();
+
+    getIngredients().should('have.css', 'text-decoration', 'none solid rgb(0, 0, 0)');
   });
 });
 
@@ -104,9 +104,7 @@ describe('O estado do progresso deve ser mantido caso a pessoa atualize a pagina
       },
     });
 
-    cy.get('[data-testid="0-ingredient-step"]')
-      .find('input[type="checkbox"]')
-      .check();
+    cy.get('[data-testid="0-ingredient-step"]').find('input[type="checkbox"]').check();
 
     cy.reload();
 
@@ -122,9 +120,7 @@ describe('O estado do progresso deve ser mantido caso a pessoa atualize a pagina
       },
     });
 
-    cy.get('[data-testid="0-ingredient-step"]')
-      .find('input[type="checkbox"]')
-      .check();
+    cy.get('[data-testid="0-ingredient-step"]').find('input[type="checkbox"]').check();
 
     cy.reload();
 
@@ -167,8 +163,10 @@ describe('A mesma lógica de favoritar e compartilhar da tela de detalhes de uma
     cy.get('[data-testid="share-btn"]').click();
     cy.contains('Link copiado!');
     cy.window().then((win) => {
-      cy.wrap(win.navigator.clipboard.readText())
-        .should('eq', 'http://localhost:3000/comidas/52771');
+      cy.wrap(win.navigator.clipboard.readText()).should(
+        'eq',
+        'http://localhost:3000/comidas/52771',
+      );
     });
   });
 
@@ -182,23 +180,27 @@ describe('A mesma lógica de favoritar e compartilhar da tela de detalhes de uma
     cy.get('[data-testid="share-btn"]').click();
     cy.contains('Link copiado!');
     cy.window().then((win) => {
-      cy.wrap(win.navigator.clipboard.readText())
-        .should('eq', 'http://localhost:3000/bebidas/178319');
+      cy.wrap(win.navigator.clipboard.readText()).should(
+        'eq',
+        'http://localhost:3000/bebidas/178319',
+      );
     });
   });
 
   it('verifica comida favoritada', () => {
     cy.visit('http://localhost:3000/comidas/52771/in-progress', {
       onBeforeLoad(win) {
-        const favoriteRecipes = [{
-          "id": "52771",
-          "type": "comida",
-          "area": "Italian",
-          "category": "Vegetarian",
-          "alcoholicOrNot": "",
-          "name": "Spicy Arrabiata Penne",
-          "image": "https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg",
-        }];
+        const favoriteRecipes = [
+          {
+            id: '52771',
+            type: 'comida',
+            area: 'Italian',
+            category: 'Vegetarian',
+            alcoholicOrNot: '',
+            name: 'Spicy Arrabiata Penne',
+            image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
+          },
+        ];
         localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
         win.fetch = fetchMock;
       },
@@ -224,15 +226,17 @@ describe('A mesma lógica de favoritar e compartilhar da tela de detalhes de uma
   it('verifica bebida favoritada', () => {
     cy.visit('http://localhost:3000/bebidas/178319/in-progress', {
       onBeforeLoad(win) {
-        const favoriteRecipes = [{
-          "id": "178319",
-          "type": "bebida",
-          "area": "",
-          "category": "Cocktail",
-          "alcoholicOrNot": "Alcoholic",
-          "name": "Aquamarine",
-          "image": "https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg",
-        }];
+        const favoriteRecipes = [
+          {
+            id: '178319',
+            type: 'bebida',
+            area: '',
+            category: 'Cocktail',
+            alcoholicOrNot: 'Alcoholic',
+            name: 'Aquamarine',
+            image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
+          },
+        ];
         localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
         win.fetch = fetchMock;
       },
@@ -276,15 +280,17 @@ describe('A mesma lógica de favoritar e compartilhar da tela de detalhes de uma
   it('desfavorita comida', () => {
     cy.visit('http://localhost:3000/comidas/52771/in-progress', {
       onBeforeLoad(win) {
-        const favoriteRecipes = [{
-          "id": "52771",
-          "type": "comida",
-          "area": "Italian",
-          "category": "Vegetarian",
-          "alcoholicOrNot": "",
-          "name": "Spicy Arrabiata Penne",
-          "image": "https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg",
-        }];
+        const favoriteRecipes = [
+          {
+            id: '52771',
+            type: 'comida',
+            area: 'Italian',
+            category: 'Vegetarian',
+            alcoholicOrNot: '',
+            name: 'Spicy Arrabiata Penne',
+            image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
+          },
+        ];
         localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
         win.fetch = fetchMock;
       },
@@ -322,15 +328,17 @@ describe('A mesma lógica de favoritar e compartilhar da tela de detalhes de uma
   it('desfavorita bebida', () => {
     cy.visit('http://localhost:3000/bebidas/178319/in-progress', {
       onBeforeLoad(win) {
-        const favoriteRecipes = [{
-          "id": "178319",
-          "type": "bebida",
-          "area": "",
-          "category": "Cocktail",
-          "alcoholicOrNot": "Alcoholic",
-          "name": "Aquamarine",
-          "image": "https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg",
-        }];
+        const favoriteRecipes = [
+          {
+            id: '178319',
+            type: 'bebida',
+            area: '',
+            category: 'Cocktail',
+            alcoholicOrNot: 'Alcoholic',
+            name: 'Aquamarine',
+            image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
+          },
+        ];
         localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
         win.fetch = fetchMock;
       },
@@ -354,23 +362,25 @@ describe('A mesma lógica de favoritar e compartilhar da tela de detalhes de uma
       },
     });
 
-    cy.get('[data-testid="favorite-btn"]').click().then(() => {
-      const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
-      const expectedFavoriteRecipes = [
-        {
-          id: '52771',
-          type: 'comida',
-          area: 'Italian',
-          category: 'Vegetarian',
-          alcoholicOrNot: '',
-          name: 'Spicy Arrabiata Penne',
-          image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
-        },
-      ];
+    cy.get('[data-testid="favorite-btn"]')
+      .click()
+      .then(() => {
+        const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+        const expectedFavoriteRecipes = [
+          {
+            id: '52771',
+            type: 'comida',
+            area: 'Italian',
+            category: 'Vegetarian',
+            alcoholicOrNot: '',
+            name: 'Spicy Arrabiata Penne',
+            image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
+          },
+        ];
 
-      expect(favoriteRecipes).to.deep.eq(expectedFavoriteRecipes);
-      localStorage.clear();
-    });
+        expect(favoriteRecipes).to.deep.eq(expectedFavoriteRecipes);
+        localStorage.clear();
+      });
   });
 
   it('favorita receita de uma bebida', () => {
@@ -380,23 +390,25 @@ describe('A mesma lógica de favoritar e compartilhar da tela de detalhes de uma
       },
     });
 
-    cy.get('[data-testid="favorite-btn"]').click().then(() => {
-      const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
-      const expectedFavoriteRecipes = [
-        {
-          id: '178319',
-          type: 'bebida',
-          area: '',
-          category: 'Cocktail',
-          alcoholicOrNot:  'Alcoholic',
-          name: 'Aquamarine',
-          image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
-        },
-      ];
+    cy.get('[data-testid="favorite-btn"]')
+      .click()
+      .then(() => {
+        const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+        const expectedFavoriteRecipes = [
+          {
+            id: '178319',
+            type: 'bebida',
+            area: '',
+            category: 'Cocktail',
+            alcoholicOrNot: 'Alcoholic',
+            name: 'Aquamarine',
+            image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
+          },
+        ];
 
-      expect(favoriteRecipes).to.deep.eq(expectedFavoriteRecipes);
-      localStorage.clear();
-    });
+        expect(favoriteRecipes).to.deep.eq(expectedFavoriteRecipes);
+        localStorage.clear();
+      });
   });
 });
 
@@ -408,10 +420,7 @@ describe('O botão de finalizar receita só pode estar habilitado quando todos o
       },
     });
 
-    cy.get('[data-testid*="ingredient-step"]')
-      .find('input[type="checkbox"]')
-      .first()
-      .check();
+    cy.get('[data-testid*="ingredient-step"]').find('input[type="checkbox"]').first().check();
     cy.get('[data-testid="finish-recipe-btn"]').should('be.disabled');
   });
 
@@ -422,10 +431,7 @@ describe('O botão de finalizar receita só pode estar habilitado quando todos o
       },
     });
 
-    cy.get('[data-testid*="ingredient-step"]')
-      .find('input[type="checkbox"]')
-      .first()
-      .check();
+    cy.get('[data-testid*="ingredient-step"]').find('input[type="checkbox"]').first().check();
     cy.get('[data-testid="finish-recipe-btn"]').should('be.disabled');
   });
 
@@ -436,9 +442,7 @@ describe('O botão de finalizar receita só pode estar habilitado quando todos o
       },
     });
 
-    cy.get('[data-testid*="ingredient-step"]')
-      .find('input[type="checkbox"]')
-      .check();
+    cy.get('[data-testid*="ingredient-step"]').find('input[type="checkbox"]').check();
     cy.get('[data-testid="finish-recipe-btn"]').should('be.enabled');
   });
 
@@ -449,9 +453,7 @@ describe('O botão de finalizar receita só pode estar habilitado quando todos o
       },
     });
 
-    cy.get('[data-testid*="ingredient-step"]')
-      .find('input[type="checkbox"]')
-      .check();
+    cy.get('[data-testid*="ingredient-step"]').find('input[type="checkbox"]').check();
     cy.get('[data-testid="finish-recipe-btn"]').should('be.enabled');
   });
 });
@@ -464,9 +466,7 @@ describe('Após clicar no botão "Finalizar receita", a rota deve mudar para a p
       },
     });
 
-    cy.get('[data-testid*="ingredient-step"]')
-      .find('input[type="checkbox"]')
-      .check();
+    cy.get('[data-testid*="ingredient-step"]').find('input[type="checkbox"]').check();
     cy.get('[data-testid="finish-recipe-btn"]').click();
     cy.location().should((loc) => expect(loc.pathname).to.eq('/receitas-feitas'));
   });
@@ -478,9 +478,7 @@ describe('Após clicar no botão "Finalizar receita", a rota deve mudar para a p
       },
     });
 
-    cy.get('[data-testid*="ingredient-step"]')
-      .find('input[type="checkbox"]')
-      .check();
+    cy.get('[data-testid*="ingredient-step"]').find('input[type="checkbox"]').check();
     cy.get('[data-testid="finish-recipe-btn"]').click();
     cy.location().should((loc) => expect(loc.pathname).to.eq('/receitas-feitas'));
   });

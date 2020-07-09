@@ -6,10 +6,13 @@
 
 .area-select {
   background: none;
+  background-color: white;
   border: none;
-  border-bottom: 1px solid lightgray;
+  border-radius: 15px;
+  box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);
   color: #333;
   height: 30px;
+  padding: 5px;
   width: 300px;
 }
 
@@ -19,21 +22,17 @@
 }
 
 .display-container {
-  border-bottom: 1px solid lightgray;
+  background-color: white;
   border-radius: 15px;
-  box-shadow: 0 11px 18px -18px rgba(0, 0, 0, 0.795);
+  box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);
   display: flex;
   flex-direction: row;
-  margin-bottom: 10px;
-  padding: 15px;
-}
-
-.container-display:last-child {
-  border: none;
-  box-shadow: 0 11px 18px -18px rgba(0, 0, 0, 0.795);
+  margin-bottom: 15px;
 }
 
 .image-display {
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
   height: 120px;
   width: 160px;
 }
@@ -54,6 +53,5 @@ h3 {
 }
 
 a {
-  color: rgb(73, 72, 72);
   text-decoration: none;
 }

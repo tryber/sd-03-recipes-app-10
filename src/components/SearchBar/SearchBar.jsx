@@ -3,40 +3,41 @@ import './SearchBar.style.css';
 import * as Api from '../../services/api';
 import RecipeContext from '../../Context/RecipeContext';
 
-const filterFoodLogic = async (category, text, setObjectReturnedAfterReq) => {
-  if (category === 'Ingrediente') {
-    setObjectReturnedAfterReq(await Api.getFoodByIngredient(text));
-  } else if (category === 'Nome') {
-    setObjectReturnedAfterReq(await Api.getFoodByName(text));
-  } else if (category === 'Primeira letra') {
-    return text.length === 1
-      ? setObjectReturnedAfterReq(await Api.getFoodByFirstLetter(text))
-      : alert('Sua busca deve conter somente 1 (um) caracter');
+const assign = (currentPath, responseId) => window.location.assign(`${currentPath}/${responseId}`);
+
+const nameType = async (response, currentPath, type, superType, setObjectReturnedAfterReq) => {
+  if (response[type] != null) {
+    const [responseId] = response[type].map((el) => el[superType]);
+    return (await response[type].length) === 1
+      ? assign(currentPath, responseId)
+      : setObjectReturnedAfterReq(response);
   }
-  return null;
+  return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
 };
 
-const filterDrinkLogic = async (category, text, setObjectReturnedAfterReq) => {
+const filteredSearchLogic = async (
+  category, text, setObjectReturnedAfterReq, getIngredient, getName,
+  getFirstLetter, currentPath, type, superType) => {
   if (category === 'Ingrediente') {
-    return setObjectReturnedAfterReq(await Api.getDrinkByIngredient(text));
-  }
-  if (category === 'Nome') {
-    return setObjectReturnedAfterReq(await Api.getDrinkByName(text));
-  }
-  if (category === 'Primeira letra') {
-    return text.length === 1
-      ? setObjectReturnedAfterReq(await Api.getDrinkByFirstLetter(text))
-      : alert('Sua busca deve conter somente 1 (um) caracter');
-  }
-  return null;
+    return setObjectReturnedAfterReq(await getIngredient(text));
+  } if (category === 'Nome') {
+    const response = await getName(text);
+    nameType(response, currentPath, type, superType, setObjectReturnedAfterReq);
+  } return text.length === 1
+    ? setObjectReturnedAfterReq(await getFirstLetter(text))
+    : alert('Sua busca deve conter somente 1 (um) caracter');
 };
 
 const filteredSearch = async (e, currentPath, category, text, setObjectReturnedAfterReq) => {
   e.preventDefault();
   if (currentPath === '/comidas') {
-    return filterFoodLogic(category, text, setObjectReturnedAfterReq);
+    return filteredSearchLogic(category, text, setObjectReturnedAfterReq,
+      Api.getFoodByIngredient, Api.getFoodByName, Api.getFoodByFirstLetter,
+      currentPath, 'meals', 'idMeal');
   }
-  return filterDrinkLogic(category, text, setObjectReturnedAfterReq);
+  return filteredSearchLogic(category, text, setObjectReturnedAfterReq,
+    Api.getDrinkByIngredient, Api.getDrinkByName, Api.getDrinkByFirstLetter,
+    currentPath, 'drinks', 'idDrink');
 };
 
 const radioBtnDisplay = (sameId, testid, func) => (

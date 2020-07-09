@@ -6,15 +6,12 @@ import InProgressContext from '../../../Context/InProgressContext';
 const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
 
 const saveInProgressRecipes = (key, id, doesObjPathExists) => {
-  console.log(id, key);
-  console.log(inProgressRecipes);
   if (inProgressRecipes === null) {
     return localStorage.setItem(
       'inProgressRecipes',
       JSON.stringify({ [key]: { [id]: [] } }),
     );
   }
-  console.log('doesObjPathExists:', doesObjPathExists);
   if (doesObjPathExists && console.log('doesObjPathExists():', doesObjPathExists())) {
     return localStorage.setItem(
       'inProgressRecipes',
@@ -62,6 +59,7 @@ export default function StartButton() {
           width: '100vw',
           display: isRecipeInProgress
         }}
+
         data-testid="start-recipe-btn"
         type="button"
         onClick={() => saveInProgressRecipes([])}

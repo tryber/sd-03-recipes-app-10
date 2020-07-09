@@ -19,7 +19,7 @@ import ExploreDrinksScreen from './pages/Explore/Drink/ExploreDrinks/ExploreDrin
 import ExploreFoodsScreen from './pages/Explore/Food/ExploreFoods/ExploreFoodsScreen';
 import ExploreFoodByIng from './pages/Explore/Food/ExploreFoods/ExploreFoodByIng/ExploreFoodByIng';
 import ExploreFoodByArea from './pages/Explore/Food/ExploreFoods/ExploreFoodByArea/ExploreFoodByArea';
-import ExploreDrinkByIng from './pages/Explore/Drink/ExploreDrinks/ExploreDrinkByArea/ExploreDrinkByIng';
+import ExploreDrinkByIng from './pages/Explore/Drink/ExploreDrinks/ExploreDrinkByIng/ExploreDrinkByIng';
 
 function App() {
   return (
