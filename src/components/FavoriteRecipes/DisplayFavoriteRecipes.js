@@ -24,6 +24,35 @@ const copyToClipBoard = (itemLink, setCopied) => {
     );
 };
 
+const buttonsToFilterFavorites = () => (
+  <div>
+    <button
+      type="button"
+      className="buttons-filter-display"
+      onClick={() => changeFavoriteRecipes('All')}
+      data-testid="filter-by-all-btn"
+    >
+      All
+    </button>
+    <button
+      type="button"
+      className="buttons-filter-display"
+      onClick={() => changeFavoriteRecipes('Food')}
+      data-testid="filter-by-food-btn"
+    >
+      Food
+    </button>
+    <button
+      type="button"
+      className="buttons-filter-display"
+      onClick={() => changeFavoriteRecipes('Drinks')}
+      data-testid="filter-by-drink-btn"
+    >
+      Drinks
+    </button>
+  </div>
+)
+
 const renderGrid = (recipe, index, setLocalStorageFavorites, setCopied) => (
   <div className="container-display">
     <Link
@@ -84,30 +113,7 @@ export default function DisplayFavoriteRecipes() {
     localStorageFavorites !== null
   && (
   <div>
-    <button
-      type="button"
-      className="buttons-filter-display"
-      onClick={() => changeFavoriteRecipes('All')}
-      data-testid="filter-by-all-btn"
-    >
-      All
-    </button>
-    <button
-      type="button"
-      className="buttons-filter-display"
-      onClick={() => changeFavoriteRecipes('Food')}
-      data-testid="filter-by-food-btn"
-    >
-      Food
-    </button>
-    <button
-      type="button"
-      className="buttons-filter-display"
-      onClick={() => changeFavoriteRecipes('Drinks')}
-      data-testid="filter-by-drink-btn"
-    >
-      Drinks
-    </button>
+    {buttonsToFilterFavorites()}
     {localStorageFavorites.map((el, index) => (
       <div className="favorites-display">
         {copied && <p>Link copiado!</p>}

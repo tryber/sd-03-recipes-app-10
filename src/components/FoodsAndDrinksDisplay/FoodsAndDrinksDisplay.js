@@ -21,8 +21,8 @@ export const searchByCategorie = async (
 
 const renderGrid = (recipe, stringObject, imgDisplay) => (
   <div className="item-overflow">{console.log(firstKey(recipe))}
-    {((firstKey(recipe) === 'meals' && useHistory().location.pathname.split('/')[1]==='comidas')
-        || (firstKey(recipe) === 'drinks' && useHistory().location.pathname.split('/')[1]==='bebidas'))
+    {((firstKey(recipe) === 'meals' && useHistory().location.pathname.split('/')[1] === 'comidas')
+        || (firstKey(recipe) === 'drinks' && useHistory().location.pathname.split('/')[1] === 'bebidas'))
         && recipe[firstKey(recipe)].map(
       (el, index) => index < 12 && (
       <Link
@@ -68,7 +68,7 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
   useEffect(
     () => () => {
       showSearchBar(false);
-      setValueToFilter('All')
+      setValueToFilter('All');
     },
     [],
   );
