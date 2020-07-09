@@ -49,11 +49,14 @@ const detailsToShow = (el, strType, strThumb) => (
   </div>
 );
 
+const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
+const checkObjectToMap = (objectReturnedAfterReq) => ((firstKey(objectReturnedAfterReq) === 'meals' && useHistory().location.pathname.split('/')[1]===`comidas`)
+  || (firstKey(objectReturnedAfterReq) === 'drinks' && useHistory().location.pathname.split('/')[1]===`bebidas`))
+
 export default function Details() {
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
   const typeRequsition = useLocation().pathname.split('/')[1];
   const itemId = useLocation().pathname.split('/')[2];
-  const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
 
   useEffect(() => {
     functionToMakeRequisition(
@@ -63,8 +66,7 @@ export default function Details() {
     );
   }, []);
 
-  return ((firstKey(objectReturnedAfterReq) === 'meals' && useHistory().location.pathname.split('/')[1]===`comidas`)
-  || (firstKey(objectReturnedAfterReq) === 'drinks' && useHistory().location.pathname.split('/')[1]===`bebidas`)) ? (
+  return checkObjectToMap(objectReturnedAfterReq) ? (
     <div>
       {typeRequsition === 'comidas'
         ? objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb'))
