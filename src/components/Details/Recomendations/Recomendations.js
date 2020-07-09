@@ -14,7 +14,6 @@ const Recomendations = () => {
   useEffect(() => {
     callRecomendations();
   }, []);
- 
   return (
     <div className="recomendation-container">
       {!!recomendetions && recomendetions[key].map((item, index) => (index < 6
@@ -26,6 +25,7 @@ const Recomendations = () => {
         >
           <p data-testid={`${index}-recomendation-title`}>{item[`str${srtSufix}`]}</p>
           <div>
+            
             <img
               data-testid={`${index}-recomendation-image`}
               className="recomendation-image"
