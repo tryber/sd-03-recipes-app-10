@@ -50,7 +50,7 @@ const detailsToShow = (el, strType, strThumb) => (
   </div>
 );
 
-const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
+//const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
 //const checkObjectToMap = (objectReturnedAfterReq) => ((firstKey(objectReturnedAfterReq) === 'meals' && useHistory().location.pathname.split('/')[1] === 'comidas')
 //  || (firstKey(objectReturnedAfterReq) === 'drinks' && useHistory().location.pathname.split('/')[1] === 'bebidas'));
 
