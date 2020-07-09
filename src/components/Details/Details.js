@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player/youtube';
-import { useLocation, useHistory } from 'react-router';
+import { useLocation } from 'react-router';
 import functionToMakeRequisition from './funtionToMakeRequisition';
 import ingredientsToshow from './ingredientsToshow';
 import StartButton from './StartButton/StartButton';
@@ -50,9 +50,11 @@ const detailsToShow = (el, strType, strThumb) => (
   </div>
 );
 
-//const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
-//const checkObjectToMap = (objectReturnedAfterReq) => ((firstKey(objectReturnedAfterReq) === 'meals' && useHistory().location.pathname.split('/')[1] === 'comidas')
-//  || (firstKey(objectReturnedAfterReq) === 'drinks' && useHistory().location.pathname.split('/')[1] === 'bebidas'));
+// const firstKey = (obj) => obj !== null && Object.keys(obj)[0];
+// const checkObjectToMap = (objectReturnedAfterReq) => ((firstKey(objectReturnedAfterReq) === 
+// 'meals' && useHistory().location.pathname.split('/')[1] === 'comidas')
+//  || (firstKey(objectReturnedAfterReq) === 'drinks' && useHistory()
+// .location.pathname.split('/')[1] === 'bebidas'));
 
 export default function Details() {
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
