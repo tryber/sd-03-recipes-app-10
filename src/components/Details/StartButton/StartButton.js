@@ -47,15 +47,6 @@ export default function StartButton() {
     <Link to={{ pathname: `/${typeRequsition}/${id}/in-progress` }}>
       <button
         className="start-btn"
-        style={{
-          bottom: 0,
-          height: '10vh',
-          margin: '5px',
-          textAalign: 'center',
-          width: '100vw',
-          display: isRecipeInProgress,
-        }}
-
         data-testid="start-recipe-btn"
         type="button"
         onClick={() => saveInProgressRecipes([])}
