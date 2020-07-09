@@ -7,7 +7,7 @@ import { getFoodListByIngredient, getFoodByIngredient } from '../../../../../ser
 
 const renderGrid = (recipe, cb) => (
   <div className="food-overflow">
-    {recipe.meals.slice(0, 12).map((el, index) => (
+    { recipe.meals !== undefined && recipe.meals.slice(0, 12).map((el, index) => (
       <Link
         onClick={() => cb(el.strIngredient)}
         className="display-container"

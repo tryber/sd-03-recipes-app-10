@@ -25,15 +25,14 @@
   width: 160px;
 }
 
-.item-overflow {
-  display: flex;
-  flex-direction: column;
-  height: 410px;
-  overflow-y: scroll;
-  padding: 10px 12px;
-  position: absolute;
-  top: 143px;
-  width: 335px;
+.icons-favorites-page {
+  background-color: rgba(26, 15, 15, 0.61);
+  border-radius: 15px;
+  box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);
+  height: 30px;
+  margin-right: 0px;
+  padding: 7px;
+  width: 30px;
 }
 
 h3 {
