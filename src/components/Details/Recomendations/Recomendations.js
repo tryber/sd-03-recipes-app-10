@@ -25,17 +25,17 @@ const Recomendations = () => {
           data-testid={`${index}-recomendation-card`}
           className="recomendation-card"
         >
-          <Link to={`/${isFood ? 'comidas' : 'bebidas'}/${id}`}>
-            <p data-testid={`${index}-recomendation-title`}>{item[`str${srtSufix}`]}</p>
-            <div>
+          <p data-testid={`${index}-recomendation-title`}>{item[`str${srtSufix}`]}</p>
+          <div>
+            <Link to={`/${isFood ? 'comidas' : 'bebidas'}/${id}`}>
               <img
                 data-testid={`${index}-recomendation-image`}
                 className="recomendation-image"
                 src={item[`str${srtSufix}Thumb`]}
                 alt={item[key]}
               />
-            </div>
-          </Link>
+            </Link>
+          </div>
         </div>
         ))}
     </div>
