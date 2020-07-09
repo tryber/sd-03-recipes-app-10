@@ -14,6 +14,7 @@ const Recomendations = () => {
   useEffect(() => {
     callRecomendations();
   }, []);
+ 
   return (
     <div className="recomendation-container">
       {!!recomendetions && recomendetions[key].map((item, index) => (index < 6

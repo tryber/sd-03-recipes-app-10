@@ -20,6 +20,7 @@ export const searchByCategorie = async (
 };
 
 const renderGrid = (recipe, stringObject, imgDisplay) => (
+
   <div className="item-overflow">
     {recipe[firstKey(recipe)].map(
       (el, index) => index < 12 && (
