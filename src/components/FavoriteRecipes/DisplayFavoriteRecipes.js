@@ -24,7 +24,7 @@ const copyToClipBoard = (itemLink, setCopied) => {
     );
 };
 
-const buttonsToFilterFavorites = () => (
+const buttonsToFilterFavorites = (changeFavoriteRecipes) => (
   <div>
     <button
       type="button"
@@ -51,7 +51,7 @@ const buttonsToFilterFavorites = () => (
       Drinks
     </button>
   </div>
-)
+);
 
 const renderGrid = (recipe, index, setLocalStorageFavorites, setCopied) => (
   <div className="container-display">
@@ -113,7 +113,7 @@ export default function DisplayFavoriteRecipes() {
     localStorageFavorites !== null
   && (
   <div>
-    {buttonsToFilterFavorites()}
+    {buttonsToFilterFavorites(changeFavoriteRecipes)}
     {localStorageFavorites.map((el, index) => (
       <div className="favorites-display">
         {copied && <p>Link copiado!</p>}
