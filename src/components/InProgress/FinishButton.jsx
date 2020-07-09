@@ -6,7 +6,7 @@ export default function FinishButtton({ dones, ingredientsQuantity }) {
   return (
     <button
       data-testid="finish-recipe-btn"
-      style={{ display: !dones || ingredientsQuantity === 0 || dones.length !== ingredientsQuantity ? 'none' : 'flex' }}
+      style={{ display: !dones || ingredientsQuantity === 0 || dones.length !== ingredientsQuantity.length ? 'none' : 'flex' }}
       type="button"
     >
       Finalizar Receita

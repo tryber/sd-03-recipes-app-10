@@ -25,7 +25,8 @@ const saveInProgressRecipes = (key, id, doesObjPathExists) => {
 };
 
 const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
-const isRecipeDone = (id) => doneRecipes[id] && doneRecipes.some((e) => e.id === id);
+const isRecipeDone = (id) => !!doneRecipes && !!doneRecipes[id]
+ && doneRecipes.some((e) => e.id === id);
 
 const text = (localStoragePath) => {
   if (localStoragePath !== [] && !!localStoragePath) return 'Continuar Receita';
