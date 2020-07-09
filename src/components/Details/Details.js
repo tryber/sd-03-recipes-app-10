@@ -66,8 +66,8 @@ export default function Details() {
       {typeRequsition === 'comidas'
         ? objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb'))
         : objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb'))}
-      <Recomendations />
       <InProgressProvider>
+        <Recomendations />
         <StartButton
           typeRequsition={typeRequsition}
           itemId={itemId}
