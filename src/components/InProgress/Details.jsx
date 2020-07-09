@@ -6,7 +6,7 @@ import favIcon from '../../images/whiteHeartIcon.svg';
 
 export default function Details({ str, children }) {
   const { data, requestKey } = useContext(InProgressContext);
-  
+
   return (
     <div key={Math.random()}>
       <img data-testid="recipe-photo" className="img-align" alt={data[requestKey][0][str]} src={data[requestKey][0][`${str}Thumb`]} />

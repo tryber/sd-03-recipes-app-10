@@ -17,8 +17,6 @@ const InProgress = () => {
     typeRequsition,
     doesObjPathExists,
     setData,
-    setDones,
-    localStoragePath,
   } = useContext(InProgressContext);
   useEffect(() => {
     functionToMakeRequisition(
