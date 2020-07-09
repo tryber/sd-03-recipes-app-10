@@ -1,53 +1,78 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router';
 import ReactPlayer from 'react-player/youtube';
+import { useLocation } from 'react-router';
 import functionToMakeRequisition from './funtionToMakeRequisition';
 import ingredientsToshow from './ingredientsToshow';
+import StartButton from './StartButton/StartButton';
+import Recomendations from './Recomendations/Recomendations';
+
 import './Details.style.css';
-import shareIcon from '../../images/shareIcon.svg';
-import favIcon from '../../images/whiteHeartIcon.svg';
+import HeartStateAndShareIcon from './HeartStateAndShareIcon';
 
 const detailsToShow = (el, strType, strThumb) => (
-  <div>
-    <img data-testid="recipe-photo" className="img-align" alt={el[strType]} src={el[strThumb]} />
-    <div className="title-icons-container">
-      <div>
-        <h2 data-testid="recipe-title">{el[strType]}</h2>
-      </div>
+  <div key={Math.random() * Math.PI}>
+    <div className="img-container">
+      <img data-testid="recipe-photo" className="img" alt={el[strType]} src={el[strThumb]} />
       <div className="icons-container">
-        <input type="image" src={shareIcon} />
-        <input type="image" src={favIcon} />
+        <HeartStateAndShareIcon />
       </div>
     </div>
-    <p >{el.strAlcoholic}</p>
-    <p data-testid="recipe-category">{el.strCategory}</p>
-    <p>Ingredients</p>
-    {ingredientsToshow(el)}
-    <p>Instructions</p>
-    <div data-testid="instructions">{el.strInstructions}</div>
-    {el.strYoutube !== undefined && (
-      <div>
-        <p>Video</p>
-        <ReactPlayer data-testid="video" width="100%" height="100%" url={el.strYoutube} />
+    <div className="details-container">
+      <div className="title-icons-container">
+        <div>
+          <h3 className="recipe-title" data-testid="recipe-title">{el[strType]}</h3>
+          <p data-testid="recipe-category">{el.strCategory}</p>
+          <p data-testid="recipe-category">{el.strAlcoholic}</p>
+        </div>
       </div>
-    )}
+      <div className="ing-display">
+        <h3 style={{ textAlign: 'left', marginBottom: '10px', paddingLeft: '10px' }}>Ingredients</h3>
+        {ingredientsToshow(el)}
+      </div>
+      <div className="instr-display">
+        <h3>Instructions</h3>
+        <div data-testid="instructions">{el.strInstructions}</div>
+      </div>
+      {el.strYoutube !== undefined && (
+        <div>
+          <p>Video</p>
+          <ReactPlayer
+            data-testid="video"
+            width="340px"
+            height="250px"
+            url={el.strYoutube}
+          />
+        </div>
+      )}
+      <Recomendations />
+    </div>
   </div>
 );
 
 export default function Details() {
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
-  const typeRequsition = useHistory().location.pathname.split('/')[1];
-  const itemId = useHistory().location.pathname.split('/')[2];
-
+  const typeRequsition = useLocation().pathname.split('/')[1];
+  const itemId = useLocation().pathname.split('/')[2];
   useEffect(() => {
-    functionToMakeRequisition(typeRequsition, itemId, setObjectReturnedAfterReq);
+    functionToMakeRequisition(
+      typeRequsition,
+      itemId,
+      setObjectReturnedAfterReq,
+    );
   }, []);
-
+  console.log(useLocation());
+  console.log('type requisition', typeRequsition);
+  console.log('objectReturned', objectReturnedAfterReq);
   return objectReturnedAfterReq === null ? null : (
     <div>
       {typeRequsition === 'comidas'
         ? objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb'))
         : objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb'))}
+      <StartButton
+        typeRequsition={typeRequsition}
+        itemId={itemId}
+        recipe={objectReturnedAfterReq}
+      />
     </div>
   );
 }

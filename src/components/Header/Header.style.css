@@ -27,20 +27,27 @@
 
 .profile-icon {
   align-self: center;
-  border-radius: 10px;
-  height: 35px;
-  left: 15px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 11px 18px -13px rgba(0, 0, 0, 0.795);
+  height: 30px;
+  left: 12px;
+  padding: 5px;
   position: absolute;
-  top: 12px;
-  width: 35px;
+  top: 9px;
+  width: 30px;
 }
 
 .search-icon {
   align-self: center;
+  background-color: white;
   border: none;
+  border-radius: 15px;
+  box-shadow: 0 11px 18px -13px rgba(0, 0, 0, 0.795);
   height: 30px;
-  left: 317px;
+  left: 310px;
+  padding: 5px;
   position: absolute;
-  top: 12px;
+  top: 9px;
   width: 30px;
 }

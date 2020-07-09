@@ -37,11 +37,26 @@ export const getDrinkByID = async (id) => {
   return getData(drinksByID);
 };
 
+export const getRandomDrink = async () => {
+  const randomDrink = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+  return getData(randomDrink);
+};
+
+export const getDrinkListByIngredient = async () => {
+  const drinksListByIngredient = `${initialDrinksURL}list.php?i=list`;
+  return getData(drinksListByIngredient);
+};
+
 const initialFoodsURL = 'https://www.themealdb.com/api/json/v1/1/';
 
 export const getFoodList = async () => {
   const initialPageFoods = `${initialFoodsURL}search.php?s=`;
   return getData(initialPageFoods);
+};
+
+export const getFoodByArea = async (area) => {
+  const initialListByArea = `${initialFoodsURL}filter.php?a=${area}`;
+  return getData(initialListByArea);
 };
 
 export const getFoodsCategoriesList = async () => {
@@ -59,6 +74,11 @@ export const getFoodByIngredient = async (ingredient) => {
   return getData(foodsByIngredient);
 };
 
+export const getFoodListByIngredient = async () => {
+  const foodsListByIngredient = `${initialFoodsURL}list.php?i=list`;
+  return getData(foodsListByIngredient);
+};
+
 export const getFoodByName = async (name) => {
   const foodsByName = `${initialFoodsURL}search.php?s=${name}`;
   return getData(foodsByName);
@@ -72,4 +92,9 @@ export const getFoodByFirstLetter = async (letter) => {
 export const getFoodByID = async (id) => {
   const foodsByID = `${initialFoodsURL}lookup.php?i=${id}`;
   return getData(foodsByID);
+};
+
+export const getRandomMeal = async () => {
+  const randomMeal = 'https://www.themealdb.com/api/json/v1/1/random.php';
+  return getData(randomMeal);
 };

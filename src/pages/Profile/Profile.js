@@ -10,18 +10,22 @@ export default function Profile() {
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem('user')));
   }, []);
-
+  console.log(user);
   return (
     <div>
       {Header('Perfil', false)}
       <div className="holder">
         <div className="profile-info-display">
           <div>
-            <h2 className="profile-email" data-testid="profile-email">{user.email}</h2>
+            {user ? (
+              <h2 className="profile-email" data-testid="profile-email">
+                {user.email}
+              </h2>
+            ) : null}
           </div>
           <div className="profile-btn-container">
             <Link to="/receitas-favoritas">
-              <button className="profile-btn" data-testid="profile-favorite-btn">
+              <button type="button" className="profile-btn" data-testid="profile-favorite-btn">
                 Receitas Favoritas
               </button>
             </Link>

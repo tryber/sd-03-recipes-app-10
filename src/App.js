@@ -10,6 +10,7 @@ import Profile from './pages/Profile/Profile';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import NotFoundPage from './pages/NotFoundPage';
 import RecipesMade from './pages/RecipesMade';
+import InProgress from './pages/InProgress';
 
 import Details from './components/Details/Details';
 
@@ -18,7 +19,7 @@ import ExploreDrinksScreen from './pages/Explore/Drink/ExploreDrinks/ExploreDrin
 import ExploreFoodsScreen from './pages/Explore/Food/ExploreFoods/ExploreFoodsScreen';
 import ExploreFoodByIng from './pages/Explore/Food/ExploreFoods/ExploreFoodByIng/ExploreFoodByIng';
 import ExploreFoodByArea from './pages/Explore/Food/ExploreFoods/ExploreFoodByArea/ExploreFoodByArea';
-import ExploreDrinkByIng from './pages/Explore/Drink/ExploreDrinks/ExploreDrinkByArea/ExploreDrinkByIng';
+import ExploreDrinkByIng from './pages/Explore/Drink/ExploreDrinks/ExploreDrinkByIng/ExploreDrinkByIng';
 
 function App() {
   return (
@@ -31,8 +32,8 @@ function App() {
             <Route exact path="/bebidas" component={MainDrinksScreen} />
             <Route exact path="/comidas/:id" component={Details} />
             <Route exact path="/bebidas/:id" component={Details} />
-            <Route exact path="/comidas/:id/in-progress" component={null} />
-            <Route exact path="/bebidas/:id/in-progress" component={null} />
+            <Route exact path="/comidas/:id/in-progress" component={InProgress} />
+            <Route exact path="/bebidas/:id/in-progress" component={InProgress} />
             <Route exact path="/explorar" component={Explore} />
             <Route exact path="/explorar/comidas" component={ExploreFoodsScreen} />
             <Route exact path="/explorar/bebidas" component={ExploreDrinksScreen} />

@@ -1,18 +1,68 @@
-.img-align {
+.details-container {
   border-radius: 15px;
-  height: 250px;
+  height: 320px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 10px;
+  position: absolute;
+  top: 250px;
+  width: 340px;
+}
+
+.img {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  height: 240px;
   width: 360px;
 }
 
-.title-icons-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 10px 0;
+.recipe-title {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);
+  font-size: 17px;
+  margin-bottom: 5px;
+  padding: 5px;
+  text-align: center;
+}
+
+.title-icons-container p {
+  margin: 0;
+  padding: 0 0 0 10px;
 }
 
 .icons-container {
   display: flex;
   justify-content: space-between;
-  margin: 0;
-  padding: 0;
+  left: 118px;
+  position: absolute;
+  top: 5px;
+}
+
+.icons-container input {
+  background-color: rgba(255, 0, 0, 0.61);
+  border-radius: 15px;
+  box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);
+  height: 30px;
+  margin-left: 15px;
+  padding: 7px;
+  width: 30px;
+}
+
+.ing-display {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.instr-display {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 15px;
+  text-align: justify;
 }

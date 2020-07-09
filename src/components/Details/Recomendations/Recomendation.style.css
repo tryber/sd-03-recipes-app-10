@@ -1,0 +1,26 @@
+.recomendation-container {
+  display: flex;
+  height: 180px;
+  margin-top: 10px;
+  overflow-x: scroll;
+  padding-bottom: 10px;
+}
+
+.recomendation-card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 15px -15px rgba(0, 0, 0, 0.795);
+  margin-right: 12px;
+  padding: 5px 5px 10px;
+}
+
+.recomendation-card p {
+  margin: 0;
+  padding: 0;
+}
+
+.recomendation-image {
+  border-radius: 15px;
+  height: 130px;
+  width: 147px;
+}
