@@ -56,7 +56,7 @@ const buttonsToFilterFavorites = (changeFavoriteRecipes) => (
 const renderGrid = (recipe, index, setLocalStorageFavorites, setCopied) => (
   <div className="container-display">
     <Link
-      key={Math.random() * Math.PI}
+      key={Math.random()}
       data-testid={`${index}-recipe-card`}
       to={
         (recipe.type === 'comida' && `/comidas/${recipe.id}`)
