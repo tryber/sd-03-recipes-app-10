@@ -25,7 +25,6 @@ const Recomendations = () => {
         >
           <p data-testid={`${index}-recomendation-title`}>{item[`str${srtSufix}`]}</p>
           <div>
-            
             <img
               data-testid={`${index}-recomendation-image`}
               className="recomendation-image"
