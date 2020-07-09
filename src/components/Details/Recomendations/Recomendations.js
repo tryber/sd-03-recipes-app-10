@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { getFoodList, getDrinkList } from '../../../services/api';
 import './Recomendation.style.css';
 
@@ -10,7 +11,7 @@ const Recomendations = () => {
   const key = isFood ? 'drinks' : 'meals';
 
   const callRecomendations = async () => (window.location.pathname.includes('comidas') ? setRecomendations(await getDrinkList()) : setRecomendations(await getFoodList()));
-
+  const id = useLocation().pathname.split('/')[2];
   useEffect(() => {
     callRecomendations();
   }, []);
@@ -24,15 +25,17 @@ const Recomendations = () => {
           data-testid={`${index}-recomendation-card`}
           className="recomendation-card"
         >
-          <p data-testid={`${index}-recomendation-title`}>{item[`str${srtSufix}`]}</p>
-          <div>
-            <img
-              data-testid={`${index}-recomendation-image`}
-              className="recomendation-image"
-              src={item[`str${srtSufix}Thumb`]}
-              alt={item[key]}
-            />
-          </div>
+          <Link to={`/${isFood ? 'comidas' : 'bebidas'}/${id}`}>
+            <p data-testid={`${index}-recomendation-title`}>{item[`str${srtSufix}`]}</p>
+            <div>
+              <img
+                data-testid={`${index}-recomendation-image`}
+                className="recomendation-image"
+                src={item[`str${srtSufix}Thumb`]}
+                alt={item[key]}
+              />
+            </div>
+          </Link>
         </div>
         )
       ))}
