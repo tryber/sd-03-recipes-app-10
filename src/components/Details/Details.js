@@ -45,6 +45,7 @@ const detailsToShow = (el, strType, strThumb) => (
           />
         </div>
       )}
+      <Recomendations />
     </div>
   </div>
 );
@@ -66,7 +67,6 @@ export default function Details() {
         ? objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb'))
         : objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb'))}
       <InProgressProvider>
-        <Recomendations />
         <StartButton
           typeRequsition={typeRequsition}
           itemId={itemId}
