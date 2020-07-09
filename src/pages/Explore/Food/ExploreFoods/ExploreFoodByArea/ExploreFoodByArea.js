@@ -41,6 +41,7 @@ const renderGrid = (recipe) => (
       </Link>
       ),
     )}
+    ;
   </div>
 );
 
@@ -62,7 +63,7 @@ export default function ExploreFoodByArea() {
 
   return (
     <div>
-      {Header('Explorar Origem', true, true)}
+      {Header('Explorar Origem', true)}
       <div className="dropdown-container">
         <select
           data-testid="explore-by-area-dropdown"

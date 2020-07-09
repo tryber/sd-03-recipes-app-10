@@ -42,6 +42,11 @@ export const getRandomDrink = async () => {
   return getData(randomDrink);
 };
 
+export const getDrinkListByIngredient = async () => {
+  const drinksListByIngredient = `${initialDrinksURL}list.php?i=list`;
+  return getData(drinksListByIngredient);
+};
+
 const initialFoodsURL = 'https://www.themealdb.com/api/json/v1/1/';
 
 export const getFoodList = async () => {
@@ -67,6 +72,11 @@ export const getFoodByCategory = async (category) => {
 export const getFoodByIngredient = async (ingredient) => {
   const foodsByIngredient = `${initialFoodsURL}filter.php?i=${ingredient}`;
   return getData(foodsByIngredient);
+};
+
+export const getFoodListByIngredient = async () => {
+  const foodsListByIngredient = `${initialFoodsURL}list.php?i=list`;
+  return getData(foodsListByIngredient);
 };
 
 export const getFoodByName = async (name) => {
