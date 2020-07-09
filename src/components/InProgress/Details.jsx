@@ -1,38 +1,36 @@
-import React from 'react';
-import propTypes from 'prop-types';
-
+import React, { useContext } from 'react';
+import propTypes, { node } from 'prop-types';
+import InProgressContext from '../../Context/InProgressContext';
 import shareIcon from '../../images/shareIcon.svg';
 import favIcon from '../../images/whiteHeartIcon.svg';
 
-export default function Details({ data, str, children }) {
-  console.log(str, children);
-  console.log(data);
+export default function Details({ str, children }) {
+  const { data, requestKey } = useContext(InProgressContext);
+
   return (
     <div key={Math.random()}>
-      <img data-testid="recipe-photo" className="img-align" alt={data[str]} src={data[`${str}Thumb`]} />
+      <img data-testid="recipe-photo" className="img-align" alt={data[requestKey][0][str]} src={data[requestKey][0][`${str}Thumb`]} />
       <div className="title-icons-container">
         <div>
-          <h2 data-testid="recipe-title">{data[str]}</h2>
+          <h2 data-testid="recipe-title">{data[requestKey][0][str]}</h2>
         </div>
         <div className="icons-container">
           <input type="image" src={shareIcon} alt="share icon" data-testid="share-btn" />
           <input type="image" src={favIcon} alt="favorite icon" data-testid="favorite-btn" />
         </div>
       </div>
-      <p data-testid="recipe-category">{data.strAlcoholic}</p>
-      <p data-testid="recipe-category">{data.strCategory}</p>
+      <p data-testid="recipe-category">{data[requestKey][0].strAlcoholic}</p>
+      <p data-testid="recipe-category">{data[requestKey][0].strCategory}</p>
       <p>Ingredients</p>
       {children}
       <p>Instructions</p>
-      <div data-testid="instructions">{data.strInstructions}</div>
+      <div data-testid="instructions">{data[requestKey][0].strInstructions}</div>
+
     </div>
   );
-  // return detailsToShow(el, strType);
-  // return this.children
 }
 
 Details.propTypes = {
-  children: propTypes.node.isRequired,
   str: propTypes.string.isRequired,
-  data: propTypes.isRequired,
+  children: node.isRequired,
 };

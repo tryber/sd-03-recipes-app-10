@@ -5,6 +5,7 @@ import functionToMakeRequisition from './funtionToMakeRequisition';
 import ingredientsToshow from './ingredientsToshow';
 import StartButton from './StartButton/StartButton';
 import Recomendations from './Recomendations/Recomendations';
+import InProgressProvider from '../../Context/InProgressProvider';
 
 import './Details.style.css';
 import HeartStateAndShareIcon from './HeartStateAndShareIcon';
@@ -65,17 +66,18 @@ export default function Details() {
       setObjectReturnedAfterReq,
     );
   }, []);
-
-  return checkObjectToMap(objectReturnedAfterReq) ? (
+  return objectReturnedAfterReq === null ? null : (
     <div>
       {typeRequsition === 'comidas'
         ? objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb'))
         : objectReturnedAfterReq.drinks.map((el) => detailsToShow(el, 'strDrink', 'strDrinkThumb'))}
-      <StartButton
-        typeRequsition={typeRequsition}
-        itemId={itemId}
-        recipe={objectReturnedAfterReq}
-      />
+      <InProgressProvider>
+        <StartButton
+          typeRequsition={typeRequsition}
+          itemId={itemId}
+          recipe={objectReturnedAfterReq}
+        />
+      </InProgressProvider>
     </div>
-  ) : null;
+  );
 }
