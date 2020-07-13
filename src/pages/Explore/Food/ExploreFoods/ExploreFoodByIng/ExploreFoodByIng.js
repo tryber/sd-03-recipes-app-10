@@ -48,7 +48,7 @@ export default function ExploreFoodByIng() {
 
   return (
     <div>
-      {Header('Explorar Ingredientes', true, true)}
+      {Header('Explorar Ingredientes', false)}
       {foodByIng === null ? null : renderGrid(foodByIng, handleSelectedIng)}
       <Footer />
     </div>

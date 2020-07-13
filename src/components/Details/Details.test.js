@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Details from './Details';
 import renderWithRouter from '../helpers/renderWithRouter';
 import { mockGetFoodByID as mockFood } from '../../services/apiFood.mock';
-import { ingredients as recipeList } from './StartButton';
+import { ingredients as recipeList } from './StartButton/StartButton';
 
 // afterEach(global.fetch.mockClear());
 
@@ -15,8 +15,7 @@ test('should ', () => {
       }),
     }));
   const { getByTestId, getAllByTestId } = renderWithRouter(<Details />);
-  console.log(renderWithRouter(<Details />))
-
+  console.log(renderWithRouter(<Details />));
 
   const photo = getByTestId('recipe-photo');
   expect(photo.src).toBe(mockFood.meals.strMealThumb);

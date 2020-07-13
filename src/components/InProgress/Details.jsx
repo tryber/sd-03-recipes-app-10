@@ -1,38 +1,42 @@
-import React from 'react';
-import propTypes from 'prop-types';
+import React, { useContext } from 'react';
+import propTypes, { node } from 'prop-types';
+import InProgressContext from '../../Context/InProgressContext';
+import '../Details/Details.style.css';
+import HeartStateAndShareIcon from '../Details/HeartStateAndShareIcon';
 
-import shareIcon from '../../images/shareIcon.svg';
-import favIcon from '../../images/whiteHeartIcon.svg';
+export default function Details({ str, children }) {
+  const { data, requestKey } = useContext(InProgressContext);
 
-export default function Details({ data, str, children }) {
-  console.log(str, children);
-  console.log(data);
   return (
     <div key={Math.random()}>
-      <img data-testid="recipe-photo" className="img-align" alt={data[str]} src={data[`${str}Thumb`]} />
-      <div className="title-icons-container">
-        <div>
-          <h2 data-testid="recipe-title">{data[str]}</h2>
-        </div>
+      <div className="img-container">
+        <img data-testid="recipe-photo" className="img" alt={data[requestKey][0][str]} src={data[requestKey][0][`${str}Thumb`]} />
         <div className="icons-container">
-          <input type="image" src={shareIcon} alt="share icon" data-testid="share-btn" />
-          <input type="image" src={favIcon} alt="favorite icon" data-testid="favorite-btn" />
+          <HeartStateAndShareIcon />
         </div>
       </div>
-      <p data-testid="recipe-category">{data.strAlcoholic}</p>
-      <p data-testid="recipe-category">{data.strCategory}</p>
-      <p>Ingredients</p>
-      {children}
-      <p>Instructions</p>
-      <div data-testid="instructions">{data.strInstructions}</div>
+      <div className="details-container">
+        <div className="title-icons-container">
+          <div>
+            <h3 className="recipe-title" data-testid="recipe-title">{data[requestKey][0][str]}</h3>
+            <p data-testid="recipe-category">{data[requestKey][0].strCategory}</p>
+            <p data-testid="recipe-category">{data[requestKey][0].strAlcoholic}</p>
+          </div>
+        </div>
+        <div className="ing-display">
+          <h3 style={{ textAlign: 'left', marginBottom: '10px', paddingLeft: '10px' }}>Ingredients</h3>
+          {children}
+        </div>
+        <div className="instr-display">
+          <p>Instructions</p>
+          <div data-testid="instructions">{data[requestKey][0].strInstructions}</div>
+        </div>
+      </div>
     </div>
   );
-  // return detailsToShow(el, strType);
-  // return this.children
 }
 
 Details.propTypes = {
-  children: propTypes.node.isRequired,
   str: propTypes.string.isRequired,
-  data: propTypes.isRequired,
+  children: node.isRequired,
 };

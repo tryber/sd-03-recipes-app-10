@@ -75,7 +75,7 @@ export default function HeartStateAndShareIcon() {
 
   return (
     <div className="icons-container">
-      {copied && <p>Link copiado!</p>}
+      {copied && <p className="copied-link-msg">Link copiado!</p>}
       <input
         data-testid="share-btn"
         type="image"

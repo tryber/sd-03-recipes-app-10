@@ -1,14 +1,15 @@
-import React from 'react';
-import propTypes from 'prop-types';
+import React, { useEffect, useContext } from 'react';
+import './Checkboxes.style.css';
+import InProgressContext from '../../Context/InProgressContext';
 
 export const ingredients = (recipeObj) => {
   let counter = 0;
   return Object.entries(recipeObj).reduce(
     (acc = [], [key, value]) => {
-      if (key.includes('strIngredient') && !!value) {
+      if (!!key && key.includes('strIngredient') && !!value) {
         acc.push(value);
       }
-      if (key.includes('strMeasure') && !!acc[counter]) {
+      if (!!key && key.includes('strMeasure') && !!acc[counter]) {
         acc[counter] = `${acc[counter]} - ${value}`;
         counter += 1;
       }
@@ -16,39 +17,53 @@ export const ingredients = (recipeObj) => {
     }, [],
   );
 };
-const toggleCheckbox = (target, dones, setDones) => {
-  if (dones.includes(target.name)) {
+const toggleCheckbox = (index, dones, setDones) => {
+  if (!dones) return setDones([index]);
+
+  if (dones.includes(index)) {
     return setDones(
       (prev) => [
-        ...prev.slice(0, prev.indexOf(target.name)),
-        ...prev.slice(prev.indexOf(target.name) + 1),
+        ...prev.slice(0, prev.indexOf(index)),
+        ...prev.slice(prev.indexOf(index) + 1),
       ],
     );
   }
-  return setDones((prevDones) => [...prevDones, target.name]);
+  console.log('toggleCheckbox:', index);
+  return setDones((prevDones) => {
+    console.log(prevDones);
+    return ([...prevDones, index]);
+  });
 };
 
-export default function Checkboxes({ data, dones, setDones }) {
-  return data && (
+export default function Checkboxes() {
+  const {
+    saveInProgress, requestKey, setDones, data, dones,
+  } = useContext(InProgressContext);
+
+  useEffect(() => {
+    if (!!dones && dones !== []) {
+      saveInProgress([...dones]);
+    }
+  }, [toggleCheckbox]);
+
+  return data ? (
     <div style={{ display: 'grid' }}>
-      {ingredients(data).map((e, index) => (
-        <label key={Math.random()} htmlFor={e}>
+      {!!data[requestKey][0] && ingredients(data[requestKey][0]).map((e, index) => (
+        <label
+          className={!!dones && dones.includes(index) ? 'crossed' : 'not-crossed'}
+          key={Math.random()}
+          htmlFor={e}
+          data-testid={`${index}-ingredient-step`}
+        >
           <input
-            data-testid={`${index}-ingredient-step`}
             name={e}
             type="checkbox"
-            checked={dones.includes(e)}
-            onChange={(event) => toggleCheckbox(event.target, dones, setDones)}
+            checked={!!dones && dones.includes(index)}
+            onChange={() => toggleCheckbox(index, dones, setDones)}
           />
           {e}
         </label>
       ))}
     </div>
-  );
+  ) : <h1>loading poxa...</h1>;
 }
-
-Checkboxes.propTypes = {
-  dones: propTypes.arrayOf(propTypes.string).isRequired,
-  setDones: propTypes.func.isRequired,
-  data: propTypes.isRequired,
-};

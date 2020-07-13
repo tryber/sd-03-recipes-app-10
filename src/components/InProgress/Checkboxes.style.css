@@ -1,0 +1,7 @@
+.crossed {
+  text-decoration-line: line-through;
+}
+
+.not-crossed {
+  text-decoration: none solid black;
+}
