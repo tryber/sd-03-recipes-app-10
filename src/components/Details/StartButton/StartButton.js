@@ -36,7 +36,7 @@ const text = (localStoragePath) => {
 
 export default function StartButton() {
   const { localStoragePath } = useContext(InProgressContext);
-  const isRecipeInProgress = inProgressRecipes && localStoragePath;
+  // const isRecipeInProgress = inProgressRecipes && localStoragePath;
   const typeRequsition = useLocation().pathname.split('/')[1];
   const id = useLocation().pathname.split('/')[2];
 
@@ -47,15 +47,6 @@ export default function StartButton() {
     <Link to={{ pathname: `/${typeRequsition}/${id}/in-progress` }}>
       <button
         className="start-btn"
-        style={{
-          bottom: 0,
-          height: '10vh',
-          margin: '5px',
-          textAalign: 'center',
-          width: '100vw',
-          display: isRecipeInProgress,
-        }}
-
         data-testid="start-recipe-btn"
         type="button"
         onClick={() => saveInProgressRecipes([])}
