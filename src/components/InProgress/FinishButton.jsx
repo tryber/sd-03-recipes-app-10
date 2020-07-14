@@ -9,10 +9,8 @@ export default function FinishButtton({ dones, ingredientsQuantity }) {
     <Link to="/receitas-feitas">
       <button
         data-testid="finish-recipe-btn"
-        style={{
-          display: !!dones && ingredientsQuantity === 0
-        && dones.length !== ingredientsQuantity ? 'none' : 'flex',
-        }}
+        disabled={!!dones && ingredientsQuantity !== 0
+        && dones.length === ingredientsQuantity}
         type="button"
       >
         Finalizar Receita
