@@ -34,7 +34,7 @@ const InProgress = () => {
       )}
       <FinishButton
         dones={dones}
-        ingredientsQuantity={!!localStoragePath && localStoragePath}
+        ingredientsQuantity={!!localStoragePath && localStoragePath.length}
       />
     </div>
   );

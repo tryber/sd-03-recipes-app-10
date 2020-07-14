@@ -4,7 +4,7 @@ import { arrayOf, string, number } from 'prop-types';
 import { Link } from 'react-router-dom';
 
 export default function FinishButtton({ dones, ingredientsQuantity }) {
-  const isDone = !!dones && dones.length === ingredientsQuantity
+  // const isDone = !!dones && dones.length === ingredientsQuantity;
   return (
     <Link to="/receitas-feitas">
       <button
