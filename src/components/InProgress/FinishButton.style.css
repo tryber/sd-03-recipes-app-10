@@ -1,0 +1,14 @@
+.finish-btn {
+  background-color: white;
+  border: none;
+  border-bottom: 3px solid lightgray;
+  border-radius: 15px;
+  bottom: 0;
+  box-shadow: 0 11px 18px -10px rgba(0, 0, 0, 0.795);
+  height: 35px;
+  justify-content: center;
+  left: 5px;
+  padding: 5px;
+  position: fixed;
+  width: 350px;
+}

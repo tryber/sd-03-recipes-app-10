@@ -6,7 +6,6 @@ import Checkboxes from './Checkboxes';
 
 import FinishButton from './FinishButton';
 
-
 const InProgress = () => {
   const {
     dones,

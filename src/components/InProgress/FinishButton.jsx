@@ -4,13 +4,14 @@ import { arrayOf, string, number } from 'prop-types';
 import { Link } from 'react-router-dom';
 
 export default function FinishButtton({ dones, ingredientsQuantity }) {
+  const isDone = !!dones && dones.length === ingredientsQuantity
   return (
     <Link to="/receitas-feitas">
       <button
         data-testid="finish-recipe-btn"
         style={{
           display: !!dones && ingredientsQuantity === 0
-        && dones.length !== ingredientsQuantity.length ? 'none' : 'flex',
+        && dones.length !== ingredientsQuantity ? 'none' : 'flex',
         }}
         type="button"
       >
