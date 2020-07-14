@@ -11,7 +11,7 @@ import './Details.style.css';
 import HeartStateAndShareIcon from './HeartStateAndShareIcon';
 
 const detailsToShow = (el, strType, strThumb) => (
-  <div key={Math.random() * Math.PI}>
+  <div key={el[`id${strType}`]}>
     <div className="img-container">
       <img data-testid="recipe-photo" className="img" alt={el[strType]} src={el[strThumb]} />
       <div className="icons-container">
@@ -22,8 +22,7 @@ const detailsToShow = (el, strType, strThumb) => (
       <div className="title-icons-container">
         <div>
           <h3 className="recipe-title" data-testid="recipe-title">{el[strType]}</h3>
-          <p data-testid="recipe-category">{el.strCategory}</p>
-          <p data-testid="recipe-category">{el.strAlcoholic}</p>
+          <p data-testid="recipe-category">{el.strCategory || el.strAlcoholic}</p>
         </div>
       </div>
       <div className="ing-display">
@@ -53,6 +52,8 @@ const detailsToShow = (el, strType, strThumb) => (
 export default function Details() {
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
   const typeRequsition = useLocation().pathname.split('/')[1];
+  // console.log('typeRequsition', typeRequsition);
+  // console.log('objectReturnedAfterReq:', objectReturnedAfterReq);
   const itemId = useLocation().pathname.split('/')[2];
   useEffect(() => {
     functionToMakeRequisition(
@@ -61,7 +62,7 @@ export default function Details() {
       setObjectReturnedAfterReq,
     );
   }, []);
-  return objectReturnedAfterReq === null ? null : (
+  return objectReturnedAfterReq && (
     <div>
       {typeRequsition === 'comidas'
         ? objectReturnedAfterReq.meals.map((el) => detailsToShow(el, 'strMeal', 'strMealThumb'))
