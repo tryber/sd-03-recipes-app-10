@@ -7,7 +7,7 @@ import { getDrinkListByIngredient, getDrinkByIngredient } from '../../../../../s
 
 const renderGrid = (drinks, cb) => (
   <div className="food-overflow">
-    {drinks.drinks.slice(0, 12).map((el, index) => (
+    {drinks.drinks !== undefined && drinks.drinks.slice(0, 12).map((el, index) => (
       <Link
         onClick={() => cb(el.strIngredient1)}
         className="display-container"
@@ -45,10 +45,9 @@ export default function ExploreFoodByIng() {
     requestDrinkByIng();
     setObjectReturnedAfterReq(null);
   }, []);
-
   return (
     <div>
-      {Header('Explorar bebidas por ingredientes', true, true)}
+      {Header('Explorar Ingredientes', false)}
       {drinkByIng === null ? null : renderGrid(drinkByIng, handleSelectedIng)}
       <Footer />
     </div>

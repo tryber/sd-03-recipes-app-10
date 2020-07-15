@@ -6,7 +6,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import profileIcon from '../../images/profileIcon.svg';
 import searchIcon from '../../images/searchIcon.svg';
 
-const Header = (pageTitle, stateOfTheBar, disabled) => {
+const Header = (pageTitle, stateOfTheBar) => {
   const { showSearchBar, toggleSearchBar } = useContext(RecipeContext);
   const [isSearchable, setIsSearchable] = useState();
 
@@ -25,7 +25,6 @@ const Header = (pageTitle, stateOfTheBar, disabled) => {
       className={imageClassNameAndAlt}
       src={imageSrc}
       type="image"
-      disabled={disabled}
       onClick={func}
     />
   );

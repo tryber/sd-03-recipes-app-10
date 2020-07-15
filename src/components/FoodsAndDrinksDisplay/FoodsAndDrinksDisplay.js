@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './FoodsAndDrinksDisplay.style.css';
 import RecipeContext from '../../Context/RecipeContext';
 import { getFoodByCategory, getDrinkByCategory } from '../../services/api';
@@ -20,9 +20,10 @@ export const searchByCategorie = async (
 };
 
 const renderGrid = (recipe, stringObject, imgDisplay) => (
-
-  <div className="item-overflow">
-    {recipe[firstKey(recipe)].map(
+  <div className="item-overflow">{console.log(firstKey(recipe))}
+    {((firstKey(recipe) === 'meals' && useHistory().location.pathname.split('/')[1] === 'comidas')
+        || (firstKey(recipe) === 'drinks' && useHistory().location.pathname.split('/')[1] === 'bebidas'))
+        && recipe[firstKey(recipe)].map(
       (el, index) => index < 12 && (
       <Link
         className="food-cards-display"
@@ -51,6 +52,7 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
     setObjectReturnedAfterReq,
     showSearchBar,
     comingFromIngredients,
+    setValueToFilter,
   } = useContext(RecipeContext);
 
   const functionToMakeRequisition = async () => {
@@ -66,7 +68,7 @@ const FoodsAndDrinksDisplay = (getitemDefined, stringObject, imgDisplay) => {
   useEffect(
     () => () => {
       showSearchBar(false);
-      setObjectReturnedAfterReq(null);
+      setValueToFilter('All');
     },
     [],
   );

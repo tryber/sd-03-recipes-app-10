@@ -10,7 +10,7 @@ export default function Profile() {
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem('user')));
   }, []);
-  console.log(user);
+
   return (
     <div>
       {Header('Perfil', false)}
