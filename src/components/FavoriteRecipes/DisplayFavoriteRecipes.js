@@ -11,7 +11,6 @@ const removeFromFavorites = (itemId, setLocalStorageFavorites) => {
   localStorage.setItem('favoriteRecipes', JSON.stringify(findElementToRemove));
   setLocalStorageFavorites(findElementToRemove);
 };
-
 const copyToClipBoard = (itemLink, setCopied) => {
   navigator.clipboard.writeText(`http://localhost:3000${itemLink}`);
   navigator.clipboard
@@ -23,6 +22,34 @@ const copyToClipBoard = (itemLink, setCopied) => {
       }, 2000),
     );
 };
+const buttonsToFilterFavorites = (changeFavoriteRecipes) => (
+  <div>
+    <button
+      type="button"
+      className="buttons-filter-display"
+      onClick={() => changeFavoriteRecipes('All')}
+      data-testid="filter-by-all-btn"
+    >
+      All
+    </button>
+    <button
+      type="button"
+      className="buttons-filter-display"
+      onClick={() => changeFavoriteRecipes('Food')}
+      data-testid="filter-by-food-btn"
+    >
+      Food
+    </button>
+    <button
+      type="button"
+      className="buttons-filter-display"
+      onClick={() => changeFavoriteRecipes('Drinks')}
+      data-testid="filter-by-drink-btn"
+    >
+      Drinks
+    </button>
+  </div>
+);
 
 const buttonsToFilterFavorites = (changeFavoriteRecipes) => (
   <div>
@@ -91,13 +118,11 @@ const renderGrid = (recipe, index, setLocalStorageFavorites, setCopied) => (
     </div>
   </div>
 );
-
 export default function DisplayFavoriteRecipes() {
   const [localStorageFavorites, setLocalStorageFavorites] = useState(
     JSON.parse(localStorage.getItem('favoriteRecipes')),
   );
   const [copied, setCopied] = useState(false);
-
   const changeFavoriteRecipes = (valueToFilter) => {
     const localToFilter = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (valueToFilter === 'Food') {
@@ -108,7 +133,6 @@ export default function DisplayFavoriteRecipes() {
     }
     return setLocalStorageFavorites(localToFilter);
   };
-
   return (
     localStorageFavorites !== null
   && (
