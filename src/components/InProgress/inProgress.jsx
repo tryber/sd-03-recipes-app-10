@@ -23,7 +23,7 @@ const setSingleDone = (recipe, str) => ({
 const formatDataForDones = (recipe, setSingleDone, str) => (
   localStorageDones === null
     ? [setSingleDone(recipe, str)]
-    : [...localStorageDones, setSingleDone(recipe, str]);
+    : [...localStorageDones, setSingleDone(recipe, str)]);
 const InProgress = () => {
   const {
     dones,
@@ -55,7 +55,7 @@ const InProgress = () => {
       <FinishButton
         dones={dones}
         ingredientsQuantity={!!localStoragePath && localStoragePath.length}
-        save={saveDone(formatDataForDones(data[drinksOrMeals][0]), str)}
+        save={saveDone(formatDataForDones(data[drinksOrMeals][0]), setSingleDone, str)}
       />
     </div>
   );
