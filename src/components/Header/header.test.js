@@ -31,14 +31,14 @@ describe('Test to see if the searchBar appears correctly on Screen', () => {
   test('should, on searchBtnIcon click, render an input - Seach Bar', () => {
     const { getByTestId } = renderWithRouter(<Header />);
     const searchBtnIcon = getByTestId('search-top-btn');
-    
+
     expect(searchBtnIcon).toBeInTheDocument();
     fireEvent.click(searchBtnIcon);
-    
+
     const searchBar = getByTestId('search-input');
-    
+
     expect(searchBar).toBeInTheDocument();
     fireEvent.click(searchBtnIcon);
-    expect(searchBar).not.toBeInTheDocument()
+    expect(searchBar).not.toBeInTheDocument();
   });
 });

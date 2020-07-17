@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+
 import InProgressContext from './InProgressContext';
 
 const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
@@ -28,9 +29,8 @@ const saveInProgress = (item = [], localKey, itemId) => {
       },
     }));
 };
-
 const InProgressProvider = ({ children }) => {
-  const itemId = useLocation().pathname.split('/')[2];
+  const itemId = useParams().id;
   const typeRequsition = useLocation().pathname.split('/')[1];
   const localKey = typeRequsition === 'comidas' ? 'meals' : 'cocktails';
   const requestKey = (typeRequsition === 'comidas' ? 'meals' : 'drinks');

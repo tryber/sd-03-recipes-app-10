@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
+import propTypes from 'prop-types';
 import notFavIcon from '../../images/whiteHeartIcon.svg';
 import shareIcon from '../../images/shareIcon.svg';
 import isFavIcon from '../../images/blackHeartIcon.svg';
@@ -47,7 +48,7 @@ const setObjInLocalStorage = (accessObj, stringObject, type, objectReturnedAfter
   return newArray;
 };
 
-export default function HeartStateAndShareIcon() {
+export default function HeartStateAndShareIcon({ index }) {
   const [objectReturnedAfterReq, setObjectReturnedAfterReq] = useState(null);
   const typeRequsition = useHistory().location.pathname.split('/')[1];
   const itemId = useHistory().location.pathname.split('/')[2];
@@ -84,7 +85,7 @@ export default function HeartStateAndShareIcon() {
         alt="share-button"
       />
       <input
-        data-testid="favorite-btn"
+        data-testid={index ? `${index}-horizontal-favorite-btn` : 'favorite-btn'}
         type="image"
         src={checkInLocalstorage ? isFavIcon : notFavIcon}
         onClick={() => changeFavorites(checkInLocalstorage, addToFavorites, removeFromFavorites)}
@@ -93,3 +94,10 @@ export default function HeartStateAndShareIcon() {
     </div>
   );
 }
+
+HeartStateAndShareIcon.defaultProps = {
+  index: null,
+};
+HeartStateAndShareIcon.propTypes = {
+  index: propTypes.number,
+};

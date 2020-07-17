@@ -6,6 +6,24 @@ import Checkboxes from './Checkboxes';
 
 import FinishButton from './FinishButton';
 
+const localStorageDones = JSON.parse(localStorage.getItem('doneRecipes'));
+const saveDone = (formatData) => localStorage.setItem('doneRecipes',
+  JSON.stringify(formatData));
+const setSingleDone = (recipe, str) => ({
+  id: recipe[`id${str}`],
+  type: str === 'Meal' ? 'comida' : 'bebida',
+  area: recipe.strArea || '',
+  category: recipe.strCategory || '',
+  alcoholicOrNot: recipe.strAlcoholic || '',
+  name: recipe[str],
+  image: recipe[`str${str}Thumb`],
+  doneDate: Date.now(),
+  tags: [recipe.strTag] || [],
+});
+const formatDataForDones = (recipe, setInfoObject, str) => (
+  localStorageDones === null
+    ? [setInfoObject(recipe, str)]
+    : [...localStorageDones, setInfoObject(recipe, str)]);
 const InProgress = () => {
   const {
     dones,
@@ -14,12 +32,14 @@ const InProgress = () => {
     typeRequsition,
     localStoragePath,
     setData,
+
   } = useContext(InProgressContext);
   useEffect(() => {
     functionToMakeRequisition(typeRequsition, itemId, setData);
   }, []);
   useEffect(() => {
-  }, [dones]);
+  }, [localStoragePath]);
+  const str = typeRequsition === 'comidas' ? 'Meal' : 'Drink';
   if (data === null) return (<h1>Loading...</h1>);
   const drinksOrMeals = typeRequsition === 'comidas' ? 'meals' : 'drinks';
   return (
@@ -34,7 +54,8 @@ const InProgress = () => {
       )}
       <FinishButton
         dones={dones}
-        ingredientsQuantity={!!localStoragePath && localStoragePath}
+        ingredientsQuantity={!!localStoragePath && localStoragePath.length}
+        save={saveDone(formatDataForDones(data[drinksOrMeals][0]), setSingleDone, str)}
       />
     </div>
   );
