@@ -6,7 +6,7 @@ export default function RecipesMade() {
   return (
     <div>
       {Header('Receitas Feitas', false)}
-      {Container}
+      <Container />
     </div>
   );
 }

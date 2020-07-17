@@ -16,7 +16,7 @@ export default function FinishButtton({ dones, ingredientsQuantity, save }) {
         disabled={!dones || dones.length === 0
         || dones.length !== ingredientsQuantity}
         type="button"
-        onClick={() => save()}
+        onClick={() => save}
       >
         Finalizar Receita
       </button>
