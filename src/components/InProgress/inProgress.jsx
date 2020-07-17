@@ -20,10 +20,10 @@ const setSingleDone = (recipe, str) => ({
   doneDate: Date.now(),
   tags: [recipe.strTag] || [],
 });
-const formatDataForDones = (recipe, setSingleDone, str) => (
+const formatDataForDones = (recipe, setInfoObject, str) => (
   localStorageDones === null
-    ? [setSingleDone(recipe, str)]
-    : [...localStorageDones, setSingleDone(recipe, str)]);
+    ? [setInfoObject(recipe, str)]
+    : [...localStorageDones, setInfoObject(recipe, str)]);
 const InProgress = () => {
   const {
     dones,
@@ -32,7 +32,7 @@ const InProgress = () => {
     typeRequsition,
     localStoragePath,
     setData,
-    requestKey,
+
   } = useContext(InProgressContext);
   useEffect(() => {
     functionToMakeRequisition(typeRequsition, itemId, setData);
